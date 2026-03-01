@@ -158,8 +158,8 @@ export default function CheckerPage({
     minH="100dvh"
     overflowX="hidden"
     overflowY="auto"
-    bg="radial-gradient(circle at 50% -15%, rgba(255,138,61,0.35), transparent 55%), radial-gradient(circle at 80% 120%, rgba(255,61,127,0.15), transparent 60%), linear-gradient(180deg, #06080f 0%, #0c1220 100%)"
-    color="#ffffff"
+    bg="bg.900"
+    color="fg.DEFAULT"
   >
     <Box
       mx="auto"
@@ -175,10 +175,10 @@ export default function CheckerPage({
           h="full"
           minH={0}
           borderRadius="30px"
-          border="1px solid rgba(255,255,255,0.08)"
-          bg="rgba(15,19,34,0.55)"
-          backdropFilter="blur(18px)"
-          boxShadow="0 0 80px rgba(255,138,61,0.12), 0 25px 70px rgba(0,0,0,0.7)"
+          border="1px solid"
+          borderColor="whiteAlpha.200"
+          bg="surface.950"
+          boxShadow="card"
           overflow="hidden"
         >
           <Flex h="full" direction="column" overflow="hidden">
@@ -188,15 +188,15 @@ export default function CheckerPage({
               minH="50px"
               templateColumns="2.5rem 1fr 2.5rem"
               alignItems="center"
-              borderBottom="1px solid rgba(255,255,255,0.06)"
-              bg="rgba(20,25,45,0.65)"
-              backdropFilter="blur(10px)"
+              borderBottom="1px solid"
+              borderColor="whiteAlpha.200"
+              bg="surface.900"
               px={5}
             >
               <HStack spacing={2}>
-                <Circle size="10px" bg="#ff8a3d" boxShadow="0 0 12px #ff8a3d" />
-                <Circle size="10px" bg="#23d7c6" boxShadow="0 0 12px #23d7c6" />
-                <Circle size="10px" bg="#ff6584" boxShadow="0 0 12px #ff6584" />
+                <Circle size="10px" bg="brand.400" />
+                <Circle size="10px" bg="accent.400" />
+                <Circle size="10px" bg="danger.300" />
               </HStack>
 
               <Text
@@ -204,7 +204,7 @@ export default function CheckerPage({
                 fontSize="xs"
                 fontWeight="800"
                 letterSpacing="0.12em"
-                color="#ff8a3d"
+                color="brand.400"
               >
                 BURN HORC
               </Text>
@@ -223,14 +223,13 @@ export default function CheckerPage({
               gap={5}
               p={{ base: 5 }}
             >
-
               {/* TEXT AREA */}
               <Box
                 h="full"
                 borderRadius="22px"
-                bg="rgba(12,16,30,0.75)"
-                border="1px solid rgba(255,255,255,0.05)"
-                boxShadow="inset 0 0 40px rgba(0,0,0,0.4)"
+                bg="surface.900"
+                border="1px solid"
+                borderColor="whiteAlpha.200"
               >
                 {!isLoading ? (
                   <Textarea
@@ -247,10 +246,10 @@ export default function CheckerPage({
                     py={5}
                     fontSize="sm"
                     fontFamily="'JetBrains Mono', monospace"
-                    color="#ffffff"
-                    _placeholder={{ color: "rgba(255,255,255,0.35)" }}
+                    color="fg.DEFAULT"
+                    _placeholder={{ color: "fg.muted" }}
                     _focusVisible={{
-                      boxShadow: "0 0 0 1px rgba(255,138,61,0.6)",
+                      boxShadow: "0 0 0 1px var(--chakra-colors-brand-400)",
                     }}
                   />
                 ) : (
@@ -266,7 +265,7 @@ export default function CheckerPage({
                     fontFamily="'JetBrains Mono', monospace"
                   >
                     {checkLogs.length === 0 ? (
-                      <Text color="rgba(255,255,255,0.6)">
+                      <Text color="fg.muted">
                         Starting check...
                       </Text>
                     ) : (
@@ -274,7 +273,13 @@ export default function CheckerPage({
                         <Text
                           key={entry.id}
                           mt={entry.id > 1 ? 2 : 0}
-                          color={getLogToneColor(entry.tone)}
+                          color={
+                            entry.tone === "valid"
+                              ? "accent.400"
+                              : entry.tone === "invalid"
+                              ? "danger.300"
+                              : "fg.DEFAULT"
+                          }
                           whiteSpace="pre-wrap"
                         >
                           {entry.text}
@@ -296,15 +301,11 @@ export default function CheckerPage({
                   }}
                   minH="3.2rem"
                   borderRadius="16px"
-                  bg="linear-gradient(135deg, #ff8a3d, #ff3d7f)"
-                  color="#fff"
+                  bg="brand.400"
+                  color="white"
                   fontWeight="800"
                   letterSpacing="0.1em"
-                  boxShadow="0 0 40px rgba(255,138,61,0.6)"
-                  _hover={{
-                    transform: "translateY(-2px)",
-                    boxShadow: "0 0 50px rgba(255,138,61,0.8)",
-                  }}
+                  _hover={{ bg: "brand.300" }}
                   _active={{ transform: "scale(0.97)" }}
                 >
                   {isLoading ? "Stop" : "Start"}
@@ -316,13 +317,9 @@ export default function CheckerPage({
                   isDisabled={isLoading}
                   minH="3.2rem"
                   borderRadius="16px"
-                  bg="rgba(255,255,255,0.05)"
-                  border="1px solid rgba(255,255,255,0.1)"
-                  color="#fff"
-                  fontWeight="600"
-                  _hover={{
-                    bg: "rgba(255,255,255,0.1)",
-                  }}
+                  variant="outline"
+                  borderColor="whiteAlpha.300"
+                  color="fg.DEFAULT"
                 >
                   Upload File
                 </Button>
@@ -334,46 +331,5 @@ export default function CheckerPage({
         <AppCredits />
       </Grid>
     </Box>
-
-    {/* MODAL */}
-    <Modal
-      isOpen={isSingleResultModalOpen}
-      onClose={onCloseSingleCheckModal}
-      isCentered
-      size={{ base: "full", md: "2xl" }}
-    >
-      <ModalOverlay bg="rgba(0,0,0,0.8)" backdropFilter="blur(8px)" />
-
-      <ModalContent
-        bg="rgba(15,19,34,0.85)"
-        backdropFilter="blur(20px)"
-        border="1px solid rgba(255,255,255,0.08)"
-        borderRadius={{ base: 0, md: "24px" }}
-        boxShadow="0 0 60px rgba(255,138,61,0.2)"
-        color="#fff"
-      >
-        <ModalHeader
-          borderBottom="1px solid rgba(255,255,255,0.06)"
-          fontSize="sm"
-          letterSpacing="0.12em"
-          textTransform="uppercase"
-          color="#ff8a3d"
-        >
-          Check Result
-        </ModalHeader>
-
-        <ModalCloseButton />
-
-        <ModalBody p={{ base: 6 }}>
-          {modalResult ? (
-            <Box>
-              <Text fontSize="lg" fontWeight="700">
-                {displayValue(modalResult?.plan)}
-              </Text>
-            </Box>
-          ) : null}
-        </ModalBody>
-      </ModalContent>
-    </Modal>
   </Box>
 );
