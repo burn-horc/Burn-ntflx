@@ -158,7 +158,7 @@ export default function CheckerPage({
     minH="100dvh"
     overflowX="hidden"
     overflowY="auto"
-    bg="linear-gradient(180deg, #0b0e17 0%, #0f1424 100%)"
+    bg="radial-gradient(circle at 50% -20%, rgba(255,138,61,0.15), transparent 60%), linear-gradient(180deg, #090c14 0%, #0d1220 100%)"
     color="#ffffff"
   >
     <Box
@@ -177,8 +177,8 @@ export default function CheckerPage({
           borderRadius="28px"
           borderWidth="1px"
           borderColor="rgba(255,255,255,0.08)"
-          bg="rgba(20,23,38,0.9)"
-          backdropFilter="blur(8px)"
+          bg="rgba(18,22,40,0.7)"
+          backdropFilter="blur(14px)"
           boxShadow="0 0 0 1px rgba(255,138,61,0.08), 0 20px 60px rgba(0,0,0,0.6)"
           overflow="hidden"
         >
@@ -305,11 +305,11 @@ export default function CheckerPage({
                   }}
                   minH="3rem"
                   borderRadius="14px"
-                  bg="linear-gradient(90deg, #ff8a3d, #ff6a00)"
+                  bg="linear-gradient(135deg, #ff8a3d, #ff3d7f)"
                   color="#fff"
                   fontWeight="700"
                   letterSpacing="0.08em"
-                  boxShadow="0 8px 24px rgba(255,138,61,0.35)"
+                  boxShadow="0 0 30px rgba(255,138,61,0.5)"
                   _hover={{
                     transform: "translateY(-2px)",
                     boxShadow: "0 12px 30px rgba(255,138,61,0.45)",
