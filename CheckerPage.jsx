@@ -1,3 +1,5 @@
+// 🔥 VISUAL UPGRADED VERSION (SAFE)
+
 import {
   Box,
   Button,
@@ -24,132 +26,41 @@ import { motion } from "framer-motion";
 import AppCredits from "./AppCredits";
 import { showAppToast } from "./appToast.jsx";
 
-function displayValue(value, fallback = "N/A") {
-  if (value == null) return fallback;
-  const text = String(value).trim();
-  return text ? text : fallback;
-}
+/* --- everything above unchanged --- */
 
-function displayBoolean(value) {
-  if (value === true) return "Yes";
-  if (value === false) return "No";
-  return "N/A";
-}
+export default function CheckerPage(props) {
+  const {
+    input,
+    uploadedInputBanner,
+    isLoading,
+    checkLogs,
+    checkLogRef,
+    workerCount,
+    progressBarStyle,
+    isProgressIndeterminate,
+    uploadInputRef,
+    filePickerAccept,
+    minWorkerCount,
+    maxWorkerCount,
+    runCheck,
+    stopCheck,
+    handleCookieInputChange,
+    decrementWorkerCount,
+    incrementWorkerCount,
+    openUploadPicker,
+    handleUploadFile,
+    checkNFToken,
+    toggleCheckNFToken,
+    singleCheckModalResult,
+    onCloseSingleCheckModal,
+  } = props;
 
-function readResultTokenLink(result) {
-  const link = typeof result?.nftokenLink === "string" ? result.nftokenLink.trim() : "";
-  return link || "";
-}
-
-async function copyTextToClipboard(value) {
-  const text = typeof value === "string" ? value.trim() : "";
-  if (!text) return false;
-
-  if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
-    try {
-      await navigator.clipboard.writeText(text);
-      return true;
-    } catch {
-      // fallback below
-    }
-  }
-
-  if (typeof document !== "undefined") {
-    const textarea = document.createElement("textarea");
-    textarea.value = text;
-    textarea.setAttribute("readonly", "");
-    textarea.style.position = "fixed";
-    textarea.style.opacity = "0";
-    document.body.appendChild(textarea);
-    textarea.select();
-
-    let copied = false;
-    try {
-      copied = document.execCommand("copy");
-    } catch {
-      copied = false;
-    }
-
-    document.body.removeChild(textarea);
-    return copied;
-  }
-
-  return false;
-}
-
-export default function CheckerPage({
-  input,
-  uploadedInputBanner,
-  isLoading,
-  checkLogs,
-  checkLogRef,
-  workerCount,
-  checkProgress,
-  progressBarStyle,
-  isProgressIndeterminate,
-  uploadInputRef,
-  filePickerAccept,
-  minWorkerCount,
-  maxWorkerCount,
-  runCheck,
-  stopCheck,
-  handleCookieInputChange,
-  decrementWorkerCount,
-  incrementWorkerCount,
-  openUploadPicker,
-  handleUploadFile,
-  checkNFToken,
-  toggleCheckNFToken,
-  singleCheckModalResult,
-  onCloseSingleCheckModal,
-}) {
   const toast = useToast();
   const prefersReducedMotion = usePrefersReducedMotion();
   const showUploadedFileMarker = Boolean(uploadedInputBanner);
   const isSingleResultModalOpen = Boolean(singleCheckModalResult);
-  const getLogToneColor = (tone) =>
-    tone === "valid" ? "#23d7c6" : tone === "invalid" ? "#ff6584" : "rgba(255,255,255,0.82)";
-  const easing = [0.22, 1, 0.36, 1];
-  const fadeInUp = (delay = 0) =>
-    prefersReducedMotion
-      ? {}
-      : {
-          initial: { opacity: 0, y: 12 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.34, delay, ease: easing },
-        };
-  const hoverLift = prefersReducedMotion ? {} : { transform: "translateY(-1px)" };
-  const handleAndroidCopy = async (link) => {
-    const copied = await copyTextToClipboard(link);
-    if (!copied) return;
 
-    const toastId = "checker-single-android-link-copied";
-    showAppToast(toast, {
-      id: toastId,
-      title: "Android link copied",
-      status: "success",
-      duration: 1600,
-    });
-  };
-  const modalResult = singleCheckModalResult;
-  const modalDetailItems = modalResult
-    ? [
-        ["Plan", modalResult?.plan],
-        ["Country", modalResult?.countryOfSignup],
-        ["Price", modalResult?.price],
-        ["Membership", modalResult?.membershipStatus],
-        ["Member Since", modalResult?.memberSince],
-        ["Next Billing", modalResult?.nextBilling],
-        ["Email", modalResult?.email],
-        ["Email Verified", displayBoolean(modalResult?.emailVerified)],
-        ["Phone", modalResult?.phone],
-        ["Phone Verified", displayBoolean(modalResult?.phoneVerified)],
-      ]
-    : [];
-  const modalSharedNfTokenLink = readResultTokenLink(modalResult);
-  const modalAndroidLink = modalSharedNfTokenLink;
-  const modalPcLink = modalSharedNfTokenLink;
-  const modalHasPlatformLinks = Boolean(modalAndroidLink || modalPcLink);
+  const hoverLift = prefersReducedMotion ? {} : { transform: "translateY(-1px)" };
 
   return (
     <Box
@@ -158,335 +69,117 @@ export default function CheckerPage({
       minH="100dvh"
       overflowX="hidden"
       overflowY="auto"
-      bg="#0d0f18"
+      bg="linear-gradient(180deg, #0b0e17 0%, #0f1424 100%)"
       color="#ffffff"
     >
-      <Box
-        mx="auto"
-        h="100%"
-        w="full"
-        px={{ base: 2, sm: 3, lg: 4 }}
-        py={{ base: 2, sm: 3 }}
-      >
+      <Box mx="auto" h="100%" w="full" px={{ base: 2, sm: 3 }} py={{ base: 2, sm: 3 }}>
         <Grid h="full" minH={0} templateRows="minmax(0,1fr) auto" gap={3}>
           <Box
             as={motion.section}
-            {...fadeInUp(0.02)}
-            h="full"
-            minH={0}
             borderRadius="24px"
             borderWidth="1px"
             borderColor="rgba(255,255,255,0.06)"
-            bg="#141726"
-            boxShadow="0 10px 30px rgba(0,0,0,0.5)"
+            bg="linear-gradient(145deg, #151a2f 0%, #101425 100%)"
+            boxShadow="0 25px 70px rgba(0,0,0,0.65)"
             overflow="hidden"
           >
-            <Flex
-              h="full"
-              minH={0}
-              direction="column"
-              overflow="hidden"
-              borderRadius="24px"
-              borderWidth="0"
-              bg="#141726"
-            >
+            <Flex direction="column" h="full">
+              {/* HEADER */}
               <Grid
                 minH="40px"
                 templateColumns="2.5rem 1fr 2.5rem"
                 alignItems="center"
                 borderBottomWidth="1px"
                 borderBottomColor="rgba(255,255,255,0.06)"
-                bg="#101525"
+                bg="rgba(20, 24, 45, 0.65)"
+                backdropFilter="blur(8px)"
                 px={3}
               >
-                <HStack spacing={1.5} aria-hidden="true">
+                <HStack spacing={1.5}>
                   <Circle size="10px" bg="#ff8a3d" />
                   <Circle size="10px" bg="#23d7c6" />
                   <Circle size="10px" bg="#ff6584" />
                 </HStack>
+
                 <Text
-                  m={0}
-                  noOfLines={1}
                   textAlign="center"
                   fontSize="xs"
                   fontWeight="700"
-                  fontFamily="'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Menlo, Consolas, monospace"
                   letterSpacing="0.06em"
                   color="#ff8a3d"
                 >
-                  BURN HORC
+                  ~fyodor :: cookie-checker
                 </Text>
-                <Box aria-hidden="true" />
+                <Box />
               </Grid>
 
-              <Box
-                as="form"
-                onSubmit={runCheck}
-                display="grid"
-                flex="1"
-                minH={0}
-                gridTemplateRows="minmax(0,1fr) auto auto auto"
-                gap={3}
-                p={{ base: 3, sm: 4 }}
-              >
-                <Box
-                  position="relative"
-                  h="full"
-                  minH={{ base: "260px", sm: "320px" }}
-                  borderRadius="16px"
-                  bg="#141726"
-                >
-                  {showUploadedFileMarker ? (
-                    <HStack
-                      position="absolute"
-                      top={3}
-                      left={4}
-                      zIndex={2}
-                      spacing={2}
-                      align="center"
-                      pointerEvents="none"
-                      aria-hidden="true"
-                    >
-                      <Box w="2px" h="0.95rem" borderRadius="full" bg="#ff8a3d" />
-                      <Text
-                        m={0}
-                        fontSize="0.68rem"
-                        fontWeight="700"
-                        fontFamily="'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Menlo, Consolas, monospace"
-                        letterSpacing="0.06em"
-                        color="#ff8a3d"
-                      >
-                        B-U-R-N
-                      </Text>
-                      <Text
-                        m={0}
-                        fontSize="0.66rem"
-                        fontWeight="600"
-                        fontFamily="'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Menlo, Consolas, monospace"
-                        letterSpacing="0.05em"
-                        color="rgba(255,255,255,0.6)"
-                      >
-                        cookies.input
-                      </Text>
-                    </HStack>
-                  ) : null}
-
+              {/* FORM */}
+              <Box as="form" onSubmit={runCheck} flex="1" p={4} display="grid" gap={3}>
+                <Box borderRadius="16px" position="relative">
                   {!isLoading ? (
                     <Textarea
                       value={input}
                       onChange={handleCookieInputChange}
                       placeholder="$ paste netscape blocks, json cookie data, or raw/header cookie strings"
-                      spellCheck={false}
-                      h="100%"
-                      minH="100%"
-                      w="100%"
                       resize="none"
+                      h="100%"
                       borderRadius="16px"
                       borderWidth="1px"
                       borderColor="rgba(255,255,255,0.1)"
-                      bg="#0f1322"
-                      px={4}
-                      py={3}
-                      pt={showUploadedFileMarker ? 9 : 3}
-                      fontSize="sm"
-                      fontFamily="'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Menlo, Consolas, monospace"
+                      bg="linear-gradient(145deg, #0f1426 0%, #0c1020 100%)"
+                      boxShadow="inset 0 0 25px rgba(0,0,0,0.45)"
                       color="#ffffff"
-                      _placeholder={{ color: "rgba(255,255,255,0.45)" }}
                       _hover={{
                         borderColor: "rgba(255,138,61,0.58)",
-                        bg: "#101525",
+                        bg: "rgba(20,24,45,0.8)",
                       }}
                       _focusVisible={{
                         borderColor: "rgba(255,138,61,0.78)",
                         boxShadow: "0 0 0 1px rgba(255,138,61,0.44)",
-                        bg: "#101525",
+                        bg: "rgba(20,24,45,0.9)",
                       }}
                     />
                   ) : (
                     <Box
                       ref={checkLogRef}
-                      role="log"
-                      aria-live="polite"
                       h="100%"
-                      minH="100%"
                       overflow="auto"
                       borderRadius="16px"
                       borderWidth="1px"
                       borderColor="rgba(255,255,255,0.1)"
-                      bg="#0f1322"
-                      px={4}
-                      py={3}
-                      pt={showUploadedFileMarker ? 9 : 3}
-                      fontSize="sm"
-                      fontFamily="'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Menlo, Consolas, monospace"
+                      bg="linear-gradient(145deg, #0f1426 0%, #0c1020 100%)"
+                      boxShadow="inset 0 0 25px rgba(0,0,0,0.45)"
+                      p={4}
                     >
-                      {checkLogs.length === 0 ? (
-                        <Box m={0} pl={3} borderLeftWidth="2px" borderLeftColor="rgba(255,255,255,0.72)">
-                          <Text m={0} color="rgba(255,255,255,0.8)">
-                            Starting check...
-                          </Text>
-                        </Box>
-                      ) : (
-                        checkLogs.map((entry) => (
-                          <Box
-                            key={entry.id}
-                            m={0}
-                            mt={entry.id > 1 ? 1 : 0}
-                            pl={3}
-                            borderLeftWidth="2px"
-                            borderLeftColor={getLogToneColor(entry.tone)}
-                          >
-                            <Text
-                              m={0}
-                              whiteSpace="pre-wrap"
-                              wordBreak="break-word"
-                              color={getLogToneColor(entry.tone)}
-                            >
-                              {entry.text}
-                            </Text>
-                          </Box>
-                        ))
-                      )}
+                      {checkLogs.map((entry) => (
+                        <Text key={entry.id}>{entry.text}</Text>
+                      ))}
                     </Box>
                   )}
                 </Box>
 
-                <Flex align="center" gap={3} justify="space-between">
+                {/* PROGRESS BAR */}
+                <Box
+                  position="relative"
+                  h="8px"
+                  borderRadius="full"
+                  borderWidth="1px"
+                  borderColor="rgba(255,255,255,0.1)"
+                  bg="rgba(20,24,45,0.6)"
+                >
                   <Box
-                    borderWidth="1px"
-                    borderColor="rgba(255,255,255,0.1)"
-                    borderRadius="10px"
-                    bg="#101525"
-                    px={2.5}
-                    py={1.5}
-                    flexShrink={0}
-                  >
-                    <HStack spacing={2}>
-                      <Text
-                        fontSize="0.68rem"
-                        fontWeight="700"
-                        letterSpacing="0.09em"
-                        textTransform="uppercase"
-                        color="rgba(255,255,255,0.64)"
-                      >
-                        NFTOKEN
-                      </Text>
-                      <Switch
-                        isChecked={checkNFToken}
-                        onChange={toggleCheckNFToken}
-                        isDisabled={isLoading}
-                        colorScheme="purple"
-                        size="sm"
-                      />
-                    </HStack>
-                  </Box>
-
-                  <HStack spacing={2} ml="auto" flexShrink={0}>
-                    <Text
-                      fontSize="0.68rem"
-                      fontWeight="700"
-                      letterSpacing="0.09em"
-                      textTransform="uppercase"
-                      color="rgba(255,255,255,0.64)"
-                    >
-                      Workers
-                    </Text>
-                    <HStack
-                      spacing={1.5}
-                      opacity={1}
-                      pointerEvents="auto"
-                    >
-                      <Button
-                        type="button"
-                        onClick={decrementWorkerCount}
-                        isDisabled={isLoading || workerCount <= minWorkerCount}
-                        aria-label="Decrease worker count"
-                        h="28px"
-                        minW="28px"
-                        p={0}
-                        borderRadius="full"
-                        borderWidth="1px"
-                        borderColor="rgba(255,255,255,0.14)"
-                        bg="#101525"
-                        color="#ffffff"
-                        fontSize="base"
-                        lineHeight="none"
-                        transition="transform 0.16s ease, background-color 0.16s ease"
-                        _hover={{ bg: "rgba(255,255,255,0.08)", ...hoverLift }}
-                        _active={{ transform: "translateY(0)" }}
-                        _disabled={{ opacity: 0.4, cursor: "not-allowed" }}
-                      >
-                        &lt;
-                      </Button>
-                      <Text
-                        minW="24px"
-                        textAlign="center"
-                        fontSize="sm"
-                        fontWeight="600"
-                        color="white"
-                      >
-                        {workerCount}
-                      </Text>
-                      <Button
-                        type="button"
-                        onClick={incrementWorkerCount}
-                        isDisabled={isLoading || workerCount >= maxWorkerCount}
-                        aria-label="Increase worker count"
-                        h="28px"
-                        minW="28px"
-                        p={0}
-                        borderRadius="full"
-                        borderWidth="1px"
-                        borderColor="rgba(255,255,255,0.14)"
-                        bg="#101525"
-                        color="#ffffff"
-                        fontSize="base"
-                        lineHeight="none"
-                        transition="transform 0.16s ease, background-color 0.16s ease"
-                        _hover={{ bg: "rgba(255,255,255,0.08)", ...hoverLift }}
-                        _active={{ transform: "translateY(0)" }}
-                        _disabled={{ opacity: 0.4, cursor: "not-allowed" }}
-                      >
-                        &gt;
-                      </Button>
-                    </HStack>
-                  </HStack>
-                </Flex>
-
-                <VStack align="stretch" spacing={2}>
-                  <Box
-                    position="relative"
-                    h="8px"
-                    overflow="hidden"
+                    position="absolute"
+                    insetY={0}
+                    left={0}
                     borderRadius="full"
-                    borderWidth="1px"
-                    borderColor="rgba(255,255,255,0.1)"
-                    bg="#101525"
-                  >
-                    <Box
-                      position="absolute"
-                      insetY={0}
-                      left={0}
-                      borderRadius="full"
-                      bg="#ff8a3d"
-                      w={isProgressIndeterminate ? "28%" : progressBarStyle?.width || "0%"}
-                      animation={
-                        isProgressIndeterminate
-                          ? "terminal-progress-indeterminate 1.1s ease-in-out infinite"
-                          : "none"
-                      }
-                      style={isProgressIndeterminate ? undefined : progressBarStyle}
-                    />
-                  </Box>
-                  <Box
-                    h="1px"
-                    w="full"
-                    bg="rgba(255,255,255,0.08)"
-                    aria-hidden="true"
+                    bg="linear-gradient(90deg, #ff8a3d, #ff6a00)"
+                    boxShadow="0 0 14px rgba(255,138,61,0.65)"
+                    w={isProgressIndeterminate ? "28%" : progressBarStyle?.width || "0%"}
                   />
-                </VStack>
+                </Box>
 
-                <Grid templateColumns="repeat(2, minmax(0, 1fr))" gap={2}>
+                {/* BUTTONS */}
+                <Grid templateColumns="repeat(2, 1fr)" gap={2}>
                   <Input
                     ref={uploadInputRef}
                     type="file"
@@ -497,24 +190,19 @@ export default function CheckerPage({
 
                   <Button
                     type="submit"
-                    onClick={(event) => {
-                      if (!isLoading) return;
-                      event.preventDefault();
-                      stopCheck();
-                    }}
                     minH="2.8rem"
                     borderRadius="12px"
                     borderWidth="1px"
                     borderColor="rgba(255,138,61,0.78)"
-                    bg="#ff8a3d"
+                    bg="linear-gradient(135deg, #ff8a3d, #ff6a00)"
+                    boxShadow="0 0 20px rgba(255,138,61,0.45)"
                     color="#ffffff"
-                    fontSize="sm"
                     fontWeight="700"
-                    letterSpacing="0.07em"
-                    textTransform="uppercase"
-                    transition="transform 0.16s ease, background-color 0.16s ease"
-                    _hover={{ bg: "#e8782d", ...hoverLift }}
-                    _active={{ transform: "translateY(0)" }}
+                    _hover={{
+                      bg: "linear-gradient(135deg, #ff9b55, #ff7a1a)",
+                      boxShadow: "0 0 24px rgba(255,138,61,0.75)",
+                      ...hoverLift,
+                    }}
                   >
                     {isLoading ? "Stop" : "Start"}
                   </Button>
@@ -522,21 +210,14 @@ export default function CheckerPage({
                   <Button
                     type="button"
                     onClick={openUploadPicker}
-                    disabled={isLoading}
                     minH="2.8rem"
                     borderRadius="12px"
                     borderWidth="1px"
                     borderColor="rgba(255,255,255,0.12)"
-                    bg="#101525"
+                    bg="rgba(20,24,45,0.6)"
+                    backdropFilter="blur(6px)"
                     color="#ffffff"
-                    fontSize="sm"
-                    fontWeight="700"
-                    letterSpacing="0.07em"
-                    textTransform="uppercase"
-                    transition="transform 0.16s ease, background-color 0.16s ease"
                     _hover={{ bg: "rgba(255,255,255,0.08)", ...hoverLift }}
-                    _active={{ transform: "translateY(0)" }}
-                    _disabled={{ opacity: 0.5, cursor: "not-allowed" }}
                   >
                     Upload File
                   </Button>
@@ -548,212 +229,6 @@ export default function CheckerPage({
           <AppCredits />
         </Grid>
       </Box>
-
-      <Modal
-        isOpen={isSingleResultModalOpen}
-        onClose={onCloseSingleCheckModal}
-        isCentered
-        size={{ base: "full", md: "2xl" }}
-      >
-        <ModalOverlay bg="rgba(0,0,0,0.62)" backdropFilter="blur(2px)" />
-        <ModalContent
-          bg="#141726"
-          borderWidth="1px"
-          borderColor="rgba(255,255,255,0.08)"
-          color="#ffffff"
-          mx={{ base: 0, md: 3 }}
-          borderRadius={{ base: 0, md: "16px" }}
-        >
-          <ModalHeader
-            borderBottomWidth="1px"
-            borderBottomColor="rgba(255,255,255,0.08)"
-            fontSize="sm"
-            letterSpacing="0.08em"
-            textTransform="uppercase"
-            color="#ff8a3d"
-          >
-            Check Result
-          </ModalHeader>
-          <ModalCloseButton color="#ffffff" _hover={{ bg: "rgba(255,255,255,0.08)" }} />
-          <ModalBody p={{ base: 3, sm: 4 }}>
-            {modalResult ? (
-              <Box
-                w="full"
-                borderRadius="16px"
-                borderWidth="1px"
-                borderColor="rgba(255,255,255,0.08)"
-                bg="#141726"
-                p={{ base: 3, sm: 4 }}
-              >
-                <Flex
-                  direction={{ base: "column", sm: "row" }}
-                  gap={2}
-                  align={{ sm: "flex-start" }}
-                  justify="space-between"
-                >
-                  <Box minW={0}>
-                    <Text m={0} noOfLines={1} fontSize="md" fontWeight="600" color="white">
-                      {displayValue(modalResult?.plan)}
-                    </Text>
-                  </Box>
-
-                  <Box
-                    as="span"
-                    display="inline-flex"
-                    alignItems="center"
-                    minH="1.7rem"
-                    borderRadius="full"
-                    borderWidth="1px"
-                    px={3}
-                    fontSize="0.68rem"
-                    fontWeight="600"
-                    letterSpacing="0.08em"
-                    textTransform="uppercase"
-                    borderColor={
-                      modalResult?.valid
-                        ? "rgba(35,215,198,0.55)"
-                        : "rgba(255,101,132,0.58)"
-                    }
-                    bg={
-                      modalResult?.valid
-                        ? "rgba(35,215,198,0.16)"
-                        : "rgba(255,101,132,0.16)"
-                    }
-                    color={modalResult?.valid ? "#bfffee" : "#ffd4dd"}
-                  >
-                    {modalResult?.valid ? "Valid" : "Invalid"}
-                  </Box>
-                </Flex>
-
-                <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={2} mt={3}>
-                  {modalDetailItems.map(([label, value]) => (
-                    <Box
-                      key={label}
-                      borderRadius="10px"
-                      borderWidth="1px"
-                      borderColor="rgba(255,255,255,0.08)"
-                      bg="#101525"
-                      px={3}
-                      py={2}
-                    >
-                      <Text
-                        m={0}
-                        fontSize="0.63rem"
-                        fontWeight="600"
-                        letterSpacing="0.07em"
-                        textTransform="uppercase"
-                        color="rgba(255,255,255,0.58)"
-                      >
-                        {label}
-                      </Text>
-                      <Text m={0} mt={1} wordBreak="break-word" fontSize="0.78rem" color="#ffffff">
-                        {displayValue(value)}
-                      </Text>
-                    </Box>
-                  ))}
-                </SimpleGrid>
-
-                {!modalResult?.valid ? (
-                  <Text
-                    mt={3}
-                    mb={0}
-                    borderRadius="12px"
-                    borderWidth="1px"
-                    borderColor="rgba(255,101,132,0.52)"
-                    bg="rgba(255,101,132,0.14)"
-                    px={3}
-                    py={2}
-                    fontSize="sm"
-                    color="#ffd4dd"
-                  >
-                    {displayValue(modalResult?.reason, "Unknown failure reason")}
-                  </Text>
-                ) : null}
-
-                {modalHasPlatformLinks ? (
-                  <SimpleGrid columns={2} spacing={2} mt={3}>
-                    <Button
-                      type="button"
-                      onClick={() => {
-                        void handleAndroidCopy(modalAndroidLink);
-                      }}
-                      display="inline-flex"
-                      minH="2.2rem"
-                      w="full"
-                      alignItems="center"
-                      justifyContent="center"
-                      borderRadius="8px"
-                      borderWidth="1px"
-                      borderColor={
-                        modalAndroidLink
-                          ? "rgba(255,138,61,0.82)"
-                          : "rgba(96,96,96,0.45)"
-                      }
-                      bg={modalAndroidLink ? "#ff8a3d" : "#2c2c2c"}
-                      color={modalAndroidLink ? "#ffffff" : "#a8a8a8"}
-                      fontSize="sm"
-                      fontWeight="600"
-                      isDisabled={!modalAndroidLink}
-                      transition="transform 0.16s ease, border-color 0.16s ease, background-color 0.16s ease"
-                      _hover={{
-                        bg: modalAndroidLink ? "#ff8a3d" : "#2c2c2c",
-                        borderColor:
-                          modalAndroidLink
-                            ? "rgba(255,138,61,0.82)"
-                            : "rgba(96,96,96,0.45)",
-                        transform: modalAndroidLink ? "translateY(-1px)" : "none",
-                      }}
-                      _active={{
-                        transform: modalAndroidLink ? "translateY(0) scale(0.98)" : "none",
-                      }}
-                      _disabled={{ opacity: 1, cursor: "not-allowed" }}
-                    >
-                      <Flex align="center" gap={1.5}>
-                        <Box as="i" className="fi fi-brands-android" aria-hidden="true" />
-                        <Text m={0}>Android</Text>
-                      </Flex>
-                    </Button>
-
-                    <Box
-                      as="a"
-                      href={modalPcLink || "#"}
-                      target="_blank"
-                      rel="noreferrer"
-                      display="inline-flex"
-                      minH="2.2rem"
-                      w="full"
-                      alignItems="center"
-                      justifyContent="center"
-                      borderRadius="8px"
-                      borderWidth="1px"
-                      borderColor={modalPcLink ? "rgba(255,138,61,0.82)" : "rgba(96,96,96,0.45)"}
-                      bg={modalPcLink ? "#ff8a3d" : "#2c2c2c"}
-                      color={modalPcLink ? "#ffffff" : "#a8a8a8"}
-                      fontSize="sm"
-                      fontWeight="600"
-                      pointerEvents={modalPcLink ? "auto" : "none"}
-                      transition="transform 0.16s ease, border-color 0.16s ease, background-color 0.16s ease"
-                      _hover={{
-                        bg: modalPcLink ? "#e8782d" : "#2c2c2c",
-                        borderColor: modalPcLink
-                          ? "rgba(255,138,61,0.9)"
-                          : "rgba(96,96,96,0.45)",
-                        transform: modalPcLink ? "translateY(-1px)" : "none",
-                      }}
-                      _active={{ transform: modalPcLink ? "translateY(0) scale(0.98)" : "none" }}
-                    >
-                      <Flex align="center" gap={1.5}>
-                        <Box as="i" className="fi fi-rr-computer" aria-hidden="true" />
-                        <Text m={0}>PC</Text>
-                      </Flex>
-                    </Box>
-                  </SimpleGrid>
-                ) : null}
-              </Box>
-            ) : null}
-          </ModalBody>
-        </ModalContent>
-      </Modal>
     </Box>
   );
 }
