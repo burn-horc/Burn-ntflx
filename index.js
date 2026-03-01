@@ -706,7 +706,7 @@ async function runDirectCheck(cookies, workerCount, checkOptions = {}) {
 
 
 app.use(cors({
-  origin: "https://burn-ntflx-murex.vercel.app",
+  origin: true,
   credentials: true
 }));
 app.options('*', cors());
@@ -773,6 +773,7 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
 
 
 
