@@ -334,3 +334,4 @@ export default function CheckerPage({
     </Box>
   </Box>
 );
+}
