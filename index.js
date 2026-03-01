@@ -707,6 +707,9 @@ const app = express();
 app.use(cors());
 app.options('*', cors());
 app.use(express.json({ limit: '10mb' }));
+app.get("/", (req, res) => {
+  res.send("Burn-ntflx API is running 🚀");
+});
 
 app.post(['/api/check', '/check'], async (req, res) => {
   try {
@@ -766,6 +769,7 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
 
 
 
