@@ -133,7 +133,7 @@ export default function CheckerPage(props) {
                   bgGradient="linear(to-r, #ff8a3d, #ff5e3a)"
                   bgClip="text"
                 >
-                  ~fyodor :: cookie-checker
+                  BURN HORC
                 </Text>
               </Grid>
 
