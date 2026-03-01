@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/webp" href="/brand/astronaut.webp" />
+    <link rel="apple-touch-icon" href="/brand/astronaut.webp" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css"
+    />
+
+    <title>Fyodor</title>
+  </head>
+  <body class="bg-navy">
+    <div id="root"></div>
+
+    <!-- THIS IS THE CORRECT VITE ENTRY -->
+    <script type="module" src="/main.jsx"></script>
+  </body>
+</html>
