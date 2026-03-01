@@ -1,4 +1,3 @@
-const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const NetflixAccountChecker = require('./main.js');
@@ -768,6 +767,7 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
 
 
 
