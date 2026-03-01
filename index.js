@@ -33,7 +33,7 @@ const DIRECT_COOKIE_FIELDS = ['cookie', 'cookieheader', 'cookiestring', 'header'
 const DEFAULT_WORKER_COUNT = 1;
 const MIN_WORKER_COUNT = 1;
 const MAX_WORKER_COUNT = 10;
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 function toCookiePair(name, value) {
   const cookieName = String(name ?? '').trim();
@@ -766,5 +766,6 @@ if (require.main === module) {
 }
 
 module.exports = app;
+
 
 
