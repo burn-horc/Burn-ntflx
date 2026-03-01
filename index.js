@@ -1,3 +1,10 @@
+const express = require('express');
+const cors = require("cors");
+
+app.use(cors({
+  origin: "https://burn-ntflx-murex.vercel.app",
+  credentials: true
+}));
 const fs = require('fs');
 const path = require('path');
 const NetflixAccountChecker = require('./main.js');
@@ -701,7 +708,7 @@ async function runDirectCheck(cookies, workerCount, checkOptions = {}) {
   };
 }
 
-const app = express();
+
 app.use(cors());
 app.options('*', cors());
 app.use(express.json({ limit: '10mb' }));
@@ -767,11 +774,4 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
-
-
-
-
-
-
-
 
