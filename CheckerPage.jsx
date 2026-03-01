@@ -158,58 +158,52 @@ export default function CheckerPage({
     minH="100dvh"
     overflowX="hidden"
     overflowY="auto"
-    bg="radial-gradient(circle at 50% -20%, rgba(255,138,61,0.15), transparent 60%), linear-gradient(180deg, #090c14 0%, #0d1220 100%)"
+    bg="radial-gradient(circle at 50% -15%, rgba(255,138,61,0.35), transparent 55%), radial-gradient(circle at 80% 120%, rgba(255,61,127,0.15), transparent 60%), linear-gradient(180deg, #06080f 0%, #0c1220 100%)"
     color="#ffffff"
   >
     <Box
       mx="auto"
       h="100%"
       w="full"
-      px={{ base: 2, sm: 3, lg: 4 }}
-      py={{ base: 2, sm: 3 }}
+      px={{ base: 3, sm: 4, lg: 6 }}
+      py={{ base: 3, sm: 4 }}
     >
-      <Grid h="full" minH={0} templateRows="minmax(0,1fr) auto" gap={4}>
+      <Grid h="full" minH={0} templateRows="minmax(0,1fr) auto" gap={5}>
         <Box
           as={motion.section}
           {...fadeInUp(0.02)}
           h="full"
           minH={0}
-          borderRadius="28px"
-          borderWidth="1px"
-          borderColor="rgba(255,255,255,0.08)"
-          bg="rgba(18,22,40,0.7)"
-          backdropFilter="blur(14px)"
-          boxShadow="0 0 0 1px rgba(255,138,61,0.08), 0 20px 60px rgba(0,0,0,0.6)"
+          borderRadius="30px"
+          border="1px solid rgba(255,255,255,0.08)"
+          bg="rgba(15,19,34,0.55)"
+          backdropFilter="blur(18px)"
+          boxShadow="0 0 80px rgba(255,138,61,0.12), 0 25px 70px rgba(0,0,0,0.7)"
           overflow="hidden"
         >
-          <Flex
-            h="full"
-            minH={0}
-            direction="column"
-            overflow="hidden"
-            borderRadius="28px"
-          >
+          <Flex h="full" direction="column" overflow="hidden">
+
             {/* HEADER */}
             <Grid
-              minH="44px"
+              minH="50px"
               templateColumns="2.5rem 1fr 2.5rem"
               alignItems="center"
-              borderBottomWidth="1px"
-              borderBottomColor="rgba(255,255,255,0.06)"
-              bg="rgba(16,21,37,0.9)"
-              px={4}
+              borderBottom="1px solid rgba(255,255,255,0.06)"
+              bg="rgba(20,25,45,0.65)"
+              backdropFilter="blur(10px)"
+              px={5}
             >
-              <HStack spacing={2} aria-hidden="true">
-                <Circle size="10px" bg="#ff8a3d" boxShadow="0 0 8px #ff8a3d" />
-                <Circle size="10px" bg="#23d7c6" boxShadow="0 0 8px #23d7c6" />
-                <Circle size="10px" bg="#ff6584" boxShadow="0 0 8px #ff6584" />
+              <HStack spacing={2}>
+                <Circle size="10px" bg="#ff8a3d" boxShadow="0 0 12px #ff8a3d" />
+                <Circle size="10px" bg="#23d7c6" boxShadow="0 0 12px #23d7c6" />
+                <Circle size="10px" bg="#ff6584" boxShadow="0 0 12px #ff6584" />
               </HStack>
 
               <Text
                 textAlign="center"
                 fontSize="xs"
-                fontWeight="700"
-                letterSpacing="0.08em"
+                fontWeight="800"
+                letterSpacing="0.12em"
                 color="#ff8a3d"
               >
                 BURN HORC
@@ -226,21 +220,18 @@ export default function CheckerPage({
               flex="1"
               minH={0}
               gridTemplateRows="minmax(0,1fr) auto auto auto"
-              gap={4}
-              p={{ base: 4, sm: 5 }}
+              gap={5}
+              p={{ base: 5 }}
             >
 
-              {/* TEXT AREA CONTAINER */}
+              {/* TEXT AREA */}
               <Box
-                position="relative"
                 h="full"
-                minH={{ base: "260px", sm: "320px" }}
-                borderRadius="20px"
-                bg="rgba(15,19,34,0.8)"
-                border="1px solid rgba(255,255,255,0.06)"
-                boxShadow="inset 0 0 0 1px rgba(255,255,255,0.02)"
+                borderRadius="22px"
+                bg="rgba(12,16,30,0.75)"
+                border="1px solid rgba(255,255,255,0.05)"
+                boxShadow="inset 0 0 40px rgba(0,0,0,0.4)"
               >
-
                 {!isLoading ? (
                   <Textarea
                     value={input}
@@ -249,17 +240,17 @@ export default function CheckerPage({
                     spellCheck={false}
                     h="100%"
                     resize="none"
-                    borderRadius="20px"
+                    borderRadius="22px"
                     border="none"
                     bg="transparent"
-                    px={5}
-                    py={4}
+                    px={6}
+                    py={5}
                     fontSize="sm"
                     fontFamily="'JetBrains Mono', monospace"
                     color="#ffffff"
-                    _placeholder={{ color: "rgba(255,255,255,0.4)" }}
+                    _placeholder={{ color: "rgba(255,255,255,0.35)" }}
                     _focusVisible={{
-                      boxShadow: "0 0 0 1px rgba(255,138,61,0.5)",
+                      boxShadow: "0 0 0 1px rgba(255,138,61,0.6)",
                     }}
                   />
                 ) : (
@@ -269,8 +260,8 @@ export default function CheckerPage({
                     aria-live="polite"
                     h="100%"
                     overflow="auto"
-                    px={5}
-                    py={4}
+                    px={6}
+                    py={5}
                     fontSize="sm"
                     fontFamily="'JetBrains Mono', monospace"
                   >
@@ -294,8 +285,8 @@ export default function CheckerPage({
                 )}
               </Box>
 
-              {/* ACTION BUTTONS */}
-              <Grid templateColumns="repeat(2, 1fr)" gap={3}>
+              {/* BUTTONS */}
+              <Grid templateColumns="repeat(2, 1fr)" gap={4}>
                 <Button
                   type="submit"
                   onClick={(event) => {
@@ -303,18 +294,18 @@ export default function CheckerPage({
                     event.preventDefault();
                     stopCheck();
                   }}
-                  minH="3rem"
-                  borderRadius="14px"
+                  minH="3.2rem"
+                  borderRadius="16px"
                   bg="linear-gradient(135deg, #ff8a3d, #ff3d7f)"
                   color="#fff"
-                  fontWeight="700"
-                  letterSpacing="0.08em"
-                  boxShadow="0 0 30px rgba(255,138,61,0.5)"
+                  fontWeight="800"
+                  letterSpacing="0.1em"
+                  boxShadow="0 0 40px rgba(255,138,61,0.6)"
                   _hover={{
                     transform: "translateY(-2px)",
-                    boxShadow: "0 12px 30px rgba(255,138,61,0.45)",
+                    boxShadow: "0 0 50px rgba(255,138,61,0.8)",
                   }}
-                  _active={{ transform: "scale(0.98)" }}
+                  _active={{ transform: "scale(0.97)" }}
                 >
                   {isLoading ? "Stop" : "Start"}
                 </Button>
@@ -323,9 +314,9 @@ export default function CheckerPage({
                   type="button"
                   onClick={openUploadPicker}
                   isDisabled={isLoading}
-                  minH="3rem"
-                  borderRadius="14px"
-                  bg="rgba(255,255,255,0.06)"
+                  minH="3.2rem"
+                  borderRadius="16px"
+                  bg="rgba(255,255,255,0.05)"
                   border="1px solid rgba(255,255,255,0.1)"
                   color="#fff"
                   fontWeight="600"
@@ -344,26 +335,27 @@ export default function CheckerPage({
       </Grid>
     </Box>
 
-    {/* MODAL PREMIUM STYLE */}
+    {/* MODAL */}
     <Modal
       isOpen={isSingleResultModalOpen}
       onClose={onCloseSingleCheckModal}
       isCentered
       size={{ base: "full", md: "2xl" }}
     >
-      <ModalOverlay bg="rgba(0,0,0,0.7)" backdropFilter="blur(6px)" />
+      <ModalOverlay bg="rgba(0,0,0,0.8)" backdropFilter="blur(8px)" />
 
       <ModalContent
-        bg="rgba(18,22,40,0.95)"
-        border="1px solid rgba(255,255,255,0.1)"
-        borderRadius={{ base: 0, md: "20px" }}
-        boxShadow="0 20px 60px rgba(0,0,0,0.7)"
+        bg="rgba(15,19,34,0.85)"
+        backdropFilter="blur(20px)"
+        border="1px solid rgba(255,255,255,0.08)"
+        borderRadius={{ base: 0, md: "24px" }}
+        boxShadow="0 0 60px rgba(255,138,61,0.2)"
         color="#fff"
       >
         <ModalHeader
           borderBottom="1px solid rgba(255,255,255,0.06)"
           fontSize="sm"
-          letterSpacing="0.1em"
+          letterSpacing="0.12em"
           textTransform="uppercase"
           color="#ff8a3d"
         >
@@ -372,10 +364,10 @@ export default function CheckerPage({
 
         <ModalCloseButton />
 
-        <ModalBody p={{ base: 4, sm: 6 }}>
+        <ModalBody p={{ base: 6 }}>
           {modalResult ? (
             <Box>
-              <Text fontSize="lg" fontWeight="600">
+              <Text fontSize="lg" fontWeight="700">
                 {displayValue(modalResult?.plan)}
               </Text>
             </Box>
