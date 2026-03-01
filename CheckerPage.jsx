@@ -207,7 +207,7 @@ export default function CheckerPage({
                 letterSpacing="0.12em"
                 color="brand.400"
               >
-                BURN HORC
+                BURN GENERATOR
               </Text>
 
               <Box />
