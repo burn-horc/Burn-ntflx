@@ -578,8 +578,7 @@ export default function CheckerPage({
     <ModalCloseButton />
 
     <ModalBody p={{ base: 3, sm: 4 }} maxH="70vh" overflowY="auto">
-      {bulkValidResults?.map((result, index) => {
-
+  {bulkValidResults?.map((result, index) => {
   const modalDetailItems = [
     ["Plan", result?.plan],
     ["Country", result?.countryOfSignup],
@@ -603,44 +602,39 @@ export default function CheckerPage({
       bg="#101525"
       p={3}
     >
-          <Text fontWeight="600" color="#23d7c6">
-            {displayValue(result.plan)}
-          </Text>
-
-          <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={2} mt={2}>
-  {modalDetailItems.map(([label, value], i) =>
-    value ? (
-      <Text key={i} fontSize="sm">
-        <b>{label}:</b> {displayValue(value)}
+      <Text fontWeight="600" color="#23d7c6">
+        {displayValue(result.plan)}
       </Text>
-    ) : null
-  )}
-</SimpleGrid>
 
-          <HStack mt={4} spacing={3}>
-      <Button
-        flex={1}
-        bg="#ff8c42"
-        color="white"
-        onClick={() => handleAndroidCopy(readResultTokenLink(result))}
-      >
-        Android
-      </Button>
+      <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={2} mt={2}>
+        {modalDetailItems.map(([label, value], i) =>
+          value ? (
+            <Text key={i} fontSize="sm">
+              <b>{label}:</b> {displayValue(value)}
+            </Text>
+          ) : null
+        )}
+      </SimpleGrid>
 
-      <Button
-        flex={1}
-        bg="#ff8c42"
-        color="white"
-        onClick={() => handlePcCopy(readResultTokenLink(result))}
-      >
-        PC
-      </Button>
-    </HStack>
-        </Box>
-      ))}
-    </ModalBody>
-  </ModalContent>
-</Modal>
+      <HStack mt={4} spacing={3}>
+        <Button
+          flex={1}
+          bg="#ff8c42"
+          color="white"
+          onClick={() => handleAndroidCopy(readResultTokenLink(result))}
+        >
+          Android
+        </Button>
+
+        <Button
+          flex={1}
+          bg="#ff8c42"
+          color="white"
+          onClick={() => handlePcCopy(readResultTokenLink(result))}
+        >
+          PC
+        </Button>
+      </HStack>
     </Box>
   );
-}
+})}
