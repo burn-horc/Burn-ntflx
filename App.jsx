@@ -795,7 +795,7 @@ export default function App() {
 
     setIsLoading(true);
     toast.closeAll();
-    setSingleCheckModalResult(null);
+    setBulkValidResults([]); // reset bulk modal
     latestPartialResultsRef.current = [];
     setCheckProgress({ completed: 0, total: null });
 
@@ -883,11 +883,7 @@ export default function App() {
       });
 
       // Always show latest valid result in modal (even in bulk)
-const latestValid = orderedResults.find((item) => item.valid);
 
-if (latestValid) {
-  setSingleCheckModalResult(latestValid);
-}
 
       upsertStoredCookieChecksFromResults(orderedResults);
 
@@ -988,9 +984,7 @@ if (latestValid) {
     }
   };
 
-  const closeSingleCheckModal = () => {
-    setSingleCheckModalResult(null);
-  };
+  
 
   return (
     <CheckerPage
@@ -1021,6 +1015,7 @@ if (latestValid) {
     />
   );
 }
+
 
 
 
