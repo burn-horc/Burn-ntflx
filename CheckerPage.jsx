@@ -204,17 +204,19 @@ export default function CheckerPage({
                   <Circle size="10px" bg="#ff6584" />
                 </HStack>
                 <Text
-                  m={0}
-                  noOfLines={1}
-                  textAlign="center"
-                  fontSize="xs"
-                  fontWeight="700"
-                  fontFamily="'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Menlo, Consolas, monospace"
-                  letterSpacing="0.06em"
-                  color="#ff8a3d"
-                >
-                  BURN HORC
-                </Text>
+  m={0}
+  noOfLines={1}
+  textAlign="center"
+  fontSize="xs"
+  fontWeight="700"
+  fontFamily="'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Menlo, Consolas, monospace"
+  letterSpacing="0.08em"
+  bgGradient="linear(to-r, #ffb347, #ff8a3d, #ffb347)"
+  bgClip="text"
+  textShadow="0 0 6px rgba(255,138,61,0.6), 0 0 12px rgba(255,179,71,0.4)"
+>
+  BURN HORC
+</Text>
                 <Box aria-hidden="true" />
               </Grid>
 
