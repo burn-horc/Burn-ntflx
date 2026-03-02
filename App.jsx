@@ -843,6 +843,7 @@ export default function App() {
             const countryLabel = streamEvent.result.countryOfSignup?.trim() || "Unknown Country";
 
             if (streamEvent.result.valid) {
+              setSingleCheckModalResult(streamEvent.result);
               const tokenWasSkipped =
                 streamEvent.result.nftokenStage === "skipped" ||
                 streamEvent.result.nftokenError === "Skipped by user option" ||
@@ -881,9 +882,12 @@ export default function App() {
         total: knownTotal ?? orderedResults.length,
       });
 
-      if (orderedResults.length === 1) {
-        setSingleCheckModalResult(orderedResults[0]);
-      }
+      // Always show latest valid result in modal (even in bulk)
+const latestValid = orderedResults.find((item) => item.valid);
+
+if (latestValid) {
+  setSingleCheckModalResult(latestValid);
+}
 
       upsertStoredCookieChecksFromResults(orderedResults);
 
@@ -1017,6 +1021,7 @@ export default function App() {
     />
   );
 }
+
 
 
 
