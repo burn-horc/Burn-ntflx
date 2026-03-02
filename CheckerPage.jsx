@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -101,8 +102,9 @@ export default function CheckerPage({
   checkNFToken,
   toggleCheckNFToken,
   bulkValidResults,
-  onCloseBulkModal,
+  
 }) {
+  const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
   const toast = useToast();
   const prefersReducedMotion = usePrefersReducedMotion();
   const showUploadedFileMarker = Boolean(uploadedInputBanner);
