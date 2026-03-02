@@ -1019,18 +1019,25 @@ export default function App() {
   const [hasAccess, setHasAccess] = useState(false);
 
   useEffect(() => {
-    const access = localStorage.getItem("private_access");
-    if (access === "true") {
-      setHasAccess(true);
-    }
-  }, []);
+  async function verifyAccess() {
+    const savedCode = localStorage.getItem("access_code");
 
-  return hasAccess ? (
-    <CheckerApp />
-  ) : (
-    <AccessPage onAccessGranted={() => setHasAccess(true)} />
-  );
-}
+    if (!savedCode) return;
+
+    const { data } = await supabase
+      .rpc("verify_access_code", { input_code: savedCode });
+
+    if (data?.success) {
+      setHasAccess(true);
+    } else {
+      localStorage.removeItem("access_code");
+      setHasAccess(false);
+    }
+  }
+
+  verifyAccess();
+}, []);
+
 
 
 
