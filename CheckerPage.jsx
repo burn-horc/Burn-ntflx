@@ -595,10 +595,10 @@ export default function CheckerPage({
               <b>Next Billing:</b> {displayValue(result.nextBilling)}
             </Text>
           </SimpleGrid>
-        </Box>
       ))}
     </ModalBody>
   </ModalContent>
 </Modal>
+    </Box>
   );
 }
