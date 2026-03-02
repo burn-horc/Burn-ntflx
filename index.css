@@ -173,10 +173,10 @@ body {
 .gate-card input {
   width: 100%;
   padding: 16px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 18px;
-  background: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.08);
   color: white;
   font-size: 16px;
   transition: all 0.2s ease;
@@ -184,12 +184,13 @@ body {
 
 .gate-card input:focus {
   border: 1px solid #e50914;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.15);
   outline: none;
 }
 
 .gate-card input::placeholder {
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 /* Button */
@@ -236,6 +237,7 @@ body {
 .gate-card {
   animation: fadeIn 0.5s ease forwards;
 }
+
 
 
 
