@@ -137,7 +137,18 @@ export default function CheckerPage({
       duration: 1600,
     });
   };
-  
+  const handlePcCopy = async (link) => {
+  const copied = await copyTextToClipboard(link);
+  if (!copied) return;
+
+  const toastId = "checker-single-pc-link-copied";
+  showAppToast(toast, {
+    id: toastId,
+    title: "PC link copied",
+    status: "success",
+    duration: 1600,
+  });
+};
   
   return (
     <Box
@@ -601,7 +612,7 @@ export default function CheckerPage({
         flex={1}
         bg="#ff8c42"
         color="white"
-        onClick={() => handleAndroidCopy(result.link)}
+        onClick={() => handleAndroidCopy(readResultTokenLink(result))}
       >
         Android
       </Button>
@@ -610,7 +621,7 @@ export default function CheckerPage({
         flex={1}
         bg="#ff8c42"
         color="white"
-        onClick={() => handlePcCopy(result.link)}
+        onClick={() => handlePcCopy(readResultTokenLink(result))}
       >
         PC
       </Button>
