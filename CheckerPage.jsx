@@ -594,7 +594,8 @@ export default function CheckerPage({
             <Text fontSize="sm">
               <b>Next Billing:</b> {displayValue(result.nextBilling)}
             </Text>
-          </SimpleGrid>
+            </SimpleGrid>
+        </Box>
       ))}
     </ModalBody>
   </ModalContent>
