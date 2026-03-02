@@ -543,8 +543,8 @@ export default function CheckerPage({
   isCentered
   size={{ base: "full", md: "3xl" }}
 >
-  
   <ModalOverlay bg="rgba(0,0,0,0.62)" backdropFilter="blur(2px)" />
+
   <ModalContent
     bg="#141726"
     borderWidth="1px"
@@ -564,10 +564,7 @@ export default function CheckerPage({
       Valid Accounts ({bulkValidResults?.length || 0})
     </ModalHeader>
 
-    <ModalCloseButton
-      color="#ffffff"
-      _hover={{ bg: "rgba(255,255,255,0.08)" }}
-    />
+    <ModalCloseButton />
 
     <ModalBody p={{ base: 3, sm: 4 }} maxH="70vh" overflowY="auto">
       {bulkValidResults?.map((result, index) => (
