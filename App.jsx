@@ -695,7 +695,7 @@ export default function App() {
   const [checkLogs, setCheckLogs] = useState([]);
   const [checkProgress, setCheckProgress] = useState({ completed: 0, total: null });
   const [isLoading, setIsLoading] = useState(false);
-  const [singleCheckModalResult, setSingleCheckModalResult] = useState(null);
+  const [bulkValidResults, setBulkValidResults] = useState([]);
   const [workerCount, setWorkerCount] = useState(DEFAULT_WORKER_COUNT);
   const [checkNFToken, setCheckNFToken] = useState(false);
 
@@ -843,7 +843,7 @@ export default function App() {
             const countryLabel = streamEvent.result.countryOfSignup?.trim() || "Unknown Country";
 
             if (streamEvent.result.valid) {
-              setSingleCheckModalResult(streamEvent.result);
+              setBulkValidResults((prev) => [...prev, streamEvent.result]);
               const tokenWasSkipped =
                 streamEvent.result.nftokenStage === "skipped" ||
                 streamEvent.result.nftokenError === "Skipped by user option" ||
@@ -1021,6 +1021,7 @@ if (latestValid) {
     />
   );
 }
+
 
 
 
