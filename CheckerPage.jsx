@@ -100,13 +100,12 @@ export default function CheckerPage({
   handleUploadFile,
   checkNFToken,
   toggleCheckNFToken,
-  singleCheckModalResult,
-  onCloseSingleCheckModal,
+  bulkValidResults,
+  onCloseBulkModal,
 }) {
   const toast = useToast();
   const prefersReducedMotion = usePrefersReducedMotion();
   const showUploadedFileMarker = Boolean(uploadedInputBanner);
-  const isSingleResultModalOpen = Boolean(singleCheckModalResult);
   const getLogToneColor = (tone) =>
     tone === "valid" ? "#23d7c6" : tone === "invalid" ? "#ff6584" : "rgba(255,255,255,0.82)";
   const easing = [0.22, 1, 0.36, 1];
@@ -131,7 +130,7 @@ export default function CheckerPage({
       duration: 1600,
     });
   };
-  const modalResult = singleCheckModalResult;
+  
   const modalDetailItems = modalResult
     ? [
         ["Plan", modalResult?.plan],
@@ -146,11 +145,7 @@ export default function CheckerPage({
         ["Phone Verified", displayBoolean(modalResult?.phoneVerified)],
       ]
     : [];
-  const modalSharedNfTokenLink = readResultTokenLink(modalResult);
-  const modalAndroidLink = modalSharedNfTokenLink;
-  const modalPcLink = modalSharedNfTokenLink;
-  const modalHasPlatformLinks = Boolean(modalAndroidLink || modalPcLink);
-
+  
   return (
     <Box
       as="main"
@@ -550,210 +545,67 @@ export default function CheckerPage({
       </Box>
 
       <Modal
-        isOpen={isSingleResultModalOpen}
-        onClose={onCloseSingleCheckModal}
-        isCentered
-        size={{ base: "full", md: "2xl" }}
-      >
-        <ModalOverlay bg="rgba(0,0,0,0.62)" backdropFilter="blur(2px)" />
-        <ModalContent
-          bg="#141726"
+  isOpen={bulkValidResults && bulkValidResults.length > 0}
+  onClose={onCloseBulkModal}
+  isCentered
+  size={{ base: "full", md: "3xl" }}
+>
+  <ModalOverlay bg="rgba(0,0,0,0.62)" backdropFilter="blur(2px)" />
+  <ModalContent
+    bg="#141726"
+    borderWidth="1px"
+    borderColor="rgba(255,255,255,0.08)"
+    color="#ffffff"
+    mx={{ base: 0, md: 3 }}
+    borderRadius={{ base: 0, md: "16px" }}
+  >
+    <ModalHeader
+      borderBottomWidth="1px"
+      borderBottomColor="rgba(255,255,255,0.08)"
+      fontSize="sm"
+      letterSpacing="0.08em"
+      textTransform="uppercase"
+      color="#ff8a3d"
+    >
+      Valid Accounts ({bulkValidResults?.length || 0})
+    </ModalHeader>
+
+    <ModalCloseButton
+      color="#ffffff"
+      _hover={{ bg: "rgba(255,255,255,0.08)" }}
+    />
+
+    <ModalBody p={{ base: 3, sm: 4 }} maxH="70vh" overflowY="auto">
+      {bulkValidResults?.map((result, index) => (
+        <Box
+          key={index}
+          mb={4}
+          borderRadius="12px"
           borderWidth="1px"
-          borderColor="rgba(255,255,255,0.08)"
-          color="#ffffff"
-          mx={{ base: 0, md: 3 }}
-          borderRadius={{ base: 0, md: "16px" }}
+          borderColor="rgba(35,215,198,0.4)"
+          bg="#101525"
+          p={3}
         >
-          <ModalHeader
-            borderBottomWidth="1px"
-            borderBottomColor="rgba(255,255,255,0.08)"
-            fontSize="sm"
-            letterSpacing="0.08em"
-            textTransform="uppercase"
-            color="#ff8a3d"
-          >
-            Check Result
-          </ModalHeader>
-          <ModalCloseButton color="#ffffff" _hover={{ bg: "rgba(255,255,255,0.08)" }} />
-          <ModalBody p={{ base: 3, sm: 4 }}>
-            {modalResult ? (
-              <Box
-                w="full"
-                borderRadius="16px"
-                borderWidth="1px"
-                borderColor="rgba(255,255,255,0.08)"
-                bg="#141726"
-                p={{ base: 3, sm: 4 }}
-              >
-                <Flex
-                  direction={{ base: "column", sm: "row" }}
-                  gap={2}
-                  align={{ sm: "flex-start" }}
-                  justify="space-between"
-                >
-                  <Box minW={0}>
-                    <Text m={0} noOfLines={1} fontSize="md" fontWeight="600" color="white">
-                      {displayValue(modalResult?.plan)}
-                    </Text>
-                  </Box>
+          <Text fontWeight="600" color="#23d7c6">
+            {displayValue(result.plan)}
+          </Text>
 
-                  <Box
-                    as="span"
-                    display="inline-flex"
-                    alignItems="center"
-                    minH="1.7rem"
-                    borderRadius="full"
-                    borderWidth="1px"
-                    px={3}
-                    fontSize="0.68rem"
-                    fontWeight="600"
-                    letterSpacing="0.08em"
-                    textTransform="uppercase"
-                    borderColor={
-                      modalResult?.valid
-                        ? "rgba(35,215,198,0.55)"
-                        : "rgba(255,101,132,0.58)"
-                    }
-                    bg={
-                      modalResult?.valid
-                        ? "rgba(35,215,198,0.16)"
-                        : "rgba(255,101,132,0.16)"
-                    }
-                    color={modalResult?.valid ? "#bfffee" : "#ffd4dd"}
-                  >
-                    {modalResult?.valid ? "Valid" : "Invalid"}
-                  </Box>
-                </Flex>
-
-                <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={2} mt={3}>
-                  {modalDetailItems.map(([label, value]) => (
-                    <Box
-                      key={label}
-                      borderRadius="10px"
-                      borderWidth="1px"
-                      borderColor="rgba(255,255,255,0.08)"
-                      bg="#101525"
-                      px={3}
-                      py={2}
-                    >
-                      <Text
-                        m={0}
-                        fontSize="0.63rem"
-                        fontWeight="600"
-                        letterSpacing="0.07em"
-                        textTransform="uppercase"
-                        color="rgba(255,255,255,0.58)"
-                      >
-                        {label}
-                      </Text>
-                      <Text m={0} mt={1} wordBreak="break-word" fontSize="0.78rem" color="#ffffff">
-                        {displayValue(value)}
-                      </Text>
-                    </Box>
-                  ))}
-                </SimpleGrid>
-
-                {!modalResult?.valid ? (
-                  <Text
-                    mt={3}
-                    mb={0}
-                    borderRadius="12px"
-                    borderWidth="1px"
-                    borderColor="rgba(255,101,132,0.52)"
-                    bg="rgba(255,101,132,0.14)"
-                    px={3}
-                    py={2}
-                    fontSize="sm"
-                    color="#ffd4dd"
-                  >
-                    {displayValue(modalResult?.reason, "Unknown failure reason")}
-                  </Text>
-                ) : null}
-
-                {modalHasPlatformLinks ? (
-                  <SimpleGrid columns={2} spacing={2} mt={3}>
-                    <Button
-                      type="button"
-                      onClick={() => {
-                        void handleAndroidCopy(modalAndroidLink);
-                      }}
-                      display="inline-flex"
-                      minH="2.2rem"
-                      w="full"
-                      alignItems="center"
-                      justifyContent="center"
-                      borderRadius="8px"
-                      borderWidth="1px"
-                      borderColor={
-                        modalAndroidLink
-                          ? "rgba(255,138,61,0.82)"
-                          : "rgba(96,96,96,0.45)"
-                      }
-                      bg={modalAndroidLink ? "#ff8a3d" : "#2c2c2c"}
-                      color={modalAndroidLink ? "#ffffff" : "#a8a8a8"}
-                      fontSize="sm"
-                      fontWeight="600"
-                      isDisabled={!modalAndroidLink}
-                      transition="transform 0.16s ease, border-color 0.16s ease, background-color 0.16s ease"
-                      _hover={{
-                        bg: modalAndroidLink ? "#ff8a3d" : "#2c2c2c",
-                        borderColor:
-                          modalAndroidLink
-                            ? "rgba(255,138,61,0.82)"
-                            : "rgba(96,96,96,0.45)",
-                        transform: modalAndroidLink ? "translateY(-1px)" : "none",
-                      }}
-                      _active={{
-                        transform: modalAndroidLink ? "translateY(0) scale(0.98)" : "none",
-                      }}
-                      _disabled={{ opacity: 1, cursor: "not-allowed" }}
-                    >
-                      <Flex align="center" gap={1.5}>
-                        <Box as="i" className="fi fi-brands-android" aria-hidden="true" />
-                        <Text m={0}>Android</Text>
-                      </Flex>
-                    </Button>
-
-                    <Box
-                      as="a"
-                      href={modalPcLink || "#"}
-                      target="_blank"
-                      rel="noreferrer"
-                      display="inline-flex"
-                      minH="2.2rem"
-                      w="full"
-                      alignItems="center"
-                      justifyContent="center"
-                      borderRadius="8px"
-                      borderWidth="1px"
-                      borderColor={modalPcLink ? "rgba(255,138,61,0.82)" : "rgba(96,96,96,0.45)"}
-                      bg={modalPcLink ? "#ff8a3d" : "#2c2c2c"}
-                      color={modalPcLink ? "#ffffff" : "#a8a8a8"}
-                      fontSize="sm"
-                      fontWeight="600"
-                      pointerEvents={modalPcLink ? "auto" : "none"}
-                      transition="transform 0.16s ease, border-color 0.16s ease, background-color 0.16s ease"
-                      _hover={{
-                        bg: modalPcLink ? "#e8782d" : "#2c2c2c",
-                        borderColor: modalPcLink
-                          ? "rgba(255,138,61,0.9)"
-                          : "rgba(96,96,96,0.45)",
-                        transform: modalPcLink ? "translateY(-1px)" : "none",
-                      }}
-                      _active={{ transform: modalPcLink ? "translateY(0) scale(0.98)" : "none" }}
-                    >
-                      <Flex align="center" gap={1.5}>
-                        <Box as="i" className="fi fi-rr-computer" aria-hidden="true" />
-                        <Text m={0}>PC</Text>
-                      </Flex>
-                    </Box>
-                  </SimpleGrid>
-                ) : null}
-              </Box>
-            ) : null}
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </Box>
-  );
-}
+          <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={2} mt={2}>
+            <Text fontSize="sm">
+              <b>Country:</b> {displayValue(result.countryOfSignup)}
+            </Text>
+            <Text fontSize="sm">
+              <b>Email:</b> {displayValue(result.email)}
+            </Text>
+            <Text fontSize="sm">
+              <b>Membership:</b> {displayValue(result.membershipStatus)}
+            </Text>
+            <Text fontSize="sm">
+              <b>Next Billing:</b> {displayValue(result.nextBilling)}
+            </Text>
+          </SimpleGrid>
+        </Box>
+      ))}
+    </ModalBody>
+  </ModalContent>
+</Modal>
