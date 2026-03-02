@@ -1038,6 +1038,12 @@ export default function App() {
   verifyAccess();
 }, []);
 
+  return hasAccess ? (
+    <CheckerApp />
+  ) : (
+    <AccessPage onAccessGranted={() => setHasAccess(true)} />
+  );
+}
 
 
 
