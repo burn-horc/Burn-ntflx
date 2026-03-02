@@ -129,6 +129,10 @@ body {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+
+
   /* Full screen center */
 .gate-wrapper {
   min-height: 100vh;
@@ -208,5 +212,6 @@ body {
 .shake {
   animation: shake 0.3s ease;
 }
+
 
 
