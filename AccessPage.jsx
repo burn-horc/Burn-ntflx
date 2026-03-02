@@ -14,9 +14,13 @@ export default function AccessPage({ onAccessGranted }) {
     setLoading(true);
     setError(false);
 
+    console.log("Supabase URL:", import.meta.env.VITE_SUPABASE_URL);
+
     const { data, error: rpcError } = await supabase
       .rpc("use_access_code", { input_code: code });
 
+    console.log("RPC result:", data, rpcError);
+    
     if (rpcError || !data?.success) {
       throw new Error(data?.error || "Invalid code");
     }
