@@ -543,9 +543,7 @@ export default function CheckerPage({
   isCentered
   size={{ base: "full", md: "3xl" }}
 >
-  isCentered
-  size={{ base: "full", md: "3xl" }}
->
+  
   <ModalOverlay bg="rgba(0,0,0,0.62)" backdropFilter="blur(2px)" />
   <ModalContent
     bg="#141726"
