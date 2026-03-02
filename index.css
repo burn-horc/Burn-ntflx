@@ -172,25 +172,34 @@ body {
 /* Input */
 .gate-card input {
   width: 100%;
-  padding: 16px;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   margin-bottom: 20px;
-  background: rgba(255, 255, 255, 0.08);
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.04)
+  );
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
   color: white;
   font-size: 16px;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .gate-card input:focus {
   border: 1px solid #e50914;
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.15);
+  box-shadow: 0 0 25px rgba(229, 9, 20, 0.25);
+  transform: translateY(-2px);
   outline: none;
 }
 
 .gate-card input::placeholder {
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* Button */
@@ -237,6 +246,7 @@ body {
 .gate-card {
   animation: fadeIn 0.5s ease forwards;
 }
+
 
 
 
