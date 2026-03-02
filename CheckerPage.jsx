@@ -595,6 +595,26 @@ export default function CheckerPage({
               <b>Next Billing:</b> {displayValue(result.nextBilling)}
             </Text>
             </SimpleGrid>
+
+          <HStack mt={4} spacing={3}>
+      <Button
+        flex={1}
+        bg="#ff8c42"
+        color="white"
+        onClick={() => handleAndroidCopy(result.link)}
+      >
+        Android
+      </Button>
+
+      <Button
+        flex={1}
+        bg="#ff8c42"
+        color="white"
+        onClick={() => handlePcCopy(result.link)}
+      >
+        PC
+      </Button>
+    </HStack>
         </Box>
       ))}
     </ModalBody>
