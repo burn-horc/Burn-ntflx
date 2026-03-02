@@ -1015,22 +1015,16 @@ function CheckerApp() {
     />
   );
 }
+import AccessGate from "./AccessGate";
+
 export default function App() {
-  const [access, setAccess] = useState(false);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("private_access");
-    if (saved === "true") {
-      setAccess(true);
-    }
-  }, []);
-
-  if (!access) {
-    return <AccessPage onAccessGranted={() => setAccess(true)} />;
-  }
-
-  return <CheckerApp />;
+  return (
+    <AccessGate>
+      <CheckerApp />
+    </AccessGate>
+  );
 }
+
 
 
 
