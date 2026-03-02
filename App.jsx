@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import CheckerPage from "./CheckerPage";
+import AccessPage from "./AccessPage";
 import { showAppToast } from "./appToast.jsx";
 const MAX_JSON_PAYLOAD_BYTES = 850_000;
 const MAX_CHECKS_PER_REQUEST_CAP = 120;
@@ -1030,6 +1031,7 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
