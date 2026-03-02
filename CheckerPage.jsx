@@ -579,68 +579,75 @@ export default function CheckerPage({
 
     <ModalBody p={{ base: 3, sm: 4 }} maxH="70vh" overflowY="auto">
   {bulkValidResults?.map((result, index) => {
-  const modalDetailItems = [
-    ["Plan", result?.plan],
-    ["Country", result?.countryOfSignup],
-    ["Price", result?.price],
-    ["Membership", result?.membershipStatus],
-    ["Member Since", result?.memberSince],
-    ["Next Billing", result?.nextBilling],
-    ["Email", result?.email],
-    ["Email Verified", displayBoolean(result?.emailVerified)],
-    ["Phone", result?.phone],
-    ["Phone Verified", displayBoolean(result?.phoneVerified)],
-  ];
+    const modalDetailItems = [
+      ["Plan", result?.plan],
+      ["Country", result?.countryOfSignup],
+      ["Price", result?.price],
+      ["Membership", result?.membershipStatus],
+      ["Member Since", result?.memberSince],
+      ["Next Billing", result?.nextBilling],
+      ["Email", result?.email],
+      ["Email Verified", displayBoolean(result?.emailVerified)],
+      ["Phone", result?.phone],
+      ["Phone Verified", displayBoolean(result?.phoneVerified)],
+    ];
 
-  return (
-    <Box
-      key={index}
-      mb={4}
-      borderRadius="12px"
-      borderWidth="1px"
-      borderColor="rgba(35,215,198,0.4)"
-      bg="#101525"
-      p={3}
-    >
-      <Text fontWeight="600" color="#23d7c6">
-        {displayValue(result.plan)}
-      </Text>
+    return (
+      <Box
+        key={index}
+        mb={4}
+        borderRadius="12px"
+        borderWidth="1px"
+        borderColor="rgba(35,215,198,0.4)"
+        bg="#101525"
+        p={3}
+      >
+        <Text fontWeight="600" color="#23d7c6">
+          {displayValue(result.plan)}
+        </Text>
 
-      <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={2} mt={2}>
-        {modalDetailItems.map(([label, value], i) =>
-          value ? (
-            <Text key={i} fontSize="sm">
-              <b>{label}:</b> {displayValue(value)}
-            </Text>
-          ) : null
-        )}
-      </SimpleGrid>
+        <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={2} mt={2}>
+          {modalDetailItems.map(([label, value], i) =>
+            value ? (
+              <Text key={i} fontSize="sm">
+                <b>{label}:</b> {displayValue(value)}
+              </Text>
+            ) : null
+          )}
+        </SimpleGrid>
 
-      <HStack mt={4} spacing={3}>
-        <Button
-          flex={1}
-          bg="#ff8c42"
-          color="white"
-          onClick={() => handleAndroidCopy(readResultTokenLink(result))}
-        >
-          Android
-        </Button>
+        <HStack mt={4} spacing={3}>
+          <Button
+            flex={1}
+            bg="#ff8c42"
+            color="white"
+            onClick={() =>
+              handleAndroidCopy(readResultTokenLink(result))
+            }
+          >
+            Android
+          </Button>
 
-        <Button
-          flex={1}
-          bg="#ff8c42"
-          color="white"
-          onClick={() => handlePcCopy(readResultTokenLink(result))}
-        >
-          PC
-        </Button>
-      </HStack>
-    </Box>
-  );
-})}
-      </ModalBody>
-    </ModalContent>
-  </Modal>
-          </Box>
-  );
+          <Button
+            flex={1}
+            bg="#ff8c42"
+            color="white"
+            onClick={() =>
+              handlePcCopy(readResultTokenLink(result))
+            }
+          >
+            PC
+          </Button>
+        </HStack>
+      </Box>
+    );
+  })}
+</ModalBody>
+</ModalContent>
+</Modal>
+
+</Box>
+</Box>
+
+);
 }
