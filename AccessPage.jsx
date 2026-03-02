@@ -14,21 +14,12 @@ export default function AccessPage({ onAccessGranted }) {
     setLoading(true);
     setError(false);
 
-    const { data, error: fetchError } = await supabase
-      .from("access_codes")
-      .select("*")
-      .eq("code", code)
-      .eq("is_used", false)
-      .single();
+    const { data, error: rpcError } = await supabase
+      .rpc("use_access_code", { input_code: code });
 
-    if (fetchError || !data) {
-      throw new Error("Invalid code");
+    if (rpcError || !data?.success) {
+      throw new Error(data?.error || "Invalid code");
     }
-
-    await supabase
-      .from("access_codes")
-      .update({ is_used: true })
-      .eq("id", data.id);
 
     setFadeOut(true);
 
