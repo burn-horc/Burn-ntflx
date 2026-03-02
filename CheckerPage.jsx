@@ -638,3 +638,6 @@ export default function CheckerPage({
     </Box>
   );
 })}
+      </ModalBody>
+    </ModalContent>
+  </Modal>
