@@ -31,7 +31,7 @@ export default function AccessPage({ onAccessGranted }) {
       setTimeout(() => {
         localStorage.setItem("private_access", "true");
         onAccessGranted();
-      }, 600);
+      }, 700);
     } else {
       setError(true);
       setTimeout(() => setError(false), 500);
@@ -63,64 +63,84 @@ export default function AccessPage({ onAccessGranted }) {
           display: flex;
           justify-content: center;
           align-items: center;
-          background: linear-gradient(135deg, #0f0f0f, #1c1c1c, #0a0a0a);
           font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+          background:
+            radial-gradient(circle at 30% 30%, #1f2a55, transparent 40%),
+            radial-gradient(circle at 70% 70%, #3b1f55, transparent 40%),
+            #0d0d0d;
         }
 
         .card {
-          background: #161616;
-          padding: 40px 30px;
-          border-radius: 20px;
-          width: 320px;
+          background: rgba(22, 22, 22, 0.75);
+          backdrop-filter: blur(18px);
+          border: 1px solid rgba(255,255,255,0.05);
+          padding: 45px 35px;
+          border-radius: 22px;
+          width: 330px;
           text-align: center;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-          transition: all 0.4s ease;
+          box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+          transition: all 0.5s ease;
         }
 
         h2 {
-          margin-bottom: 5px;
+          margin-bottom: 6px;
           font-weight: 600;
           color: white;
+          letter-spacing: 0.5px;
         }
 
         .subtitle {
           color: #888;
           font-size: 14px;
-          margin-bottom: 25px;
+          margin-bottom: 28px;
         }
 
         input {
           width: 100%;
-          padding: 12px;
-          border-radius: 10px;
+          padding: 14px;
+          border-radius: 12px;
           border: 1px solid #333;
           background: #0f0f0f;
           color: white;
           outline: none;
           transition: all 0.3s ease;
-          margin-bottom: 20px;
+          margin-bottom: 22px;
+          font-size: 15px;
         }
 
         input:focus {
-          border: 1px solid #5c6cff;
-          box-shadow: 0 0 10px rgba(92,108,255,0.6);
+          border: 1px solid #7c8cff;
+          box-shadow: 0 0 14px rgba(124,140,255,0.7);
         }
 
         button {
           width: 100%;
-          padding: 12px;
-          border-radius: 10px;
+          padding: 14px;
+          border-radius: 14px;
           border: none;
-          background: #5c6cff;
-          color: white;
           font-weight: 600;
+          font-size: 16px;
+          color: white;
           cursor: pointer;
           transition: all 0.3s ease;
+          background: linear-gradient(90deg, #5c6cff, #8f5cff, #5c6cff);
+          background-size: 200% 200%;
+          animation: gradientMove 4s ease infinite;
         }
 
         button:hover {
-          background: #7d8aff;
           transform: translateY(-2px);
+          box-shadow: 0 10px 25px rgba(92,108,255,0.4);
+        }
+
+        button:active {
+          transform: scale(0.97);
+        }
+
+        @keyframes gradientMove {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
         }
 
         .shake {
