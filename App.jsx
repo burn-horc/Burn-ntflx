@@ -689,7 +689,7 @@ function upsertStoredCookieChecksFromResults(results) {
   return writeStoredCookieChecks(Array.from(byHeader.values()));
 }
 
-export default function App() {
+function CheckerApp() {
   const toast = useToast();
   const [input, setInput] = useState("");
   const [uploadedInputSource, setUploadedInputSource] = useState(null);
@@ -1015,6 +1015,7 @@ export default function App() {
     />
   );
 }
+
 
 
 
