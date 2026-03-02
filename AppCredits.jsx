@@ -1,6 +1,6 @@
 import { Text } from "@chakra-ui/react";
 
-const DEFAULT_COPY = "\u00A9 jjls. All Rights Reserved.";
+const DEFAULT_COPY = HORCASITAS "\u00A9 jjls. All Rights Reserved.";
 
 export default function AppCredits({ copy = DEFAULT_COPY, ...props }) {
   return (
