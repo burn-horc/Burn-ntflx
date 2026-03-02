@@ -28,7 +28,7 @@ export default function AccessPage({ onAccessGranted }) {
     setFadeOut(true);
 
     setTimeout(() => {
-      localStorage.setItem("private_access", "true");
+      localStorage.setItem("access_code", code);
       onAccessGranted();
     }, 800);
 
