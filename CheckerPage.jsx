@@ -608,19 +608,14 @@ export default function CheckerPage({
           </Text>
 
           <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={2} mt={2}>
-            <Text fontSize="sm">
-              <b>Country:</b> {displayValue(result.countryOfSignup)}
-            </Text>
-            <Text fontSize="sm">
-              <b>Email:</b> {displayValue(result.email)}
-            </Text>
-            <Text fontSize="sm">
-              <b>Membership:</b> {displayValue(result.membershipStatus)}
-            </Text>
-            <Text fontSize="sm">
-              <b>Next Billing:</b> {displayValue(result.nextBilling)}
-            </Text>
-            </SimpleGrid>
+  {modalDetailItems.map(([label, value], i) =>
+    value ? (
+      <Text key={i} fontSize="sm">
+        <b>{label}:</b> {displayValue(value)}
+      </Text>
+    ) : null
+  )}
+</SimpleGrid>
 
           <HStack mt={4} spacing={3}>
       <Button
