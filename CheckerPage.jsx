@@ -105,6 +105,11 @@ export default function CheckerPage({
   
 }) {
   const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
+  useEffect(() => {
+  if (bulkValidResults && bulkValidResults.length > 0) {
+    setIsBulkModalOpen(true);
+  }
+}, [bulkValidResults]);
   const toast = useToast();
   const prefersReducedMotion = usePrefersReducedMotion();
   const showUploadedFileMarker = Boolean(uploadedInputBanner);
@@ -133,20 +138,6 @@ export default function CheckerPage({
     });
   };
   
-  const modalDetailItems = modalResult
-    ? [
-        ["Plan", modalResult?.plan],
-        ["Country", modalResult?.countryOfSignup],
-        ["Price", modalResult?.price],
-        ["Membership", modalResult?.membershipStatus],
-        ["Member Since", modalResult?.memberSince],
-        ["Next Billing", modalResult?.nextBilling],
-        ["Email", modalResult?.email],
-        ["Email Verified", displayBoolean(modalResult?.emailVerified)],
-        ["Phone", modalResult?.phone],
-        ["Phone Verified", displayBoolean(modalResult?.phoneVerified)],
-      ]
-    : [];
   
   return (
     <Box
@@ -547,8 +538,11 @@ export default function CheckerPage({
       </Box>
 
       <Modal
-  isOpen={bulkValidResults && bulkValidResults.length > 0}
-  onClose={onCloseBulkModal}
+  isOpen={isBulkModalOpen}
+  onClose={() => setIsBulkModalOpen(false)}
+  isCentered
+  size={{ base: "full", md: "3xl" }}
+>
   isCentered
   size={{ base: "full", md: "3xl" }}
 >
