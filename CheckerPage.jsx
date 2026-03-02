@@ -578,16 +578,31 @@ export default function CheckerPage({
     <ModalCloseButton />
 
     <ModalBody p={{ base: 3, sm: 4 }} maxH="70vh" overflowY="auto">
-      {bulkValidResults?.map((result, index) => (
-        <Box
-          key={index}
-          mb={4}
-          borderRadius="12px"
-          borderWidth="1px"
-          borderColor="rgba(35,215,198,0.4)"
-          bg="#101525"
-          p={3}
-        >
+      {bulkValidResults?.map((result, index) => {
+
+  const modalDetailItems = [
+    ["Plan", result?.plan],
+    ["Country", result?.countryOfSignup],
+    ["Price", result?.price],
+    ["Membership", result?.membershipStatus],
+    ["Member Since", result?.memberSince],
+    ["Next Billing", result?.nextBilling],
+    ["Email", result?.email],
+    ["Email Verified", displayBoolean(result?.emailVerified)],
+    ["Phone", result?.phone],
+    ["Phone Verified", displayBoolean(result?.phoneVerified)],
+  ];
+
+  return (
+    <Box
+      key={index}
+      mb={4}
+      borderRadius="12px"
+      borderWidth="1px"
+      borderColor="rgba(35,215,198,0.4)"
+      bg="#101525"
+      p={3}
+    >
           <Text fontWeight="600" color="#23d7c6">
             {displayValue(result.plan)}
           </Text>
