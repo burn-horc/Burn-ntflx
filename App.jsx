@@ -1010,11 +1010,11 @@ export default function App() {
       toggleCheckNFToken={handleCheckNFTokenChange}
       openUploadPicker={openUploadPicker}
       handleUploadFile={handleUploadFile}
-      singleCheckModalResult={singleCheckModalResult}
-      onCloseSingleCheckModal={closeSingleCheckModal}
+      bulkValidResults={bulkValidResults}
     />
   );
 }
+
 
 
 
