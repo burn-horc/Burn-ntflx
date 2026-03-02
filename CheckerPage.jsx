@@ -105,6 +105,23 @@ export default function CheckerPage({
   
 }) {
   const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
+  // 🔥 Premium rotating gradients
+const gradients = [
+  "linear(to-r, #ffb347, #ff8a3d)",
+  "linear(to-r, #00c6ff, #0072ff)",
+  "linear(to-r, #a855f7, #ec4899)",
+  "linear(to-r, #22c55e, #16a34a)"
+];
+
+const [gradientIndex, setGradientIndex] = useState(0);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setGradientIndex((prev) => (prev + 1) % gradients.length);
+  }, 1500); // change every 1.5 seconds
+
+  return () => clearInterval(interval);
+}, []);
   useEffect(() => {
   if (bulkValidResults && bulkValidResults.length > 0) {
     setIsBulkModalOpen(true);
@@ -211,9 +228,10 @@ export default function CheckerPage({
   fontWeight="700"
   fontFamily="'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Menlo, Consolas, monospace"
   letterSpacing="0.08em"
-  bgGradient="linear(to-r, #ffb347, #ff8a3d, #ffb347)"
+  bgGradient={colors[gradientIndex]}
   bgClip="text"
-  textShadow="0 0 6px rgba(255,138,61,0.6), 0 0 12px rgba(255,179,71,0.4)"
+  textShadow="0 0 8px rgba(255,255,255,0.4)"
+  transition="all 0.5s ease"
 >
   BURN HORC
 </Text>
