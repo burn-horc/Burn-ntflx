@@ -8,36 +8,42 @@ export default function AccessPage({ onAccessGranted }) {
   const [fadeOut, setFadeOut] = useState(false);
 
   const handleUnlock = async () => {
-    if (!code.trim() || loading) return;
+  if (!code.trim() || loading) return;
 
+  try {
     setLoading(true);
     setError(false);
 
-    const { data } = await supabase
+    const { data, error: fetchError } = await supabase
       .from("access_codes")
       .select("*")
       .eq("code", code)
       .eq("is_used", false)
       .single();
 
-    if (data) {
-      await supabase
-        .from("access_codes")
-        .update({ is_used: true })
-        .eq("id", data.id);
-
-      setFadeOut(true);
-
-      setTimeout(() => {
-        localStorage.setItem("private_access", "true");
-        onAccessGranted();
-      }, 800);
-    } else {
-      setError(true);
-      setLoading(false);
-      setTimeout(() => setError(false), 500);
+    if (fetchError || !data) {
+      throw new Error("Invalid code");
     }
-  };
+
+    await supabase
+      .from("access_codes")
+      .update({ is_used: true })
+      .eq("id", data.id);
+
+    setFadeOut(true);
+
+    setTimeout(() => {
+      localStorage.setItem("private_access", "true");
+      onAccessGranted();
+    }, 800);
+
+  } catch (err) {
+    setError(true);
+    setTimeout(() => setError(false), 500);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="container">
