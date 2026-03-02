@@ -8,7 +8,7 @@ export default function AccessPage({ onAccessGranted }) {
   const [fadeOut, setFadeOut] = useState(false);
 
   const handleUnlock = async () => {
-    if (!code.trim()) return;
+    if (!code.trim() || loading) return;
 
     setLoading(true);
     setError(false);
@@ -31,13 +31,12 @@ export default function AccessPage({ onAccessGranted }) {
       setTimeout(() => {
         localStorage.setItem("private_access", "true");
         onAccessGranted();
-      }, 700);
+      }, 800);
     } else {
       setError(true);
+      setLoading(false);
       setTimeout(() => setError(false), 500);
     }
-
-    setLoading(false);
   };
 
   return (
@@ -52,8 +51,8 @@ export default function AccessPage({ onAccessGranted }) {
           placeholder="Access Code"
         />
 
-        <button onClick={handleUnlock}>
-          {loading ? "Checking..." : "Unlock"}
+        <button onClick={handleUnlock} disabled={loading}>
+          {loading ? <span className="spinner"></span> : "Unlock"}
         </button>
       </div>
 
@@ -126,6 +125,14 @@ export default function AccessPage({ onAccessGranted }) {
           background: linear-gradient(90deg, #5c6cff, #8f5cff, #5c6cff);
           background-size: 200% 200%;
           animation: gradientMove 4s ease infinite;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        button:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
         }
 
         button:hover {
@@ -135,6 +142,19 @@ export default function AccessPage({ onAccessGranted }) {
 
         button:active {
           transform: scale(0.97);
+        }
+
+        .spinner {
+          width: 18px;
+          height: 18px;
+          border: 2px solid rgba(255,255,255,0.3);
+          border-top: 2px solid white;
+          border-radius: 50%;
+          animation: spin 0.7s linear infinite;
+        }
+
+        @keyframes spin {
+          to { transform: rotate(360deg); }
         }
 
         @keyframes gradientMove {
