@@ -6,7 +6,7 @@ import "./index.css";
 import theme from "./theme";
 import { initAntiInspectGuard } from "./antiInspect";
 
- initAntiInspectGuard();
+// initAntiInspectGuard();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
