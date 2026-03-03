@@ -1082,16 +1082,13 @@ return hasAccess ? (
     isProgressIndeterminate={isProgressIndeterminate}
     uploadInputRef={uploadInputRef}
     filePickerAccept={FILE_PICKER_ACCEPT}
-    handleAutoProcess={handleAutoProcess}   // 👈 IMPORTANT
-    autoLoading={autoLoading}               // 👈 IMPORTANT
+    handleAutoProcess={handleAutoProcess}
+    autoLoading={autoLoading}
   />
 ) : (
   <AccessPage onAccessGranted={() => setHasAccess(true)} />
 );
-
-
-
-
+}
 
 
 
