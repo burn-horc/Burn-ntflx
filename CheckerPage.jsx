@@ -705,4 +705,4 @@ export default function CheckerPage({
 
 );
 }
-  }
+
