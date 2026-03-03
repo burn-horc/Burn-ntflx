@@ -158,6 +158,9 @@ export default function CheckerPage({
   Array.isArray(initialCookies) ? initialCookies : []
 );
 
+  console.log("initialCookies:", initialCookies);
+console.log("storedCookies:", storedCookies);
+
 const handleStorageRandom = async () => {
   if (storedCookies.length === 0) {
     showAppToast(toast, {
