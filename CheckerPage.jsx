@@ -582,8 +582,8 @@ export default function CheckerPage({
       <Button
   colorScheme="purple"
   onClick={() => {
-    setStoredCookies(initialCookies);
-    showAppToast(toast, "Cookies loaded", "success");
+    console.log("BUTTON CLICKED");
+    alert("clicked");
   }}
 >
   Load Stored Cookies
