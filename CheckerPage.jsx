@@ -155,20 +155,28 @@ export default function CheckerPage({
 
   const handleStorageRandom = () => {
   if (storedCookies.length === 0) {
-    addLog("No more stored cookies.");
+    showAppToast(toast, {
+      title: "No more stored cookies.",
+      status: "info",
+      duration: 1500,
+    });
     return;
   }
 
   const randomIndex = Math.floor(Math.random() * storedCookies.length);
   const selectedCookie = storedCookies[randomIndex];
 
-  addLog("Processing random stored cookie...");
-
-  processCookie(selectedCookie);
-
-  // Remove used cookie (no repeat)
+  // remove used cookie (no repeat)
   const updated = storedCookies.filter((_, i) => i !== randomIndex);
   setStoredCookies(updated);
+
+  // Put cookie into your input field
+  handleCookieInputChange({
+    target: { value: selectedCookie }
+  });
+
+  // Run your existing checker system
+  runCheck();
 };
   
   return (
