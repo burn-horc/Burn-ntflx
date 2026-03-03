@@ -1,18 +1,19 @@
 import { useState } from "react";
 
 export default function App() {
-  const [hasAccess, setHasAccess] = useState(false);
-
-  if (!hasAccess) {
-    return (
-      <div style={{ color: "black" }}>
-        <button onClick={() => setHasAccess(true)}>
-          Unlock
-        </button>
-      </div>
-    );
-  }
-
-  return <div style={{ color: "black" }}>CHECKER LOADED</div>;
+  return (
+    <div
+      style={{
+        background: "white",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <h1 style={{ color: "black", fontSize: "40px" }}>
+        IT WORKS
+      </h1>
+    </div>
+  );
 }
-
