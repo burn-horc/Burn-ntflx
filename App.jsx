@@ -1039,12 +1039,43 @@ export default function App() {
   verifyAccess();
 }, []);
 
-  return hasAccess ? (
-    <CheckerApp />
-  ) : (
-    <AccessPage onAccessGranted={() => setHasAccess(true)} />
-  );
+const handleAutoProcess = async () => {
+  try {
+    setAutoLoading(true);
+
+    const response = await fetch("/api/auto-process", {
+      method: "POST",
+    });
+
+    const data = await response.json();
+    console.log("Auto result:", data);
+
+    showAppToast(toast, {
+      title: "Auto process complete",
+      status: "success",
+    });
+
+  } catch (error) {
+    console.error("Auto process failed:", error);
+
+    showAppToast(toast, {
+      title: "Auto process failed",
+      status: "error",
+    });
+
+  } finally {
+    setAutoLoading(false);
+  }
+};
+
+
+return hasAccess ? (
+  <CheckerApp />
+) : (
+  <AccessPage onAccessGranted={() => setHasAccess(true)} />
+);
 }
+
 
 
 
