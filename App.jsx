@@ -1028,7 +1028,7 @@ function CheckerApp() {
   );
 }
 export default function App() {
-  const [hasAccess, setHasAccess] = useState(false);
+  const [hasAccess, setHasAccess] = useState(null);
 
   useEffect(() => {
   async function verifyAccess() {
@@ -1111,6 +1111,7 @@ return hasAccess ? (
   <AccessPage onAccessGranted={() => setHasAccess(true)} />
 );
 }
+
 
 
 
