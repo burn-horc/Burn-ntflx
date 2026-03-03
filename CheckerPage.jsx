@@ -581,11 +581,15 @@ export default function CheckerPage({
 
       <Box pointerEvents="auto" position="relative" zIndex="9999">
       <Button
-  position="relative"
-  zIndex="9999"
   colorScheme="purple"
   onClick={() => {
-    alert("CLICK WORKING");
+    console.log("initialCookies:", initialCookies);
+    alert(
+      initialCookies
+        ? `Loaded: ${initialCookies.length} cookies`
+        : "initialCookies is undefined"
+    );
+    setStoredCookies(initialCookies || []);
   }}
 >
   Load Stored Cookies
