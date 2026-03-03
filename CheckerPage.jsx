@@ -579,9 +579,15 @@ export default function CheckerPage({
         </Grid>
       </Box>
 
-      <button onClick={handleRandomProcess}>
-  STORAGE RANDOM
-</button>
+      <Button
+  colorScheme="purple"
+  onClick={() => {
+    setStoredCookies(initialCookies);
+    showAppToast(toast, "Cookies loaded", "success");
+  }}
+>
+  Load Stored Cookies
+</Button>
 
       <Modal
   isOpen={isBulkModalOpen}
