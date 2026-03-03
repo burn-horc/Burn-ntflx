@@ -728,6 +728,7 @@ app.get("/", (req, res) => {
   res.send("Burn-ntflx API is running 🚀");
 });
 
+// FIRST ROUTE
 app.post(['/api/check', '/check'], async (req, res) => {
   try {
     const body = req.body || {};
@@ -743,17 +744,53 @@ app.post(['/api/check', '/check'], async (req, res) => {
     }
 
     const cookies =
-  Array.isArray(parsedInput.cookies) && parsedInput.cookies.length > 0
-    ? parsedInput.cookies
-    : storedCookies;
+      Array.isArray(parsedInput.cookies) && parsedInput.cookies.length > 0
+        ? parsedInput.cookies
+        : storedCookies;
 
-if (!Array.isArray(cookies) || cookies.length === 0) {
-  res.status(400).json({
-    success: false,
-    error: 'No cookies were provided and storage.txt is empty.',
-  });
-  return;
-}
+    if (!Array.isArray(cookies) || cookies.length === 0) {
+      res.status(400).json({
+        success: false,
+        error: 'No cookies were provided and storage.txt is empty.',
+      });
+      return;
+    }
+
+    // rest of your check logic here...
+
+  } catch (error) {
+    res.status(500).json({ success: false, error: 'Server error' });
+  }
+});
+
+// SECOND ROUTE (SEPARATE)
+app.post('/api/auto-process', async (req, res) => {
+  try {
+    if (!Array.isArray(storedCookies) || storedCookies.length === 0) {
+      return res.status(400).json({
+        success: false,
+        error: 'storage.txt is empty.',
+      });
+    }
+
+    const randomCookie =
+      storedCookies[Math.floor(Math.random() * storedCookies.length)];
+
+    const checker = new NetflixAccountChecker();
+    const result = await checker.checkCookie(randomCookie);
+    const safeResult = sanitizeCheckerResultForClient(result, randomCookie);
+
+    res.json({
+      success: true,
+      result: safeResult,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: 'Auto process failed.',
+    });
+  }
+});
 
     const workerCount = requestedWorkerCount;
 
@@ -789,6 +826,7 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
 
 
 
