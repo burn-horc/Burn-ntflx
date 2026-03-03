@@ -1030,35 +1030,25 @@ function CheckerApp() {
 export default function App() {
   const [hasAccess, setHasAccess] = useState(null);
 
-  useEffect(() => {
-  async function verifyAccess() {
+useEffect(() => {
+  const checkAccess = async () => {
     try {
-      const savedCode = localStorage.getItem("access_code");
+      const { data, error } = await supabase.rpc("check_access");
 
-      alert("Saved Code: " + savedCode);
-
-      if (!savedCode) return;
-
-      const { data, error } = await supabase.rpc(
-        "verify_access_code",
-        { input_code: savedCode }
-      );
-
-      alert("RPC Data: " + JSON.stringify(data));
-      alert("RPC Error: " + JSON.stringify(error));
-
-      if (data?.success) {
-        setHasAccess(true);
-      } else {
-        localStorage.removeItem("access_code");
+      if (error) {
+        console.error(error);
         setHasAccess(false);
+        return;
       }
-    } catch (err) {
-      alert("Crash: " + err.message);
-    }
-  }
 
-  verifyAccess();
+      setHasAccess(data?.success === true);
+    } catch (err) {
+      console.error(err);
+      setHasAccess(false);
+    }
+  };
+
+  checkAccess();
 }, []);
   
 const handleAutoProcess = async () => {
@@ -1111,6 +1101,7 @@ return hasAccess ? (
   <AccessPage onAccessGranted={() => setHasAccess(true)} />
 );
 }
+
 
 
 
