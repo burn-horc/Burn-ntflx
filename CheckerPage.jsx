@@ -163,7 +163,9 @@ export default function CheckerPage({
     return;
   }
 
-  const handleStorageRandom = async () => {
+  const [storedCookies, setStoredCookies] = useState(initialCookies);
+
+const handleStorageRandom = async () => {
   if (storedCookies.length === 0) {
     showAppToast(toast, {
       title: "No more stored cookies.",
