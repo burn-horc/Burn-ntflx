@@ -1,10 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 
 
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
+const supabase = null;
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useToast } from "@chakra-ui/react";
@@ -1110,6 +1107,7 @@ return (
   />
 );
 }
+
 
 
 
