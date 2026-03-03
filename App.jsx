@@ -1070,7 +1070,21 @@ const handleAutoProcess = async () => {
 
 
 return hasAccess ? (
-  <CheckerPage />
+  <CheckerPage
+    input={input}
+    uploadedInputBanner={uploadedInputBanner}
+    isLoading={isLoading}
+    checkLogs={checkLogs}
+    checkLogRef={checkLogRef}
+    workerCount={workerCount}
+    checkProgress={checkProgress}
+    progressBarStyle={progressBarStyle}
+    isProgressIndeterminate={isProgressIndeterminate}
+    uploadInputRef={uploadInputRef}
+    filePickerAccept={FILE_PICKER_ACCEPT}
+    handleAutoProcess={handleAutoProcess}   // 👈 IMPORTANT
+    autoLoading={autoLoading}               // 👈 IMPORTANT
+  />
 ) : (
   <AccessPage onAccessGranted={() => setHasAccess(true)} />
 );
