@@ -519,6 +519,8 @@ export default function CheckerPage({
                     _active={{ transform: "translateY(0)" }}
                   >
                     {isLoading ? "Stop" : "Start"}
+                    </Button
+                    
                   <Button
   colorScheme="blue"
   onClick={handleAutoProcess}
