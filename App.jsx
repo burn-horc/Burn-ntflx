@@ -1095,9 +1095,10 @@ if (hasAccess === null) {
 }
 
 if (!hasAccess) {
-  return (
-    <AccessPage onAccessGranted={() => setHasAccess(true)} />
-  );
+  return <AccessPage onAccessGranted={() => setHasAccess(true)} />;
+}
+
+return <div style={{ color: "white" }}>CHECKER LOADED</div>;
 }
 
 return (
@@ -1118,6 +1119,7 @@ return (
   />
 );
 }
+
 
 
 
