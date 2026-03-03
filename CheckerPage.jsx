@@ -106,6 +106,7 @@ export default function CheckerPage({
 }) {
   const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
   useEffect(() => {
+  useEffect(() => {
   if (bulkValidResults && bulkValidResults.length > 0) {
     setIsBulkModalOpen(true);
   }
