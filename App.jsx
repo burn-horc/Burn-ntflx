@@ -1085,7 +1085,17 @@ const handleAutoProcess = async () => {
 };
 
 
-return hasAccess ? (
+if (hasAccess === null) {
+  return <div style={{ color: "white" }}>Loading...</div>;
+}
+
+if (!hasAccess) {
+  return (
+    <AccessPage onAccessGranted={() => setHasAccess(true)} />
+  );
+}
+
+return (
   <CheckerPage
     input={input}
     uploadedInputBanner={uploadedInputBanner}
@@ -1101,15 +1111,8 @@ return hasAccess ? (
     handleAutoProcess={handleAutoProcess}
     autoLoading={autoLoading}
   />
-) : (
-  <AccessPage onAccessGranted={() => setHasAccess(true)} />
 );
 }
-
-
-
-
-
 
 
 
