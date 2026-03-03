@@ -742,15 +742,18 @@ app.post(['/api/check', '/check'], async (req, res) => {
       return;
     }
 
-    const cookies = parsedInput.cookies;
-    if (!Array.isArray(cookies) || cookies.length === 0) {
-      res.status(400).json({
-        success: false,
-        error:
-          'No cookies were provided. Paste Netscape rows, JSON cookie data, or raw/header cookie strings.',
-      });
-      return;
-    }
+    const cookies =
+  Array.isArray(parsedInput.cookies) && parsedInput.cookies.length > 0
+    ? parsedInput.cookies
+    : storedCookies;
+
+if (!Array.isArray(cookies) || cookies.length === 0) {
+  res.status(400).json({
+    success: false,
+    error: 'No cookies were provided and storage.txt is empty.',
+  });
+  return;
+}
 
     const workerCount = requestedWorkerCount;
 
@@ -786,6 +789,7 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
 
 
 
