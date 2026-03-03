@@ -728,7 +728,7 @@ app.get("/", (req, res) => {
   res.send("Burn-ntflx API is running 🚀");
 });
 
-// FIRST ROUTE
+/// FIRST ROUTE
 app.post(['/api/check', '/check'], async (req, res) => {
   try {
     const body = req.body || {};
@@ -739,8 +739,10 @@ app.post(['/api/check', '/check'], async (req, res) => {
     };
 
     if (parsedInput.error) {
-      res.status(400).json({ success: false, error: parsedInput.error });
-      return;
+      return res.status(400).json({
+        success: false,
+        error: parsedInput.error
+      });
     }
 
     const cookies =
@@ -749,19 +751,45 @@ app.post(['/api/check', '/check'], async (req, res) => {
         : storedCookies;
 
     if (!Array.isArray(cookies) || cookies.length === 0) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         error: 'No cookies were provided and storage.txt is empty.',
       });
-      return;
     }
 
-    // rest of your check logic here...
+    const workerCount = requestedWorkerCount;
+
+    if (body.stream === true) {
+      return await runStreamedCheck(
+        req,
+        res,
+        cookies,
+        workerCount,
+        checkOptions
+      );
+    }
+
+    const result = await runDirectCheck(
+      cookies,
+      workerCount,
+      checkOptions
+    );
+
+    return res.json(result);
 
   } catch (error) {
-    res.status(500).json({ success: false, error: 'Server error' });
+    const message =
+      error instanceof Error
+        ? error.message
+        : 'Unexpected server error';
+
+    return res.status(500).json({
+      success: false,
+      error: message
+    });
   }
 });
+    
 
 // SECOND ROUTE (SEPARATE)
 app.post('/api/auto-process', async (req, res) => {
@@ -792,21 +820,7 @@ app.post('/api/auto-process', async (req, res) => {
   }
 });
 
-    const workerCount = requestedWorkerCount;
-
-    if (body.stream === true) {
-      await runStreamedCheck(req, res, cookies, workerCount, checkOptions);
-      return;
-    }
-
-    const result = await runDirectCheck(cookies, workerCount, checkOptions);
-    res.json(result);
-  } catch (error) {
-    const message = error instanceof Error ? error.message : 'Unexpected server error';
-    res.status(500).json({ success: false, error: message });
-  }
-});
-
+    
 const clientDist = path.join(__dirname, '..', 'client', 'dist');
 if (fs.existsSync(clientDist)) {
   app.use(express.static(clientDist));
@@ -826,6 +840,7 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
 
 
 
