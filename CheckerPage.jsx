@@ -701,7 +701,6 @@ export default function CheckerPage({
 </ModalContent>
 </Modal>
 
-</Box>
 
 );
 }
