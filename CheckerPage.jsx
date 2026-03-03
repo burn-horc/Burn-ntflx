@@ -579,20 +579,23 @@ export default function CheckerPage({
         </Grid>
       </Box>
 
-      <Box pointerEvents="auto" position="relative" zIndex="9999">
+      <Box 
       <Button
   colorScheme="purple"
-  onClick={() => {
-    console.log("initialCookies:", initialCookies);
-    alert(
-      initialCookies
-        ? `Loaded: ${initialCookies.length} cookies`
-        : "initialCookies is undefined"
-    );
-    setStoredCookies(initialCookies || []);
+  onClick={async () => {
+    if (!initialCookies?.length) {
+      alert("No stored cookies found");
+      return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * initialCookies.length);
+    const randomCookie = initialCookies[randomIndex];
+
+    // Directly call your check function
+    await checkCookies([randomCookie]); 
   }}
 >
-  Load Stored Cookies
+  Random Check
 </Button>
         </Box>
 
