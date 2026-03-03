@@ -1029,34 +1029,35 @@ export default function App() {
   const [hasAccess, setHasAccess] = useState(false);
 
   useEffect(() => {
-    async function verifyAccess() {
-      try {
-        const savedCode = localStorage.getItem("access_code");
-        if (!savedCode) return;
+  async function verifyAccess() {
+    try {
+      const savedCode = localStorage.getItem("access_code");
+      if (!savedCode) return;
 
-        const { data, error } = await supabase.rpc(
-          "verify_access_code",
-          { input_code: savedCode }
-        );
+      const { data, error } = await supabase.rpc(
+        "verify_access_code",
+        { input_code: savedCode }
+      );
 
-        if (error) {
-          console.error("Supabase RPC error:", error);
-          return;
-        }
-
-        if (data?.success) {
-          setHasAccess(true);
-        } else {
-          localStorage.removeItem("access_code");
-          setHasAccess(false);
-        }
-      } catch (err) {
-        console.error("verifyAccess crashed:", err);
+      if (error) {
+        console.error("RPC ERROR:", error);
+        setHasAccess(false);
+        return;
       }
-    }
 
-    verifyAccess();
-  }, []);
+      if (data?.success) {
+        setHasAccess(true);
+      } else {
+        setHasAccess(false);
+      }
+    } catch (err) {
+      console.error("CRASH:", err);
+      setHasAccess(false);
+    }
+  }
+
+  verifyAccess();
+}, []);
   
 const handleAutoProcess = async () => {
   try {
@@ -1108,6 +1109,7 @@ return hasAccess ? (
   <AccessPage onAccessGranted={() => setHasAccess(true)} />
 );
 }
+
 
 
 
