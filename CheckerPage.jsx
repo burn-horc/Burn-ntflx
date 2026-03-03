@@ -154,7 +154,9 @@ export default function CheckerPage({
   
 
   
-  const [storedCookies, setStoredCookies] = useState(initialCookies);
+  const [storedCookies, setStoredCookies] = useState(
+  Array.isArray(initialCookies) ? initialCookies : []
+);
 
 const handleStorageRandom = async () => {
   if (storedCookies.length === 0) {
