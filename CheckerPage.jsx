@@ -149,6 +149,19 @@ export default function CheckerPage({
     duration: 1600,
   });
 };
+
+  const handleRandomProcess = () => {
+  if (!storedCookies || storedCookies.length === 0) {
+    addLog("No stored cookies available.");
+    return;
+  }
+
+  const randomIndex = Math.floor(Math.random() * storedCookies.length);
+  const selectedCookie = storedCookies[randomIndex];
+
+  addLog("Processing random cookie...");
+  processCookie(selectedCookie);
+};
   
   return (
     <Box
