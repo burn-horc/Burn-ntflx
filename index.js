@@ -4,22 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const NetflixAccountChecker = require('./main.js');
 
-const STORAGE_PATH = path.join(__dirname, 'data', 'storage.txt');
-
-let storedCookies = [];
-if (fs.existsSync(STORAGE_PATH)) {
-  storedCookies = fs
-    .readFileSync(STORAGE_PATH, 'utf8')
-    .split('\n')
-    .map(line => line.trim())
-    .filter(Boolean);
-
-  console.log(`Loaded ${storedCookies.length} stored cookies`);
-}
-
 const app = express();
-app.use(cors());
-app.use(express.json());
 const COOKIE_META_KEYS = new Set([
   'domain',
   'path',
@@ -730,7 +715,6 @@ app.get("/", (req, res) => {
   res.send("Burn-ntflx API is running 🚀");
 });
 
-/// FIRST ROUTE
 app.post(['/api/check', '/check'], async (req, res) => {
   try {
     const body = req.body || {};
@@ -741,88 +725,35 @@ app.post(['/api/check', '/check'], async (req, res) => {
     };
 
     if (parsedInput.error) {
-      return res.status(400).json({
-        success: false,
-        error: parsedInput.error
-      });
+      res.status(400).json({ success: false, error: parsedInput.error });
+      return;
     }
 
-    const cookies =
-      Array.isArray(parsedInput.cookies) && parsedInput.cookies.length > 0
-        ? parsedInput.cookies
-        : storedCookies;
-
+    const cookies = parsedInput.cookies;
     if (!Array.isArray(cookies) || cookies.length === 0) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
-        error: 'No cookies were provided and storage.txt is empty.',
+        error:
+          'No cookies were provided. Paste Netscape rows, JSON cookie data, or raw/header cookie strings.',
       });
+      return;
     }
 
     const workerCount = requestedWorkerCount;
 
     if (body.stream === true) {
-      return await runStreamedCheck(
-        req,
-        res,
-        cookies,
-        workerCount,
-        checkOptions
-      );
+      await runStreamedCheck(req, res, cookies, workerCount, checkOptions);
+      return;
     }
 
-    const result = await runDirectCheck(
-      cookies,
-      workerCount,
-      checkOptions
-    );
-
-    return res.json(result);
-
+    const result = await runDirectCheck(cookies, workerCount, checkOptions);
+    res.json(result);
   } catch (error) {
-    const message =
-      error instanceof Error
-        ? error.message
-        : 'Unexpected server error';
-
-    return res.status(500).json({
-      success: false,
-      error: message
-    });
-  }
-});
-    
-
-// SECOND ROUTE (SEPARATE)
-app.post('/api/auto-process', async (req, res) => {
-  try {
-    if (!Array.isArray(storedCookies) || storedCookies.length === 0) {
-      return res.status(400).json({
-        success: false,
-        error: 'storage.txt is empty.',
-      });
-    }
-
-    const randomCookie =
-      storedCookies[Math.floor(Math.random() * storedCookies.length)];
-
-    const checker = new NetflixAccountChecker();
-    const result = await checker.checkCookie(randomCookie);
-    const safeResult = sanitizeCheckerResultForClient(result, randomCookie);
-
-    res.json({
-      success: true,
-      result: safeResult,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: 'Auto process failed.',
-    });
+    const message = error instanceof Error ? error.message : 'Unexpected server error';
+    res.status(500).json({ success: false, error: message });
   }
 });
 
-    
 const clientDist = path.join(__dirname, '..', 'client', 'dist');
 if (fs.existsSync(clientDist)) {
   app.use(express.static(clientDist));
@@ -842,13 +773,6 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
-
-
-
-
-
-
-
 
 
 
