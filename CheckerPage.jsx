@@ -707,4 +707,4 @@ const handleStorageRandom = async () => {
 
 );
 }
-}
+
