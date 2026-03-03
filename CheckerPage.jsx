@@ -579,15 +579,18 @@ export default function CheckerPage({
         </Grid>
       </Box>
 
+      <Box pointerEvents="auto" position="relative" zIndex="9999">
       <Button
+  position="relative"
+  zIndex="9999"
   colorScheme="purple"
   onClick={() => {
-    console.log("BUTTON CLICKED");
-    alert("clicked");
+    alert("CLICK WORKING");
   }}
 >
   Load Stored Cookies
 </Button>
+        </Box>
 
       <Modal
   isOpen={isBulkModalOpen}
