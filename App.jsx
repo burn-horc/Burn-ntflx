@@ -1100,7 +1100,6 @@ if (!hasAccess) {
 
 return <div style={{ color: "white" }}>CHECKER LOADED</div>;
 }
-
 return (
   <CheckerPage
     input={input}
@@ -1119,6 +1118,7 @@ return (
   />
 );
 }
+
 
 
 
