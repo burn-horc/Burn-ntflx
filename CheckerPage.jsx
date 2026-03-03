@@ -178,14 +178,12 @@ const handleStorageRandom = async () => {
   const randomIndex = Math.floor(Math.random() * storedCookies.length);
   const selectedCookie = storedCookies[randomIndex];
 
-  // Remove used cookie (no repeat)
   const updated = storedCookies.filter((_, i) => i !== randomIndex);
   setStoredCookies(updated);
 
-  // Directly run checker with this cookie
   await runCheck(selectedCookie);
 };
-  
+    
   return (
     <Box
       as="main"
