@@ -1,9 +1,11 @@
+import { useState } from "react";
+
 export default function App() {
   const [hasAccess, setHasAccess] = useState(false);
 
   if (!hasAccess) {
     return (
-      <div style={{ color: "white" }}>
+      <div style={{ color: "black" }}>
         <button onClick={() => setHasAccess(true)}>
           Unlock
         </button>
@@ -11,5 +13,5 @@ export default function App() {
     );
   }
 
-  return <div style={{ color: "white" }}>CHECKER LOADED</div>;
+  return <div style={{ color: "black" }}>CHECKER LOADED</div>;
 }
