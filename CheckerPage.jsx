@@ -585,23 +585,23 @@ export default function CheckerPage({
       </Box>
 
       <Box pointerEvents="auto" position="relative" zIndex="9999">
-      colorScheme="purple"
-  onClick={async () => {
-    if (!initialCookies?.length) {
-      alert("No stored cookies found");
-      return;
-    }
+  <Button
+    colorScheme="purple"
+    onClick={async () => {
+      if (!initialCookies?.length) {
+        alert("No stored cookies found");
+        return;
+      }
 
-    const randomIndex = Math.floor(Math.random() * initialCookies.length);
-    const randomCookie = initialCookies[randomIndex];
+      const randomIndex = Math.floor(Math.random() * initialCookies.length);
+      const randomCookie = initialCookies[randomIndex];
 
-    // Directly call your check function
-    await checkCookies([randomCookie]); 
-  }}
->
-  Random Check
-</Button>
-        </Box>
+      await checkCookies([randomCookie]);
+    }}
+  >
+    Random Check
+  </Button>
+</Box>
 
       <Modal
   isOpen={isBulkModalOpen}
