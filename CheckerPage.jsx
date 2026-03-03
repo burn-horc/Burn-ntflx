@@ -550,6 +550,10 @@ export default function CheckerPage({
         </Grid>
       </Box>
 
+      <button onClick={handleRandomProcess}>
+  STORAGE RANDOM
+</button>
+
       <Modal
   isOpen={isBulkModalOpen}
   onClose={() => setIsBulkModalOpen(false)}
