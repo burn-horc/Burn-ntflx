@@ -79,7 +79,7 @@ async function copyTextToClipboard(value) {
   return false;
 }
 
-export default function CheckerPage({
+export default function CheckerPage() {
   input,
   uploadedInputBanner,
   isLoading,
