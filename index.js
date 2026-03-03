@@ -18,6 +18,8 @@ if (fs.existsSync(STORAGE_PATH)) {
 }
 
 const app = express();
+app.use(cors());
+app.use(express.json());
 const COOKIE_META_KEYS = new Set([
   'domain',
   'path',
@@ -840,6 +842,7 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
 
 
 
