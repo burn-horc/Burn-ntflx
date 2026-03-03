@@ -105,7 +105,6 @@ export default function CheckerPage({
   
 }) {
   const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
-  
   useEffect(() => {
   if (bulkValidResults && bulkValidResults.length > 0) {
     setIsBulkModalOpen(true);
@@ -519,16 +518,7 @@ export default function CheckerPage({
                     _active={{ transform: "translateY(0)" }}
                   >
                     {isLoading ? "Stop" : "Start"}
-                    </Button>
-                    
-                  <Button
-  colorScheme="blue"
-  onClick={handleAutoProcess}
-  isLoading={autoLoading}
-  ml={3}
->
-  AUTO PROCESS FILE
-</Button>
+                  </Button>
 
                   <Button
                     type="button"
