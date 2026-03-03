@@ -581,22 +581,13 @@ const handleStorageRandom = async () => {
         </Grid>
       </Box>
 
-      <Box pointerEvents="auto" position="relative" zIndex="<Button
-  colorScheme="purple"
-  onClick={async () => {
-    if (!initialCookies?.length) {
-      alert("No stored cookies found");
-      return;
-    }
-
-    const randomIndex = Math.floor(Math.random() * initialCookies.length);
-    const randomCookie = initialCookies[randomIndex];
-
-    await runCheck(randomCookie); // ✅ use this
-  }}
->
-  Random Check
-</Button>
+      <Box pointerEvents="auto" position="relative" zIndex="9999">
+  <Button
+    colorScheme="purple"
+    onClick={handleStorageRandom}
+  >
+    Random Check
+  </Button>
 </Box>
       
 
