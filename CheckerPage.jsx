@@ -603,6 +603,7 @@ const handleStorageRandom = async () => {
     Random Check
   </Button>
 </Box>
+      }
 
       <Modal
   isOpen={isBulkModalOpen}
