@@ -4,6 +4,19 @@ const fs = require('fs');
 const path = require('path');
 const NetflixAccountChecker = require('./main.js');
 
+const STORAGE_PATH = path.join(__dirname, 'data', 'storage.txt');
+
+let storedCookies = [];
+if (fs.existsSync(STORAGE_PATH)) {
+  storedCookies = fs
+    .readFileSync(STORAGE_PATH, 'utf8')
+    .split('\n')
+    .map(line => line.trim())
+    .filter(Boolean);
+
+  console.log(`Loaded ${storedCookies.length} stored cookies`);
+}
+
 const app = express();
 const COOKIE_META_KEYS = new Set([
   'domain',
@@ -773,6 +786,7 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
 
 
 
