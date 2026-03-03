@@ -1032,20 +1032,24 @@ export default function App() {
 
 useEffect(() => {
   const checkAccess = async () => {
-    try {
-      const { data, error } = await supabase.rpc("check_access");
+    const savedCode = localStorage.getItem("access_code");
 
-      if (error) {
-        console.error(error);
-        setHasAccess(false);
-        return;
-      }
-
-      setHasAccess(data?.success === true);
-    } catch (err) {
-      console.error(err);
+    if (!savedCode) {
       setHasAccess(false);
+      return;
     }
+
+    const { data, error } = await supabase.rpc(
+      "verify_access_code",
+      { input_code: savedCode }
+    );
+
+    if (error) {
+      setHasAccess(false);
+      return;
+    }
+
+    setHasAccess(data?.success === true);
   };
 
   checkAccess();
@@ -1101,6 +1105,7 @@ return hasAccess ? (
   <AccessPage onAccessGranted={() => setHasAccess(true)} />
 );
 }
+
 
 
 
