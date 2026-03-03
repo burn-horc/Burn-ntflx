@@ -102,7 +102,7 @@ export default function CheckerPage() {
   handleUploadFile,
   checkNFToken,
   toggleCheckNFToken,
-  bulkValidResults,
+  bulkValidResults
   
 }) {
   const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
