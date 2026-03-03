@@ -180,7 +180,7 @@ export default function CheckerPage({
   const updated = storedCookies.filter((_, i) => i !== randomIndex);
   setStoredCookies(updated);
 
-  // 🔥 Directly run checker with this cookie
+  // Directly run checker with this cookie
   await runCheck(selectedCookie);
 };
   
