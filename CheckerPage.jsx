@@ -1,3 +1,4 @@
+import { storedCookies as initialCookies } from "./storage";
 import React, { useState, useEffect } from "react";
 import {
   Box,
@@ -150,17 +151,24 @@ export default function CheckerPage({
   });
 };
 
-  const handleRandomProcess = () => {
-  if (!storedCookies || storedCookies.length === 0) {
-    addLog("No stored cookies available.");
+  const [storedCookies, setStoredCookies] = useState(initialCookies);
+
+  const handleStorageRandom = () => {
+  if (storedCookies.length === 0) {
+    addLog("No more stored cookies.");
     return;
   }
 
   const randomIndex = Math.floor(Math.random() * storedCookies.length);
   const selectedCookie = storedCookies[randomIndex];
 
-  addLog("Processing random cookie...");
+  addLog("Processing random stored cookie...");
+
   processCookie(selectedCookie);
+
+  // Remove used cookie (no repeat)
+  const updated = storedCookies.filter((_, i) => i !== randomIndex);
+  setStoredCookies(updated);
 };
   
   return (
