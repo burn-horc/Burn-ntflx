@@ -1032,6 +1032,9 @@ export default function App() {
   async function verifyAccess() {
     try {
       const savedCode = localStorage.getItem("access_code");
+
+      alert("Saved Code: " + savedCode);
+
       if (!savedCode) return;
 
       const { data, error } = await supabase.rpc(
@@ -1039,20 +1042,17 @@ export default function App() {
         { input_code: savedCode }
       );
 
-      if (error) {
-        console.error("RPC ERROR:", error);
-        setHasAccess(false);
-        return;
-      }
+      alert("RPC Data: " + JSON.stringify(data));
+      alert("RPC Error: " + JSON.stringify(error));
 
       if (data?.success) {
         setHasAccess(true);
       } else {
+        localStorage.removeItem("access_code");
         setHasAccess(false);
       }
     } catch (err) {
-      console.error("CRASH:", err);
-      setHasAccess(false);
+      alert("Crash: " + err.message);
     }
   }
 
@@ -1109,6 +1109,7 @@ return hasAccess ? (
   <AccessPage onAccessGranted={() => setHasAccess(true)} />
 );
 }
+
 
 
 
