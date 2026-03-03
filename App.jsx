@@ -1070,11 +1070,11 @@ const handleAutoProcess = async () => {
 
 
 return hasAccess ? (
-  <CheckerApp />
+  <CheckerPage />
 ) : (
   <AccessPage onAccessGranted={() => setHasAccess(true)} />
 );
-}
+
 
 
 
