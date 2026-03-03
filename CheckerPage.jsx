@@ -163,20 +163,25 @@ export default function CheckerPage({
     return;
   }
 
+  const handleStorageRandom = async () => {
+  if (storedCookies.length === 0) {
+    showAppToast(toast, {
+      title: "No more stored cookies.",
+      status: "info",
+      duration: 1500,
+    });
+    return;
+  }
+
   const randomIndex = Math.floor(Math.random() * storedCookies.length);
   const selectedCookie = storedCookies[randomIndex];
 
-  // remove used cookie (no repeat)
+  // Remove used cookie (no repeat)
   const updated = storedCookies.filter((_, i) => i !== randomIndex);
   setStoredCookies(updated);
 
-  // Put cookie into your input field
-  handleCookieInputChange({
-    target: { value: selectedCookie }
-  });
-
-  // Run your existing checker system
-  runCheck();
+  // 🔥 Directly run checker with this cookie
+  await runCheck(selectedCookie);
 };
   
   return (
@@ -579,9 +584,8 @@ export default function CheckerPage({
         </Grid>
       </Box>
 
-      <Box 
-      <Button
-  colorScheme="purple"
+      <Box pointerEvents="auto" position="relative" zIndex="9999">
+      colorScheme="purple"
   onClick={async () => {
     if (!initialCookies?.length) {
       alert("No stored cookies found");
