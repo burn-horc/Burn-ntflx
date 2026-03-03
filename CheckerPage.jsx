@@ -151,7 +151,7 @@ export default function CheckerPage({
   });
 };
 
-  const [storedCookies, setStoredCookies] = useState(initialCookies);
+  
 
   const handleStorageRandom = () => {
   if (storedCookies.length === 0) {
