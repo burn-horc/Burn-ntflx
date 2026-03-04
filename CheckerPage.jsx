@@ -154,9 +154,14 @@ export default function CheckerPage(props) {
 };
 
   const loadSavedCookies = async () => {
+  console.log("Button clicked 🔥");
+
   const { data, error } = await supabase
     .from("cookies")
     .select("id, cookie, status");
+
+  console.log("Data:", data);
+  console.log("Error:", error);
 
   if (error) {
     console.error("Supabase error:", error);
@@ -170,7 +175,9 @@ export default function CheckerPage(props) {
 
   const cookieArray = data.map(row => row.cookie);
 
-  runBulkCheck(cookieArray); // your existing bulk function
+  console.log("Loaded cookies:", cookieArray);
+
+  runBulkCheck(cookieArray);
 };
 
   
