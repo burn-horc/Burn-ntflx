@@ -160,26 +160,30 @@ const [currentIndex, setCurrentIndex] = useState(0);
   const loadSavedCookies = async () => {
   const { data, error } = await supabase
     .from("cookies")
-    .select("cookie")
-    .order("id", { ascending: true }); // make sure you have an id column
+    .select("cookie");
 
   if (error) {
-    console.error(error);
+    console.error("Supabase error:", error);
     return;
   }
 
-  if (!data || data.length === 0) return;
+  if (!data || data.length === 0) {
+    console.log("No cookies found");
+    return;
+  }
 
-  // Save cookies to state
-  setSavedCookies(data);
+  // Save once
+  if (savedCookies.length === 0) {
+    setSavedCookies(data);
+  }
 
-  // Get current cookie
-  const cookieToShow = data[currentIndex].cookie;
+  const cookiesArray = savedCookies.length > 0 ? savedCookies : data;
+
+  const cookieToShow = cookiesArray[currentIndex].cookie;
   setCookies(cookieToShow);
 
-  // Move to next index (loop back if at end)
   setCurrentIndex((prev) =>
-    prev + 1 >= data.length ? 0 : prev + 1
+    prev + 1 >= cookiesArray.length ? 0 : prev + 1
   );
 };
 
