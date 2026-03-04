@@ -842,7 +842,7 @@ function CheckerApp() {
           },
 
 
-          const runRandomStoredInput = () => {
+          
   if (isLoading) return;
   if (!storedInputs.length) return;
 
@@ -1102,6 +1102,7 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
