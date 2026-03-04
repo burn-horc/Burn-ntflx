@@ -658,7 +658,8 @@ export default function CheckerPage(props) {
 
           <Button
   onClick={() => {
-    navigator.clipboard.writeText(result.originalCookie);
+    console.log(result);
+    navigator.clipboard.writeText(result.originalCookie || "NO COOKIE FOUND");
   }}
 >
   COPY COOKIE
