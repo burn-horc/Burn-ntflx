@@ -1,3 +1,4 @@
+import { storedInputs } from "./storage";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import CheckerPage from "./CheckerPage";
@@ -840,6 +841,22 @@ function CheckerApp() {
             setCheckProgress(progress);
           },
 
+
+          const runRandomStoredInput = () => {
+  if (isLoading) return;
+  if (!storedInputs.length) return;
+
+  const randomInput =
+    storedInputs[Math.floor(Math.random() * storedInputs.length)];
+
+  setUploadedInputSource(null);
+  setInput(randomInput);
+
+  // Trigger check after state updates
+  setTimeout(() => {
+    runCheck({ preventDefault: () => {} });
+  }, 0);
+};
           
           onResult: (streamEvent) => {
   const planLabel =
@@ -1083,6 +1100,7 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
