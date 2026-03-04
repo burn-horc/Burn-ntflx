@@ -177,6 +177,7 @@ const handleStorageRandom = async () => {
 
   await runCheck(selectedCookie);
 };
+}
 
     
   return (
