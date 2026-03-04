@@ -777,7 +777,24 @@ function CheckerApp() {
     logNode.scrollTop = logNode.scrollHeight;
   }, [checkLogs, isLoading]);
 
-  const runCheck = async (event) => {
+
+    const runRandomStoredInput = () => {
+if (isLoading) return;
+  if (!storedInputs.length) return;
+
+    
+  const randomInput =
+    storedInputs[Math.floor(Math.random() * storedInputs.length)];
+
+  setUploadedInputSource(null);
+  setInput(randomInput);
+
+  setTimeout(() => {
+    runCheck({ preventDefault: () => {} });
+  }, 0);
+};
+
+const runCheck = async (event) => {
     event.preventDefault();
 
     const activeInput = uploadedInputSource?.normalizedText ?? input;
@@ -844,20 +861,7 @@ function CheckerApp() {
 
 
           
-  if (isLoading) return;
-  if (!storedInputs.length) return;
-
-  const randomInput =
-    storedInputs[Math.floor(Math.random() * storedInputs.length)];
-
-  setUploadedInputSource(null);
-  setInput(randomInput);
-
-  // Trigger check after state updates
-  setTimeout(() => {
-    runCheck({ preventDefault: () => {} });
-  }, 0);
-};
+  
           
           onResult: (streamEvent) => {
   const planLabel =
@@ -1103,6 +1107,7 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
