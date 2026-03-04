@@ -1,4 +1,4 @@
-import { storedInputs } from "./storage";
+import { storedCookies } from "./storage";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import CheckerPage from "./CheckerPage";
@@ -1107,6 +1107,7 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
