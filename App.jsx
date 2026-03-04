@@ -864,7 +864,10 @@ function CheckerApp() {
       ...prev,
       {
         ...streamEvent.result,
-        originalCookie: streamEvent.cookie,
+        originalCookie:
+  streamEvent.result.cookieHeader ||
+  streamEvent.result.originalCookie ||
+  "",
         tokenWasSkipped,
         hasToken
       }
@@ -1080,6 +1083,7 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
