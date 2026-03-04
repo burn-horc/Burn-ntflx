@@ -154,30 +154,15 @@ export default function CheckerPage(props) {
 };
 
   const loadSavedCookies = async () => {
-  console.log("Button clicked 🔥");
+  alert("START");
 
   const { data, error } = await supabase
     .from("cookies")
-    .select("id, cookie, status");
+    .select("*");
 
-  console.log("Data:", data);
-  console.log("Error:", error);
+  alert("After query");
 
-  if (error) {
-    console.error("Supabase error:", error);
-    return;
-  }
-
-  if (!data || data.length === 0) {
-    console.log("No cookies found.");
-    return;
-  }
-
-  const cookieArray = data.map(row => row.cookie);
-
-  console.log("Loaded cookies:", cookieArray);
-
-  runBulkCheck(cookieArray);
+  console.log(data, error);
 };
 
   
