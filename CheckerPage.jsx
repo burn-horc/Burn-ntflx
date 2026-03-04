@@ -157,36 +157,34 @@ const [currentIndex, setCurrentIndex] = useState(0);
   });
 };
 
-  const loadSavedCookies = async () => {
-  const { data, error } = await supabase
-    .from("cookies")
-    .select("cookie");
+const loadSavedCookies = async () => {
+  let cookiesArray = savedCookies;
 
-  if (error) {
-    console.error("Supabase error:", error);
-    return;
-  }
+  // If not loaded yet, fetch once
+  if (cookiesArray.length === 0) {
+    const { data, error } = await supabase
+      .from("cookies")
+      .select("cookie");
 
-  if (!data || data.length === 0) {
-    console.log("No cookies found");
-    return;
-  }
+    if (error) {
+      console.error(error);
+      return;
+    }
 
-  // Save once
-  if (savedCookies.length === 0) {
+    if (!data || data.length === 0) return;
+
+    cookiesArray = data;
     setSavedCookies(data);
   }
 
-  const cookiesArray = savedCookies.length > 0 ? savedCookies : data;
-
   const cookieToShow = cookiesArray[currentIndex].cookie;
-  setCookies(cookieToShow);
+
+  setCookies([cookieToShow]); // since your state is array
 
   setCurrentIndex((prev) =>
     prev + 1 >= cookiesArray.length ? 0 : prev + 1
   );
 };
-
   
  
   return (
