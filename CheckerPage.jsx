@@ -171,7 +171,7 @@ const loadSavedCookies = async () => {
     return;
   }
 
-  // Initialize shuffle bag if not exists or empty
+  // Initialize shuffle bag if empty
   if (!loadSavedCookies.shuffleBag || loadSavedCookies.shuffleBag.length === 0) {
     const cookieList = data.map(item => item.cookie);
 
@@ -184,15 +184,17 @@ const loadSavedCookies = async () => {
     loadSavedCookies.shuffleBag = cookieList;
   }
 
-  // Take first cookie from shuffled list
   const cookieToShow = loadSavedCookies.shuffleBag.shift();
 
-  // Update textarea using your existing handler
+  // Update textarea
   handleCookieInputChange({
-    target: {
-      value: cookieToShow
-    }
+    target: { value: cookieToShow }
   });
+
+  // 🔥 AUTO START CHECKING
+  setTimeout(() => {
+    handleStartChecking(); // <-- replace with your actual START function name
+  }, 100);
 };
  
   return (
