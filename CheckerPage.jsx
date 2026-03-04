@@ -152,7 +152,19 @@ export default function CheckerPage(props) {
   });
 };
 
-  
+  const handleCheck = async () => {
+  const result = await checkCookie(inputCookie);
+
+  if (result.valid) {
+    setValidResults(prev => [
+      ...prev,
+      {
+        ...result,
+        originalCookie: inputCookie   // 👈 THIS IS THE FIX
+      }
+    ]);
+  }
+};
 
   
  
@@ -657,26 +669,8 @@ export default function CheckerPage(props) {
 
 
           <Button
-  colorScheme="blue"
-  width="100%"
-  mt={4}
-  onClick={async () => {
-    try {
-      await navigator.clipboard.writeText(result.cookie);
-      toast({
-        title: "Copied!",
-        status: "success",
-        duration: 2000,
-        isClosable: true,
-      });
-    } catch (err) {
-      toast({
-        title: "Copy failed",
-        status: "error",
-        duration: 2000,
-        isClosable: true,
-      });
-    }
+  onClick={() => {
+    navigator.clipboard.writeText(result.originalCookie);
   }}
 >
   COPY COOKIE
