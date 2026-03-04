@@ -152,21 +152,7 @@ export default function CheckerPage(props) {
   });
 };
 
-  const handleCheck = async () => {
-  const cookieToCheck = cookieInput;
-
-  const result = await checkCookie(cookieToCheck);
-
-  if (result.valid) {
-    setValidResults(prev => [
-      ...prev,
-      {
-        ...result,
-        originalCookie: cookieToCheck   // 👈 guaranteed correct
-      }
-    ]);
-  }
-};
+  
 
   
  
