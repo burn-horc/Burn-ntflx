@@ -844,16 +844,25 @@ function CheckerApp() {
             const countryLabel = streamEvent.result.countryOfSignup?.trim() || "Unknown Country";
 
             if (streamEvent.result.valid) {
-              setBulkValidResults((prev) => [...prev, streamEvent.result]);
-              const tokenWasSkipped =
-                streamEvent.result.nftokenStage === "skipped" ||
-                streamEvent.result.nftokenError === "Skipped by user option" ||
-                !checkNFToken;
-              const hasToken = Boolean(
-                streamEvent.result.hasTokenLink ||
-                  (typeof streamEvent.result.nftokenLink === "string" &&
-                    streamEvent.result.nftokenLink.trim())
-              );
+  setBulkValidResults((prev) => [
+    ...prev,
+    {
+      ...streamEvent.result,
+      originalCookie: streamEvent.input // 👈 attach the cookie here
+    }
+  ]);
+
+  const tokenWasSkipped =
+    streamEvent.result.nftokenStage === "skipped" ||
+    streamEvent.result.nftokenError === "Skipped by user option" ||
+    !checkNFToken;
+
+  const hasToken = Boolean(
+    streamEvent.result.hasTokenLink ||
+      (typeof streamEvent.result.nftokenLink === "string" &&
+        streamEvent.result.nftokenLink.trim())
+  );
+}
               const tokenStage = toCompactLogText(streamEvent.result.nftokenStage, 36);
               const tokenError = toCompactLogText(streamEvent.result.nftokenError, 150);
               const tokenStatus = tokenWasSkipped
@@ -1044,6 +1053,7 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
