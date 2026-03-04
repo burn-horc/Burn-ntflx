@@ -1,4 +1,4 @@
-import { storedCookies as initialCookies } from "./storage";
+import { storedCookies } from "./storage";
 import React, { useState, useEffect } from "react";
 import {
   Box,
@@ -161,14 +161,20 @@ export default function CheckerPage({
 const handleStorageRandom = async () => {
   console.log("🔥 Random button clicked");
 
-  if (!storedCookies.length) {
-    showAppToast(toast, {
-      title: "No stored cookies.",
-      status: "info",
-      duration: 1500,
-    });
+  if (!storedCookies || storedCookies.length === 0) {
+    alert("NO COOKIES FOUND");
     return;
   }
+
+  const randomIndex = Math.floor(Math.random() * storedCookies.length);
+  const selectedCookie = storedCookies[randomIndex];
+
+  console.log("Selected:", selectedCookie);
+
+  alert("Selected cookie ready");
+
+  await runCheck(selectedCookie);
+};
 
   const randomIndex = Math.floor(Math.random() * storedCookies.length);
   const selectedCookie = storedCookies[randomIndex];
