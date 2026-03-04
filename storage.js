@@ -8,4 +8,3 @@ const storedCookies = [
   ].join("; ")
 ];
 
-module.exports = storedCookies;
