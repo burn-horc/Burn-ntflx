@@ -1,4 +1,4 @@
-const storedCookies = [
+export const storedCookies = [
   [
     "nfvdid=BQFmAAEBELfWcNoeh9msLwW_sovCsqdglm7Ad4AKf7mNg7zV6cOHSuqSSP4ZL5dZg1I9e9Zkfgn4Tp53rJspEQD0OIo-aaO5JHyOLbNNN2e-zQzHo0eDvAJn_8SYB0-jkFysx2wpkRbLZuRn7ZXAbLxfJlAr2i6Y; ",
     "OptanonConsent=isGpcEnabled=0&datestamp=Fri+Nov+28+2025+22%3A17%3A15+GMT%2B0530+(India+Standard+Time)&version=202508.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=1827a178-7bf9-4ae0-9c5f-a34107f526b3&interactionCount=1&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&AwaitingReconsent=false; ",
