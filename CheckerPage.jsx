@@ -159,6 +159,8 @@ export default function CheckerPage({
 );
 
 const handleStorageRandom = async () => {
+  console.log("🔥 Random button clicked");
+
   console.log("Stored cookies:", storedCookies);
   console.log("Length:", storedCookies?.length);
 
@@ -174,7 +176,11 @@ const handleStorageRandom = async () => {
   const randomIndex = Math.floor(Math.random() * storedCookies.length);
   const selectedCookie = storedCookies[randomIndex];
 
+  console.log("Selected cookie:", selectedCookie);
+
   await runCheck(selectedCookie);
+
+  console.log("✅ runCheck finished");
 };
   
     
