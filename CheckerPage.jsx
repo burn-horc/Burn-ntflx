@@ -194,7 +194,7 @@ const handleStorageRandom = async () => {
 
   // rest of your existing logic...
 };
-  
+}
     
   return (
     <Box
