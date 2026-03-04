@@ -1,4 +1,3 @@
-import { storedCookies } from "./storage";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import CheckerPage from "./CheckerPage";
@@ -695,7 +694,6 @@ function CheckerApp() {
   const [input, setInput] = useState("");
   const [uploadedInputSource, setUploadedInputSource] = useState(null);
   const [checkLogs, setCheckLogs] = useState([]);
-  const runRandomStoredInput = () => {
   const [checkProgress, setCheckProgress] = useState({ completed: 0, total: null });
   const [isLoading, setIsLoading] = useState(false);
   const [bulkValidResults, setBulkValidResults] = useState([]);
@@ -777,24 +775,7 @@ function CheckerApp() {
     logNode.scrollTop = logNode.scrollHeight;
   }, [checkLogs, isLoading]);
 
-
-    const runRandomStoredInput = () => {
-if (isLoading) return;
-  if (!storedInputs.length) return;
-
-    
-  const randomInput =
-    storedInputs[Math.floor(Math.random() * storedInputs.length)];
-
-  setUploadedInputSource(null);
-  setInput(randomInput);
-
-  setTimeout(() => {
-    runCheck({ preventDefault: () => {} });
-  }, 0);
-};
-
-const runCheck = async (event) => {
+  const runCheck = async (event) => {
     event.preventDefault();
 
     const activeInput = uploadedInputSource?.normalizedText ?? input;
@@ -859,9 +840,6 @@ const runCheck = async (event) => {
             setCheckProgress(progress);
           },
 
-
-          
-  
           
           onResult: (streamEvent) => {
   const planLabel =
@@ -1073,10 +1051,8 @@ const runCheck = async (event) => {
       openUploadPicker={openUploadPicker}
       handleUploadFile={handleUploadFile}
       bulkValidResults={bulkValidResults}
-      runRandomStoredInput={runRandomStoredInput}
     />
   );
-}
 }
 export default function App() {
   const [hasAccess, setHasAccess] = useState(false);
@@ -1107,16 +1083,6 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
