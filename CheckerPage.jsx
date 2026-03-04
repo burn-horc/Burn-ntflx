@@ -577,12 +577,8 @@ const handleStorageRandom = async () => {
                   </Button>
                 </Grid>
               </Box>
-            </Flex>
-          </Box>
 
-          <AppCredits />
-        </Grid>
-      </Box>
+              </Box>
 
       <Box pointerEvents="auto" position="relative" zIndex="9999">
   <Button
@@ -592,6 +588,12 @@ const handleStorageRandom = async () => {
     Random Check
   </Button>
 </Box>
+            </Flex>
+          </Box>
+
+          <AppCredits />
+        </Grid>
+      
       
 
       <Modal
