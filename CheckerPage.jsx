@@ -152,7 +152,25 @@ export default function CheckerPage(props) {
   });
 };
 
-  
+  const loadSavedCookies = async () => {
+  const { data, error } = await supabase
+    .from("cookies")
+    .select("id, cookie, status");
+
+  if (error) {
+    console.error("Supabase error:", error);
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    console.log("No cookies found.");
+    return;
+  }
+
+  const cookieArray = data.map(row => row.cookie);
+
+  runBulkCheck(cookieArray); // your existing bulk function
+};
 
   
  
@@ -550,6 +568,31 @@ export default function CheckerPage(props) {
                   >
                     Upload File
                   </Button>
+
+                  <Button
+  type="button"
+  onClick={loadSavedCookies}
+  disabled={isLoading}
+  minH="2.8rem"
+  borderRadius="12px"
+  borderWidth="1px"
+  borderColor="rgba(255,255,255,0.12)"
+  bg="#101525"
+  color="#ffffff"
+  fontSize="sm"
+  fontWeight="700"
+  letterSpacing="0.07em"
+  textTransform="uppercase"
+  transition="transform 0.16s ease, background-color 0.16s ease"
+  _hover={{ bg: "rgba(255,255,255,0.08)", ...hoverLift }}
+  _active={{ transform: "translateY(0)" }}
+  _disabled={{ opacity: 0.5, cursor: "not-allowed" }}
+>
+  Load Saved Cookies
+</Button>
+
+
+                  
                 </Grid>
               </Box>
             </Flex>
