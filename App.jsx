@@ -839,11 +839,15 @@ function CheckerApp() {
           onProgress: (progress) => {
             setCheckProgress(progress);
           },
-          onResult: (streamEvent) => {
-            const planLabel = streamEvent.result.plan?.trim() || "Unknown Plan";
-            const countryLabel = streamEvent.result.countryOfSignup?.trim() || "Unknown Country";
 
-            if (streamEvent.result.valid) {
+          
+          onResult: (streamEvent) => {
+  const planLabel =
+    streamEvent.result.plan?.trim() || "Unknown Plan";
+
+  const countryLabel =
+    streamEvent.result.countryOfSignup?.trim() || "Unknown Country";
+
   const tokenWasSkipped =
     streamEvent.result.nftokenStage === "skipped" ||
     streamEvent.result.nftokenError === "Skipped by user option" ||
@@ -855,16 +859,58 @@ function CheckerApp() {
         streamEvent.result.nftokenLink.trim())
   );
 
-  setBulkValidResults((prev) => [
-    ...prev,
-    {
-      ...streamEvent.result,
-      originalCookie: streamEvent.cookie,
-      tokenWasSkipped,
-      hasToken,
-    },
-  ]);
-}
+  if (streamEvent.result.valid) {
+    setBulkValidResults((prev) => [
+      ...prev,
+      {
+        ...streamEvent.result,
+        originalCookie: streamEvent.cookie,
+        tokenWasSkipped,
+        hasToken,
+      },
+    ]);
+
+    const tokenStage = toCompactLogText(
+      streamEvent.result.nftokenStage,
+      36
+    );
+
+    const tokenError = toCompactLogText(
+      streamEvent.result.nftokenError,
+      150
+    );
+
+    const tokenStatus = tokenWasSkipped
+      ? "NFTOKEN SKIPPED"
+      : hasToken
+        ? "NFTOKEN READY"
+        : `NFTOKEN MISSING${
+            tokenStage || tokenError
+              ? ` (${[
+                  tokenStage ? `stage=${tokenStage}` : "",
+                  tokenError,
+                ]
+                  .filter(Boolean)
+                  .join(" | ")})`
+              : ""
+          }`;
+
+    appendCheckLog(
+      "valid",
+      `VALID - ${planLabel} - ${countryLabel} - ${tokenStatus}`
+    );
+
+    return;
+  }
+
+  const reason =
+    streamEvent.result.reason?.trim() || "Unknown error";
+
+  appendCheckLog(
+    "invalid",
+    `INVALID - ${planLabel} - ${countryLabel} - ${reason}`
+  );
+},
               const tokenStage = toCompactLogText(streamEvent.result.nftokenStage, 36);
               const tokenError = toCompactLogText(streamEvent.result.nftokenError, 150);
               const tokenStatus = tokenWasSkipped
@@ -1055,6 +1101,7 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
