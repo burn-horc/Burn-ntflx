@@ -154,7 +154,7 @@ export default function CheckerPage({
   
 
   
-  const [storedCookies] = useState(
+  const [storedCookies] = useState(["test"]);
   Array.isArray(initialCookies) ? [...initialCookies] : []
 );
 
