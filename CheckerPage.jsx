@@ -577,28 +577,11 @@ export default function CheckerPage(props) {
                     Upload File
                   </Button>
 
-                  <Button
-  type="button"
-  onClick={loadSavedCookies}
-  disabled={isLoading}
-  minH="2.8rem"
-  borderRadius="12px"
-  borderWidth="1px"
-  borderColor="rgba(255,255,255,0.12)"
-  bg="#101525"
-  color="#ffffff"
-  fontSize="sm"
-  fontWeight="700"
-  letterSpacing="0.07em"
-  textTransform="uppercase"
-  transition="transform 0.16s ease, background-color 0.16s ease"
-  _hover={{ bg: "rgba(255,255,255,0.08)", ...hoverLift }}
-  _active={{ transform: "translateY(0)" }}
-  _disabled={{ opacity: 0.5, cursor: "not-allowed" }}
+          <Button
+  onClick={() => alert("CLICK WORKING")}
 >
   Load Saved Cookies
 </Button>
-
 
                   
                 </Grid>
