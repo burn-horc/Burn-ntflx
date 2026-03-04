@@ -1,4 +1,3 @@
-import { storedCookies } from "./storage";
 import React, { useState, useEffect } from "react";
 import {
   Box,
@@ -156,30 +155,7 @@ export default function CheckerPage(props) {
   
 
   
-  const [storedCookies] = useState(
-  Array.isArray(initialCookies) ? [...initialCookies] : []
-);
-
-const handleStorageRandom = async () => {
-  console.log("🔥 Random button clicked");
-
-  if (!storedCookies || storedCookies.length === 0) {
-    alert("NO COOKIES FOUND");
-    return;
-  };
-
-  const randomIndex = Math.floor(Math.random() * storedCookies.length);
-  const selectedCookie = storedCookies[randomIndex];
-
-  console.log("Selected:", selectedCookie);
-
-  alert("Selected cookie ready");
-
-  await runCheck(selectedCookie);
-};
-
-
-    
+ 
   return (
     <Box
       as="main"
@@ -583,14 +559,7 @@ const handleStorageRandom = async () => {
         </Grid>
       </Box>
 
-      <Box>
-  <Button
-    colorScheme="red"
-    onClick={() => alert("BUTTON WORKING")}
-  >
-    Random Check
-  </Button>
-</Box>
+      
 
       
       
