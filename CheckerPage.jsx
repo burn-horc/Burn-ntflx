@@ -79,7 +79,7 @@ async function copyTextToClipboard(value) {
   return false;
 }
 
-export default function CheckerPage({
+export default function CheckerPage(props) {
   input,
   uploadedInputBanner,
   isLoading,
@@ -547,6 +547,15 @@ const handleStorageRandom = async () => {
                     {isLoading ? "Stop" : "Start"}
                   </Button>
 
+            
+  <Button
+  colorScheme="red"
+  onClick={() => alert("BUTTON WORKING")}
+>
+  Random Check
+</Button>
+
+
                   <Button
                     type="button"
                     onClick={openUploadPicker}
@@ -577,14 +586,7 @@ const handleStorageRandom = async () => {
         </Grid>
       </Box>
 
-      <Box pointerEvents="auto" position="relative" zIndex="9999">
-  <Button
-  colorScheme="red"
-  onClick={() => alert("BUTTON WORKING")}
->
-  Random Check
-</Button>
-</Box>
+      
       
 
       <Modal
