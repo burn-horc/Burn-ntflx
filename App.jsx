@@ -1074,7 +1074,7 @@ const runCheck = async (event) => {
       handleUploadFile={handleUploadFile}
       bulkValidResults={bulkValidResults}
       runRandomStoredInput={runRandomStoredInput}
-    
+    />
   );
 }
 }
@@ -1107,6 +1107,7 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
