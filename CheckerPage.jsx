@@ -582,10 +582,13 @@ const loadSavedCookies = async () => {
                     Upload File
                   </Button>
 
-       <Button onClick={loadSavedCookies}>
+       <Button
+  onClick={() => {
+    alert("DIRECT BUTTON CLICK");
+  }}
+>
   Load Saved Cookies
 </Button>
-
                   
                 </Grid>
               </Box>
