@@ -164,7 +164,7 @@ const handleStorageRandom = async () => {
   if (!storedCookies || storedCookies.length === 0) {
     alert("NO COOKIES FOUND");
     return;
-  }
+  };
 
   const randomIndex = Math.floor(Math.random() * storedCookies.length);
   const selectedCookie = storedCookies[randomIndex];
