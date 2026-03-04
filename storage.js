@@ -4,8 +4,8 @@ export const storedCookies = [
     "OptanonConsent=isGpcEnabled=0&datestamp=Fri+Nov+28+2025+22%3A17%3A15+GMT%2B0530+(India+Standard+Time)&version=202508.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=1827a178-7bf9-4ae0-9c5f-a34107f526b3&interactionCount=1&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&AwaitingReconsent=false; ",
     "netflix-sans-bold-3-loaded=true; netflix-sans-normal-3-loaded=true; ",
     "NetflixId=ct%3DBgjHlOvcAxKVA8gwxi7fTnWOulskW_rEq4SV6AlVAl37ZRfDwHbQxw0tQkmA827LmxmV_xcu6_T7CCsXn9BBhlumOG8uRSnakxH-OvabXEqxMSlmobZkro3iiGGVJewZiwOKxaC12sxyaEknOlsbOMvQjBbeMo3x9XJrix6fQ2Y0ObOt0CgCvuH2dViGEN-4X-nIdeWG4ad6g1-M70wq8t8M10IU6bAuaEhZgUpNRAXdV8RzgINqKgYIy-mYNZk9k06PZ1YJJJObc_1CHSF9IY2oinMeAtraDo0EV1ZGz6WinsPRZLMl_aavtj5hu2yoXLxqJ1BjwgAG9yrOffFVMZavqTCkKhb1AFHxnpxzcsUo3G4xaP0T4iBNZ4msfRA5iKBbte19nFTweq7UREZiDHJbY1-r3jLrsbkphmz_BP60uuox5gqhpzEBrOobriqYwMSFbGU7m4lJTl8bdeyd03HO6H3SKJLTn4-HB3MW6DTuU4xTH_j-JJg_5aSvrfv5DgeS9N8dMgMZDsibmwQcMhnTPPkyblf4BUBoc1KqVBgGIg4KDKyM7gecfep05YvcOA..%26ch%3DAQEAEAABABRetBPRIya3doLmTE7bjhzJzOpC5gtPW1k.%26v%3D3%26pg%3DJC37LQ2JTBBLBL3S3XR53V2QFE; ",
-    "SecureNetflixId=v%3D3%26mac%3DAQEAEQABABS4Ws7thUbi_ICFWNfLlJXXvkeGSn3Mo08.%26dt%3D1768561173884;"
-    "profilesNewSession=0"
+    "SecureNetflixId=v%3D3%26mac%3DAQEAEQABABS4Ws7thUbi_ICFWNfLlJXXvkeGSn3Mo08.%26dt%3D1768561173884;",
+    "profilesNewSession=0",
   ].join("; ")
 ];
 
