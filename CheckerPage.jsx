@@ -109,6 +109,8 @@ export default function CheckerPage(props) {
   
   const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
 const [cookies, setCookies] = useState([]);
+  const [savedCookies, setSavedCookies] = useState([]);
+const [currentIndex, setCurrentIndex] = useState(0);
   
   useEffect(() => {
   if (bulkValidResults && bulkValidResults.length > 0) {
@@ -158,26 +160,27 @@ const [cookies, setCookies] = useState([]);
   const loadSavedCookies = async () => {
   const { data, error } = await supabase
     .from("cookies")
-    .select("cookie");
+    .select("cookie")
+    .order("id", { ascending: true }); // make sure you have an id column
 
   if (error) {
-    console.error("Error:", error);
+    console.error(error);
     return;
   }
 
-  if (!data || data.length === 0) {
-    alert("No cookies found in database");
-    return;
-  }
+  if (!data || data.length === 0) return;
 
-  const cookieList = data.map(item => item.cookie);
+  // Save cookies to state
+  setSavedCookies(data);
 
-  // 🔥 Directly call parent's handler properly
-  handleCookieInputChange({
-    target: {
-      value: cookieList.join("\n")
-    }
-  });
+  // Get current cookie
+  const cookieToShow = data[currentIndex].cookie;
+  setCookies(cookieToShow);
+
+  // Move to next index (loop back if at end)
+  setCurrentIndex((prev) =>
+    prev + 1 >= data.length ? 0 : prev + 1
+  );
 };
 
   
