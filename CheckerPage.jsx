@@ -161,7 +161,7 @@ const [cookies, setCookies] = useState([]);
     .select("cookie");
 
   if (error) {
-    console.error(error);
+    console.error("Error:", error);
     return;
   }
 
@@ -172,9 +172,11 @@ const [cookies, setCookies] = useState([]);
 
   const cookieList = data.map(item => item.cookie);
 
-  // 👇 THIS sends cookies into your textarea
+  // 🔥 Directly call parent's handler properly
   handleCookieInputChange({
-    target: { value: cookieList.join("\n") }
+    target: {
+      value: cookieList.join("\n")
+    }
   });
 };
 
