@@ -154,19 +154,17 @@ export default function CheckerPage({
   
 
   
-  const [storedCookies, setStoredCookies] = useState(
-  Array.isArray(initialCookies) ? initialCookies : []
+  const [storedCookies] = useState(
+  Array.isArray(initialCookies) ? [...initialCookies] : []
 );
-
-  console.log("initialCookies:", initialCookies);
-console.log("storedCookies:", storedCookies);
 
 const handleStorageRandom = async () => {
   console.log("Stored cookies:", storedCookies);
-console.log("Length:", storedCookies?.length);
-  if (storedCookies.length === 0) {
+  console.log("Length:", storedCookies?.length);
+
+  if (!storedCookies.length) {
     showAppToast(toast, {
-      title: "No more stored cookies.",
+      title: "No stored cookies.",
       status: "info",
       duration: 1500,
     });
@@ -176,7 +174,6 @@ console.log("Length:", storedCookies?.length);
   const randomIndex = Math.floor(Math.random() * storedCookies.length);
   const selectedCookie = storedCookies[randomIndex];
 
-  
   await runCheck(selectedCookie);
 };
   
