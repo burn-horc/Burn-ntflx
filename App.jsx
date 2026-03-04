@@ -866,8 +866,8 @@ function CheckerApp() {
         ...streamEvent.result,
         originalCookie: streamEvent.cookie,
         tokenWasSkipped,
-        hasToken,
-      },
+        hasToken
+      }
     ]);
 
     const tokenStage = toCompactLogText(
@@ -911,27 +911,6 @@ function CheckerApp() {
     `INVALID - ${planLabel} - ${countryLabel} - ${reason}`
   );
 },
-              const tokenStage = toCompactLogText(streamEvent.result.nftokenStage, 36);
-              const tokenError = toCompactLogText(streamEvent.result.nftokenError, 150);
-              const tokenStatus = tokenWasSkipped
-                ? "NFTOKEN SKIPPED"
-                : hasToken
-                  ? "NFTOKEN READY"
-                  : `NFTOKEN MISSING${
-                      tokenStage || tokenError
-                        ? ` (${[tokenStage ? `stage=${tokenStage}` : "", tokenError]
-                            .filter(Boolean)
-                            .join(" | ")})`
-                        : ""
-                    }`;
-              appendCheckLog("valid", `VALID - ${planLabel} - ${countryLabel} - ${tokenStatus}`);
-              return;
-            }
-
-            const reason = streamEvent.result.reason?.trim() || "Unknown error";
-            appendCheckLog("invalid", `INVALID - ${planLabel} - ${countryLabel} - ${reason}`);
-          },
-        },
         abortController.signal
       );
 
@@ -1101,6 +1080,7 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
