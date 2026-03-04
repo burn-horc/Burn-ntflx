@@ -177,7 +177,7 @@ const handleStorageRandom = async () => {
 
   await runCheck(selectedCookie);
 };
-}
+
 
     
   return (
@@ -551,13 +551,7 @@ const handleStorageRandom = async () => {
                   </Button>
 
             
-  <Button
-  colorScheme="red"
-  onClick={() => alert("BUTTON WORKING")}
->
-  Random Check
-</Button>
-
+ 
 
                   <Button
                     type="button"
@@ -588,6 +582,15 @@ const handleStorageRandom = async () => {
           <AppCredits />
         </Grid>
       </Box>
+
+      <Box>
+  <Button
+    colorScheme="red"
+    onClick={() => alert("BUTTON WORKING")}
+  >
+    Random Check
+  </Button>
+</Box>
 
       
       
