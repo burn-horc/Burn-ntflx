@@ -109,7 +109,14 @@ export default function CheckerPage(props) {
   
   const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
 const [cookies, setCookies] = useState([]);
-  
+  const [autoStart, setAutoStart] = useState(false);
+
+  useEffect(() => {
+  if (autoStart) {
+    handleStartChecking(); // your start function
+    setAutoStart(false);
+  }
+}, [autoStart]);
   
   useEffect(() => {
   if (bulkValidResults && bulkValidResults.length > 0) {
