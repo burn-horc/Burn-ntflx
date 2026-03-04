@@ -1,4 +1,3 @@
-import { supabase } from "./supabaseClient";
 import React, { useState, useEffect } from "react";
 import {
   Box,
@@ -25,6 +24,7 @@ import {
 import { motion } from "framer-motion";
 import AppCredits from "./AppCredits";
 import { showAppToast } from "./appToast.jsx";
+import { supabase } from "./supabaseClient";
 
 function displayValue(value, fallback = "N/A") {
   if (value == null) return fallback;
