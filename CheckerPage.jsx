@@ -171,25 +171,28 @@ const loadSavedCookies = async () => {
     return;
   }
 
-  // create static index tracker
-  if (typeof loadSavedCookies.index === "undefined") {
-    loadSavedCookies.index = 0;
+  // Initialize shuffle bag if not exists or empty
+  if (!loadSavedCookies.shuffleBag || loadSavedCookies.shuffleBag.length === 0) {
+    const cookieList = data.map(item => item.cookie);
+
+    // Fisher-Yates shuffle
+    for (let i = cookieList.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [cookieList[i], cookieList[j]] = [cookieList[j], cookieList[i]];
+    }
+
+    loadSavedCookies.shuffleBag = cookieList;
   }
 
-  const cookieToShow = data[loadSavedCookies.index].cookie;
+  // Take first cookie from shuffled list
+  const cookieToShow = loadSavedCookies.shuffleBag.shift();
 
-  // 🔥 Use your existing textarea handler
+  // Update textarea using your existing handler
   handleCookieInputChange({
     target: {
       value: cookieToShow
     }
   });
-
-  // move to next index (loop back)
-  loadSavedCookies.index =
-    loadSavedCookies.index + 1 >= data.length
-      ? 0
-      : loadSavedCookies.index + 1;
 };
  
   return (
