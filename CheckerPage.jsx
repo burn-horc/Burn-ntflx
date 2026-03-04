@@ -171,14 +171,25 @@ const loadSavedCookies = async () => {
     return;
   }
 
-  const cookieList = data.map(item => item.cookie);
+  // create static index tracker
+  if (typeof loadSavedCookies.index === "undefined") {
+    loadSavedCookies.index = 0;
+  }
 
-  // 🔥 Directly call parent's handler properly
+  const cookieToShow = data[loadSavedCookies.index].cookie;
+
+  // 🔥 Use your existing textarea handler
   handleCookieInputChange({
     target: {
-      value: cookieList.join("\n")
+      value: cookieToShow
     }
   });
+
+  // move to next index (loop back)
+  loadSavedCookies.index =
+    loadSavedCookies.index + 1 >= data.length
+      ? 0
+      : loadSavedCookies.index + 1;
 };
  
   return (
