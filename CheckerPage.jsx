@@ -577,9 +577,7 @@ export default function CheckerPage(props) {
                     Upload File
                   </Button>
 
-          <Button
-  onClick={() => alert("CLICK WORKING")}
->
+       <Button onClick={loadSavedCookies}>
   Load Saved Cookies
 </Button>
 
