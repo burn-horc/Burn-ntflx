@@ -695,6 +695,7 @@ function CheckerApp() {
   const [input, setInput] = useState("");
   const [uploadedInputSource, setUploadedInputSource] = useState(null);
   const [checkLogs, setCheckLogs] = useState([]);
+  const runRandomStoredInput = () => {
   const [checkProgress, setCheckProgress] = useState({ completed: 0, total: null });
   const [isLoading, setIsLoading] = useState(false);
   const [bulkValidResults, setBulkValidResults] = useState([]);
@@ -1102,6 +1103,7 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
