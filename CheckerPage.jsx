@@ -109,8 +109,7 @@ export default function CheckerPage(props) {
   
   const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
 const [cookies, setCookies] = useState([]);
-  const [savedCookies, setSavedCookies] = useState([]);
-const [currentIndex, setCurrentIndex] = useState(0);
+  
   
   useEffect(() => {
   if (bulkValidResults && bulkValidResults.length > 0) {
@@ -158,32 +157,33 @@ const [currentIndex, setCurrentIndex] = useState(0);
 };
 
 const loadSavedCookies = async () => {
-  let cookiesArray = savedCookies;
+  const { data, error } = await supabase
+    .from("cookies")
+    .select("cookie");
 
-  // If not loaded yet, fetch once
-  if (cookiesArray.length === 0) {
-    const { data, error } = await supabase
-      .from("cookies")
-      .select("cookie");
-
-    if (error) {
-      console.error(error);
-      return;
-    }
-
-    if (!data || data.length === 0) return;
-
-    cookiesArray = data;
-    setSavedCookies(data);
+  if (error) {
+    console.error(error);
+    return;
   }
 
-  const cookieToShow = cookiesArray[currentIndex].cookie;
+  if (!data || data.length === 0) {
+    console.log("No cookies found");
+    return;
+  }
 
-  setCookies([cookieToShow]); // since your state is array
+  // Get current index from a static variable
+  if (!loadSavedCookies.index) {
+    loadSavedCookies.index = 0;
+  }
 
-  setCurrentIndex((prev) =>
-    prev + 1 >= cookiesArray.length ? 0 : prev + 1
-  );
+  const cookieToShow = data[loadSavedCookies.index].cookie;
+
+  setCookies([cookieToShow]);
+
+  loadSavedCookies.index =
+    loadSavedCookies.index + 1 >= data.length
+      ? 0
+      : loadSavedCookies.index + 1;
 };
   
  
