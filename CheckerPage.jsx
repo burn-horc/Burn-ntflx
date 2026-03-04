@@ -162,30 +162,24 @@ const loadSavedCookies = async () => {
     .select("cookie");
 
   if (error) {
-    console.error(error);
+    console.error("Error:", error);
     return;
   }
 
   if (!data || data.length === 0) {
-    console.log("No cookies found");
+    alert("No cookies found in database");
     return;
   }
 
-  // Get current index from a static variable
-  if (!loadSavedCookies.index) {
-    loadSavedCookies.index = 0;
-  }
+  const cookieList = data.map(item => item.cookie);
 
-  const cookieToShow = data[loadSavedCookies.index].cookie;
-
-  setCookies([cookieToShow]);
-
-  loadSavedCookies.index =
-    loadSavedCookies.index + 1 >= data.length
-      ? 0
-      : loadSavedCookies.index + 1;
+  // 🔥 Directly call parent's handler properly
+  handleCookieInputChange({
+    target: {
+      value: cookieList.join("\n")
+    }
+  });
 };
-  
  
   return (
     <Box
@@ -582,11 +576,7 @@ const loadSavedCookies = async () => {
                     Upload File
                   </Button>
 
-       <Button
-  onClick={() => {
-    alert("DIRECT BUTTON CLICK");
-  }}
->
+       <Button onClick={loadSavedCookies}>
   Load Saved Cookies
 </Button>
                   
