@@ -908,12 +908,12 @@ function CheckerApp() {
 
   appendCheckLog(
     "invalid",
-    `INVALID - ${planLabel} - ${countryLabel} - ${reason}`
-  );
-},
-        abortController.signal
-      );
-
+    `INVALID - ${planLabel} - ${countryLabel} - ${reason}` 
+    );
+    }
+  },
+  abortController.signal
+);
       setCheckProgress({
         completed: orderedResults.length,
         total: knownTotal ?? orderedResults.length,
@@ -1080,6 +1080,7 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
