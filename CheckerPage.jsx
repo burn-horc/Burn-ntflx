@@ -153,14 +153,16 @@ export default function CheckerPage(props) {
 };
 
   const handleCheck = async () => {
-  const result = await checkCookie(inputCookie);
+  const cookieToCheck = cookieInput;
+
+  const result = await checkCookie(cookieToCheck);
 
   if (result.valid) {
     setValidResults(prev => [
       ...prev,
       {
         ...result,
-        originalCookie: inputCookie   // 👈 THIS IS THE FIX
+        originalCookie: cookieToCheck   // 👈 guaranteed correct
       }
     ]);
   }
