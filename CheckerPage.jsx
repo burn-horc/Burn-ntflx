@@ -175,12 +175,24 @@ const handleStorageRandom = async () => {
 
   console.log("Selected cookie:", selectedCookie);
 
-  try {
-    await runCheck(selectedCookie);
-    console.log("✅ runCheck finished");
-  } catch (err) {
-    console.error("❌ runCheck error:", err);
+  const runCheck = async (inputOrEvent) => {
+  let cookieToUse = null;
+
+  // If it's a form event
+  if (inputOrEvent?.preventDefault) {
+    inputOrEvent.preventDefault();
+    cookieToUse = input; // your textarea state
+  } 
+  // If it's direct cookie string (Random Check)
+  else if (typeof inputOrEvent === "string") {
+    cookieToUse = inputOrEvent;
   }
+
+  if (!cookieToUse) return;
+
+  console.log("Running check with:", cookieToUse);
+
+  // rest of your existing logic...
 };
   
     
