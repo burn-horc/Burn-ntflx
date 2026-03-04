@@ -80,31 +80,33 @@ async function copyTextToClipboard(value) {
 }
 
 export default function CheckerPage(props) {
-  input,
-  uploadedInputBanner,
-  isLoading,
-  checkLogs,
-  checkLogRef,
-  workerCount,
-  checkProgress,
-  progressBarStyle,
-  isProgressIndeterminate,
-  uploadInputRef,
-  filePickerAccept,
-  minWorkerCount,
-  maxWorkerCount,
-  runCheck,
-  stopCheck,
-  handleCookieInputChange,
-  decrementWorkerCount,
-  incrementWorkerCount,
-  openUploadPicker,
-  handleUploadFile,
-  checkNFToken,
-  toggleCheckNFToken,
-  bulkValidResults
+  const {
+    input,
+    uploadedInputBanner,
+    isLoading,
+    checkLogs,
+    checkLogRef,
+    workerCount,
+    checkProgress,
+    progressBarStyle,
+    isProgressIndeterminate,
+    uploadInputRef,
+    filePickerAccept,
+    minWorkerCount,
+    maxWorkerCount,
+    runCheck,
+    stopCheck,
+    handleCookieInputChange,
+    decrementWorkerCount,
+    incrementWorkerCount,
+    openUploadPicker,
+    handleUploadFile,
+    checkNFToken,
+    toggleCheckNFToken,
+    bulkValidResults
+  } = props;
+
   
-}) {
   const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
   useEffect(() => {
   if (bulkValidResults && bulkValidResults.length > 0) {
