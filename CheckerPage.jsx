@@ -156,23 +156,26 @@ const [cookies, setCookies] = useState([]);
 };
 
   const loadSavedCookies = async () => {
-  alert("START");
-
   const { data, error } = await supabase
     .from("cookies")
     .select("cookie");
-
-  alert("After query");
 
   if (error) {
     console.error(error);
     return;
   }
 
-  const cookieList = data.map(item => item.cookie);
-  setCookies(cookieList);
+  if (!data || data.length === 0) {
+    alert("No cookies found in database");
+    return;
+  }
 
-  console.log("Loaded:", cookieList);
+  const cookieList = data.map(item => item.cookie);
+
+  // 👇 THIS sends cookies into your textarea
+  handleCookieInputChange({
+    target: { value: cookieList.join("\n") }
+  });
 };
 
   
