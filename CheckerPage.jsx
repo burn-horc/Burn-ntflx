@@ -108,6 +108,8 @@ export default function CheckerPage(props) {
 
   
   const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
+const [cookies, setCookies] = useState([]);
+  
   useEffect(() => {
   if (bulkValidResults && bulkValidResults.length > 0) {
     setIsBulkModalOpen(true);
@@ -158,11 +160,19 @@ export default function CheckerPage(props) {
 
   const { data, error } = await supabase
     .from("cookies")
-    .select("*");
+    .select("cookie");
 
   alert("After query");
 
-  console.log(data, error);
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  const cookieList = data.map(item => item.cookie);
+  setCookies(cookieList);
+
+  console.log("Loaded:", cookieList);
 };
 
   
