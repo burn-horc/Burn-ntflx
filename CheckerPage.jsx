@@ -660,7 +660,24 @@ export default function CheckerPage(props) {
   colorScheme="blue"
   width="100%"
   mt={4}
-  onClick={() => navigator.clipboard.writeText(result.cookie)}
+  onClick={async () => {
+    try {
+      await navigator.clipboard.writeText(result.cookie);
+      toast({
+        title: "Copied!",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
+    } catch (err) {
+      toast({
+        title: "Copy failed",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
+    }
+  }}
 >
   COPY COOKIE
 </Button>
