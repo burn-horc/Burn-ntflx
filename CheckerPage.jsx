@@ -161,9 +161,6 @@ export default function CheckerPage({
 const handleStorageRandom = async () => {
   console.log("🔥 Random button clicked");
 
-  console.log("Stored cookies:", storedCookies);
-  console.log("Length:", storedCookies?.length);
-
   if (!storedCookies.length) {
     showAppToast(toast, {
       title: "No stored cookies.",
@@ -178,9 +175,12 @@ const handleStorageRandom = async () => {
 
   console.log("Selected cookie:", selectedCookie);
 
-  await runCheck(selectedCookie);
-
-  console.log("✅ runCheck finished");
+  try {
+    await runCheck(selectedCookie);
+    console.log("✅ runCheck finished");
+  } catch (err) {
+    console.error("❌ runCheck error:", err);
+  }
 };
   
     
