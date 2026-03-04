@@ -136,7 +136,7 @@ export default function CheckerPage(props) {
       id: toastId,
       title: "Android link copied",
       status: "success",
-      duration: 1600,
+      duration: 4000,
     });
   };
   const handlePcCopy = async (link) => {
@@ -148,7 +148,7 @@ export default function CheckerPage(props) {
     id: toastId,
     title: "PC link copied",
     status: "success",
-    duration: 1600,
+    duration: 4000,
   });
 };
 
@@ -654,6 +654,17 @@ export default function CheckerPage(props) {
           >
             PC
           </Button>
+
+
+          <Button
+  colorScheme="blue"
+  width="100%"
+  mt={4}
+  onClick={() => navigator.clipboard.writeText(result.cookie)}
+>
+  COPY COOKIE
+</Button>
+        
         </HStack>
       </Box>
     );
