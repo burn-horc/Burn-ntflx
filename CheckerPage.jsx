@@ -1,4 +1,3 @@
-export default function CheckerPage({ role }) {
 import React, { useState, useEffect } from "react";
 import {
   Box,
@@ -22,6 +21,7 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
+export default function CheckerPage({ role }) {
 import { motion } from "framer-motion";
 import AppCredits from "./AppCredits";
 import { showAppToast } from "./appToast.jsx";
