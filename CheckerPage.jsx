@@ -599,8 +599,28 @@ const loadSavedCookies = async () => {
                     Upload File
                   </Button>
 
-       <Button onClick={loadSavedCookies}>
-  Load Saved Cookies
+       <Button
+  onClick={handleLoadSavedCookies}
+  w="100%"
+  mt={3}
+  bg="linear-gradient(135deg, #1f2937, #111827)"
+  color="white"
+  border="1px solid rgba(255,255,255,0.1)"
+  backdropFilter="blur(12px)"
+  _hover={{
+    bg: "linear-gradient(135deg, #374151, #1f2937)",
+    transform: "translateY(-2px)",
+    boxShadow: "0 8px 20px rgba(0,0,0,0.4)"
+  }}
+  _active={{
+    transform: "scale(0.98)"
+  }}
+  transition="all 0.3s ease"
+  borderRadius="12px"
+  fontWeight="600"
+  letterSpacing="0.5px"
+>
+  ✨ Load Saved Cookies
 </Button>
                   
                 </Grid>
