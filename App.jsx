@@ -1,3 +1,4 @@
+import { supabase } from "./supabaseClient";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import CheckerPage from "./CheckerPage";
@@ -1097,6 +1098,7 @@ function CheckerApp() {
 
 
 export default App;
+
 
 
 
