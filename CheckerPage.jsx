@@ -103,7 +103,6 @@ export default function CheckerPage(props) {
     handleUploadFile,
     checkNFToken,
     toggleCheckNFToken,
-    userRole,
     bulkValidResults
   } = props;
 
