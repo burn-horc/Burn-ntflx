@@ -27,7 +27,7 @@ import AppCredits from "./AppCredits";
 import { showAppToast } from "./appToast.jsx";
 import { supabase } from "./supabaseClient";
 
-export default function CheckerPage({ role }) {
+
 
 function displayValue(value, fallback = "N/A") {
   if (value == null) return fallback;
@@ -82,7 +82,7 @@ async function copyTextToClipboard(value) {
   return false;
 }
 
-export default function CheckerPage(props) {
+export default function CheckerPage({ role }) {
   const {
     input,
     uploadedInputBanner,
