@@ -112,11 +112,14 @@ const [cookies, setCookies] = useState([]);
   const [autoStart, setAutoStart] = useState(false);
 
   useEffect(() => {
-  if (autoStart) {
-    handleStartChecking(); // your start function
-    setAutoStart(false);
-  }
-}, [autoStart]);
+  if (!shouldAutoStart) return;
+  if (!cookieValue) return;
+
+  handleStartChecking(cookieValue);
+
+  setShouldAutoStart(false);
+
+}, [cookieValue, shouldAutoStart]);
   
   useEffect(() => {
   if (bulkValidResults && bulkValidResults.length > 0) {
