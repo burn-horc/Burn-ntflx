@@ -1,3 +1,4 @@
+import { supabase } from "./supabase";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import CheckerPage from "./CheckerPage";
@@ -1058,35 +1059,43 @@ export default function App() {
   const [hasAccess, setHasAccess] = useState(false);
 
   useEffect(() => {
-  async function verifyAccess() {
-    const savedCode = localStorage.getItem("access_code");
+    const checkAccess = async () => {
+      try {
+        const savedCode = localStorage.getItem("access_code");
+        if (!savedCode) return;
 
-    if (!savedCode) return;
+        const { data, error } = await supabase.rpc(
+          "verify_access_code",
+          { input_code: savedCode }
+        );
 
-    const { data } = await supabase
-      .rpc("verify_access_code", { input_code: savedCode });
+        if (error) {
+          console.error(error);
+          return;
+        }
 
-    if (data?.success) {
-      setHasAccess(true);
-    } else {
-      localStorage.removeItem("access_code");
-      setHasAccess(false);
-    }
-  }
+        if (data?.success) {
+          setHasAccess(true);
+        }
+      } catch (err) {
+        console.error("Unexpected error:", err);
+      }
+    };
 
-  verifyAccess();
-}, []);
+    checkAccess();
+  }, []);
 
   return hasAccess ? (
-    <CheckerApp />
+    <CheckerPage />
   ) : (
-    <AccessPage onAccessGranted={() => setHasAccess(true)} />
+    <AccessPage
+      onAccessGranted={(code) => {
+        localStorage.setItem("access_code", code);
+        setHasAccess(true);
+      }}
+    />
   );
 }
-
-
-
-
 
 
 
