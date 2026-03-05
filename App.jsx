@@ -1,4 +1,3 @@
-import { supabase } from "./supabaseClient";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import CheckerPage from "./CheckerPage";
@@ -690,7 +689,7 @@ function upsertStoredCookieChecksFromResults(results) {
   return writeStoredCookieChecks(Array.from(byHeader.values()));
 }
 
-function CheckerApp({ userRole }) {
+function CheckerApp() {
   const toast = useToast();
   const [input, setInput] = useState("");
   const [uploadedInputSource, setUploadedInputSource] = useState(null);
@@ -1026,45 +1025,6 @@ function CheckerApp({ userRole }) {
   };
 
   
-  const [hasAccess, setHasAccess] = useState(false);
-  
-
-  useEffect(() => {
-    const savedRole = localStorage.getItem("role");
-    if (savedRole) {
-      setUserRole(savedRole);
-    }
-  }, []);
-
-  useEffect(() => {
-    async function verifyAccess() {
-      const savedCode = localStorage.getItem("access_code");
-      if (!savedCode) return;
-
-      const { data } = await supabase
-        .rpc("verify_access_code", { input_code: savedCode });
-
-      if (data?.success) {
-        setHasAccess(true);
-      } else {
-        localStorage.removeItem("access_code");
-        setHasAccess(false);
-      }
-    }
-
-    verifyAccess();
-  }, []);
-
-  if (!hasAccess) {
-    return (
-      <AccessPage
-        onAccessGranted={(role) => {
-          setUserRole(role);
-          setHasAccess(true);
-        }}
-      />
-    );
-  }
 
   return (
     <CheckerPage
@@ -1091,13 +1051,38 @@ function CheckerApp({ userRole }) {
       openUploadPicker={openUploadPicker}
       handleUploadFile={handleUploadFile}
       bulkValidResults={bulkValidResults}
-
     />
   );
 }
+export default function App() {
+  const [hasAccess, setHasAccess] = useState(false);
 
-export default App;
+  useEffect(() => {
+  async function verifyAccess() {
+    const savedCode = localStorage.getItem("access_code");
 
+    if (!savedCode) return;
+
+    const { data } = await supabase
+      .rpc("verify_access_code", { input_code: savedCode });
+
+    if (data?.success) {
+      setHasAccess(true);
+    } else {
+      localStorage.removeItem("access_code");
+      setHasAccess(false);
+    }
+  }
+
+  verifyAccess();
+}, []);
+
+  return hasAccess ? (
+    <CheckerApp />
+  ) : (
+    <AccessPage onAccessGranted={() => setHasAccess(true)} />
+  );
+}
 
 
 
