@@ -29,6 +29,7 @@ export default function AccessPage({ onAccessGranted }) {
 
     setTimeout(() => {
       localStorage.setItem("access_code", code);
+localStorage.setItem("role", data.role);
       onAccessGranted();
     }, 800);
 
