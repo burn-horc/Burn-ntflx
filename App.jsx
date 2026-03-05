@@ -5,46 +5,63 @@ import CheckerPage from "./CheckerPage";
 
 export default function App() {
   const [hasAccess, setHasAccess] = useState(false);
+  const [userRole, setUserRole] = useState("free");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkAccess = async () => {
-      try {
-        const savedCode = localStorage.getItem("access_code");
-        if (!savedCode) {
-          setLoading(false);
-          return;
-        }
+      const savedCode = localStorage.getItem("access_code");
+      const savedRole = localStorage.getItem("role");
 
-        const { data, error } = await supabase.rpc(
+      if (!savedCode) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const { data } = await supabase.rpc(
           "verify_access_code",
           { input_code: savedCode }
         );
 
-        if (!error && data?.success) {
+        if (data?.success) {
           setHasAccess(true);
+          setUserRole(savedRole || "free");
         }
       } catch (err) {
         console.error(err);
-      } finally {
-        setLoading(false);
       }
+
+      setLoading(false);
     };
 
     checkAccess();
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("access_code");
+    localStorage.removeItem("role");
+    setHasAccess(false);
+  };
+
   if (loading) return null;
 
   return hasAccess ? (
-    <CheckerPage />
+    <>
+      <div style={{ position: "absolute", top: 10, right: 10 }}>
+        <button onClick={handleLogout}>
+          Reset Access
+        </button>
+      </div>
+      <CheckerPage userRole={userRole} />
+    </>
   ) : (
     <AccessPage
-      onAccessGranted={(code) => {
-        localStorage.setItem("access_code", code);
+      onAccessGranted={() => {
+        const role = localStorage.getItem("role") || "free";
+        setUserRole(role);
         setHasAccess(true);
       }}
     />
   );
 }
-
