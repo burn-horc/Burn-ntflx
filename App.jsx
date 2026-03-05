@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { supabase } from "./supabase";
+import { supabase } from "./supabaseClient";
 import AccessPage from "./AccessPage";
 import CheckerPage from "./CheckerPage";
 
@@ -47,3 +47,4 @@ export default function App() {
     />
   );
 }
+
