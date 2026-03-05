@@ -600,7 +600,10 @@ const loadSavedCookies = async () => {
                     Upload File
                   </Button>
 
-       <Button onClick={loadSavedCookies}>
+       <Button
+  onClick={loadSavedCookies}
+  disabled={role !== "premium"}
+>
   Load Saved Cookies
 </Button>
                   
