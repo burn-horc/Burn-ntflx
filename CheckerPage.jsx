@@ -103,7 +103,6 @@ export default function CheckerPage(props) {
     handleUploadFile,
     checkNFToken,
     toggleCheckNFToken,
-    userRole,
     bulkValidResults
   } = props;
 
@@ -600,11 +599,8 @@ const loadSavedCookies = async () => {
                     Upload File
                   </Button>
 
-       <Button
-  onClick={handleLoadSavedCookies}
-  isDisabled={userRole !== "premium"}
->
-  Load Saved Cookies 👑
+       <Button onClick={loadSavedCookies}>
+  Load Saved Cookies
 </Button>
                   
                 </Grid>
