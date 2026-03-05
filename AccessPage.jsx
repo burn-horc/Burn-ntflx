@@ -22,10 +22,8 @@ export default function AccessPage({ onAccessGranted }) {
     console.log("RPC result:", data, rpcError);
     
     if (rpcError || !data?.success) {
-  throw new Error("Invalid code");
-}
-
-localStorage.setItem("user_role", data.role);
+      throw new Error(data?.error || "Invalid code");
+    }
 
     setFadeOut(true);
 
