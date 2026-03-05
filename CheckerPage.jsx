@@ -1,3 +1,4 @@
+export default function CheckerPage({ role }) {
 import React, { useState, useEffect } from "react";
 import {
   Box,
