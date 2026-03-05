@@ -1025,6 +1025,46 @@ function CheckerApp() {
   };
 
   
+export default function App() {
+  const [hasAccess, setHasAccess] = useState(false);
+  const [userRole, setUserRole] = useState("free");
+
+  useEffect(() => {
+    const savedRole = localStorage.getItem("role");
+    if (savedRole) {
+      setUserRole(savedRole);
+    }
+  }, []);
+
+  useEffect(() => {
+    async function verifyAccess() {
+      const savedCode = localStorage.getItem("access_code");
+      if (!savedCode) return;
+
+      const { data } = await supabase
+        .rpc("verify_access_code", { input_code: savedCode });
+
+      if (data?.success) {
+        setHasAccess(true);
+      } else {
+        localStorage.removeItem("access_code");
+        setHasAccess(false);
+      }
+    }
+
+    verifyAccess();
+  }, []);
+
+  if (!hasAccess) {
+    return (
+      <AccessPage
+        onAccessGranted={(role) => {
+          setUserRole(role);
+          setHasAccess(true);
+        }}
+      />
+    );
+  }
 
   return (
     <CheckerPage
@@ -1055,50 +1095,6 @@ function CheckerApp() {
     />
   );
 }
-export default function App() {
-  const [hasAccess, setHasAccess] = useState(false);
-const [userRole, setUserRole] = useState("free");
-
-useEffect(() => {
-  const savedRole = localStorage.getItem("role");
-  if (savedRole) {
-    setUserRole(savedRole);
-  }
-}, []);
-  
-  useEffect(() => {
-  async function verifyAccess() {
-    const savedCode = localStorage.getItem("access_code");
-
-    if (!savedCode) return;
-
-    const { data } = await supabase
-      .rpc("verify_access_code", { input_code: savedCode });
-
-    if (data?.success) {
-      setHasAccess(true);
-    } else {
-      localStorage.removeItem("access_code");
-      setHasAccess(false);
-    }
-  }
-
-  verifyAccess();
-}, []);
-
-  return hasAccess ? (
-    <CheckerApp />
-  ) : (
-    <AccessPage onAccessGranted={() => setHasAccess(true)} />
-  );
-}
-
-
-
-
-
-
-
 
 
 
