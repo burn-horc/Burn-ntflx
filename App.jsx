@@ -1091,13 +1091,13 @@ function CheckerApp() {
       openUploadPicker={openUploadPicker}
       handleUploadFile={handleUploadFile}
       bulkValidResults={bulkValidResults}
-      userRole={userRole}
+
     />
   );
 }
 
-
 export default App;
+
 
 
 
