@@ -1096,6 +1096,11 @@ function CheckerApp() {
 }
 
 
+  />
+  );
+}
+
+export default App;
 
 
 
