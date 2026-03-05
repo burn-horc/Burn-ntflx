@@ -203,9 +203,7 @@ const loadSavedCookies = async () => {
     handleStartChecking(); // <-- replace with your actual START function name
   }, 100);
 };
-
-
-  
+ 
   return (
     <Box
       as="main"
@@ -601,11 +599,8 @@ const loadSavedCookies = async () => {
                     Upload File
                   </Button>
 
-       <Button
-  onClick={handleLoadSavedCookies}
-  isDisabled={userRole !== "premium"}
->
-  Load Saved Cookies 👑
+       <Button onClick={loadSavedCookies}>
+  Load Saved Cookies
 </Button>
                   
                 </Grid>
