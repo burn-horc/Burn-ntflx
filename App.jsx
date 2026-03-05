@@ -1051,12 +1051,21 @@ function CheckerApp() {
       openUploadPicker={openUploadPicker}
       handleUploadFile={handleUploadFile}
       bulkValidResults={bulkValidResults}
+      userRole={userRole}
     />
   );
 }
 export default function App() {
   const [hasAccess, setHasAccess] = useState(false);
+const [userRole, setUserRole] = useState("free");
 
+useEffect(() => {
+  const savedRole = localStorage.getItem("role");
+  if (savedRole) {
+    setUserRole(savedRole);
+  }
+}, []);
+  
   useEffect(() => {
   async function verifyAccess() {
     const savedCode = localStorage.getItem("access_code");
@@ -1083,6 +1092,8 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
+
 
 
 
