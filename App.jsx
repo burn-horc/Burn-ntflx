@@ -699,7 +699,7 @@ function CheckerApp() {
   const [bulkValidResults, setBulkValidResults] = useState([]);
   const [workerCount, setWorkerCount] = useState(DEFAULT_WORKER_COUNT);
   const [checkNFToken, setCheckNFToken] = useState(false);
-const [role, setRole] = useState(null);
+
   const uploadInputRef = useRef(null);
   const checkLogRef = useRef(null);
   const activeCheckAbortControllerRef = useRef(null);
@@ -1083,8 +1083,6 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
-
-
 
 
 
