@@ -21,13 +21,10 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-
 import { motion } from "framer-motion";
 import AppCredits from "./AppCredits";
 import { showAppToast } from "./appToast.jsx";
 import { supabase } from "./supabaseClient";
-
-
 
 function displayValue(value, fallback = "N/A") {
   if (value == null) return fallback;
@@ -82,7 +79,7 @@ async function copyTextToClipboard(value) {
   return false;
 }
 
-export default function CheckerPage({ role }) {
+export default function CheckerPage(props) {
   const {
     input,
     uploadedInputBanner,
@@ -602,10 +599,7 @@ const loadSavedCookies = async () => {
                     Upload File
                   </Button>
 
-       <Button
-  onClick={loadSavedCookies}
-  disabled={role !== "premium"}
->
+       <Button onClick={loadSavedCookies}>
   Load Saved Cookies
 </Button>
                   
