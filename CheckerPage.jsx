@@ -600,27 +600,25 @@ const loadSavedCookies = async () => {
                   </Button>
 
        <Button
+  type="button"
   onClick={handleLoadSavedCookies}
-  w="100%"
-  mt={3}
-  bg="linear-gradient(135deg, #1f2937, #111827)"
-  color="white"
-  border="1px solid rgba(255,255,255,0.1)"
-  backdropFilter="blur(12px)"
-  _hover={{
-    bg: "linear-gradient(135deg, #374151, #1f2937)",
-    transform: "translateY(-2px)",
-    boxShadow: "0 8px 20px rgba(0,0,0,0.4)"
-  }}
-  _active={{
-    transform: "scale(0.98)"
-  }}
-  transition="all 0.3s ease"
+  disabled={isLoading}
+  minH="2.8rem"
   borderRadius="12px"
-  fontWeight="600"
-  letterSpacing="0.5px"
+  borderWidth="1px"
+  borderColor="rgba(0,255,200,0.35)"
+  bg="rgba(0,255,200,0.08)"
+  color="#00ffd0"
+  fontSize="sm"
+  fontWeight="700"
+  letterSpacing="0.07em"
+  textTransform="uppercase"
+  transition="transform 0.16s ease, background-color 0.16s ease"
+  _hover={{ bg: "rgba(0,255,200,0.18)", ...hoverLift }}
+  _active={{ transform: "translateY(0)" }}
+  _disabled={{ opacity: 0.5, cursor: "not-allowed" }}
 >
-  ✨ Load Saved Cookies
+  Load Saved Cookies
 </Button>
                   
                 </Grid>
