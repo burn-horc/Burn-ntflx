@@ -204,7 +204,7 @@ const loadSavedCookies = async () => {
   }, 100);
 };
 
-const userRole = localStorage.getItem("role");
+
   
   return (
     <Box
