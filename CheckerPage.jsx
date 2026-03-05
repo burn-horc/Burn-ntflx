@@ -21,11 +21,13 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-export default function CheckerPage({ role }) {
+
 import { motion } from "framer-motion";
 import AppCredits from "./AppCredits";
 import { showAppToast } from "./appToast.jsx";
 import { supabase } from "./supabaseClient";
+
+export default function CheckerPage({ role }) {
 
 function displayValue(value, fallback = "N/A") {
   if (value == null) return fallback;
