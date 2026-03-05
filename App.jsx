@@ -1027,7 +1027,7 @@ function CheckerApp({ userRole }) {
 
   
   const [hasAccess, setHasAccess] = useState(false);
-  const [userRole, setUserRole] = useState("free");
+  
 
   useEffect(() => {
     const savedRole = localStorage.getItem("role");
@@ -1097,6 +1097,7 @@ function CheckerApp({ userRole }) {
 }
 
 export default App;
+
 
 
 
