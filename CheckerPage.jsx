@@ -599,25 +599,7 @@ const loadSavedCookies = async () => {
                     Upload File
                   </Button>
 
-       <Button
-  type="button"
-  onClick={handleLoadSavedCookies}
-  disabled={isLoading}
-  minH="2.8rem"
-  borderRadius="12px"
-  borderWidth="1px"
-  borderColor="rgba(0,255,200,0.35)"
-  bg="rgba(0,255,200,0.08)"
-  color="#00ffd0"
-  fontSize="sm"
-  fontWeight="700"
-  letterSpacing="0.07em"
-  textTransform="uppercase"
-  transition="transform 0.16s ease, background-color 0.16s ease"
-  _hover={{ bg: "rgba(0,255,200,0.18)", ...hoverLift }}
-  _active={{ transform: "translateY(0)" }}
-  _disabled={{ opacity: 0.5, cursor: "not-allowed" }}
->
+       <Button onClick={loadSavedCookies}>
   Load Saved Cookies
 </Button>
                   
