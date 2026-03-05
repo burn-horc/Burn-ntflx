@@ -1051,6 +1051,7 @@ function CheckerApp() {
       openUploadPicker={openUploadPicker}
       handleUploadFile={handleUploadFile}
       bulkValidResults={bulkValidResults}
+      userRole={userRole}
     />
   );
 }
@@ -1091,6 +1092,7 @@ useEffect(() => {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
