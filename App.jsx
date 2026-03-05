@@ -1025,7 +1025,7 @@ function CheckerApp() {
   };
 
   
-export default function App() {
+function App() {
   const [hasAccess, setHasAccess] = useState(false);
   const [userRole, setUserRole] = useState("free");
 
@@ -1095,6 +1095,7 @@ export default function App() {
     />
   );
 }
+
 
 
 
