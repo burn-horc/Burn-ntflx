@@ -690,7 +690,7 @@ function upsertStoredCookieChecksFromResults(results) {
   return writeStoredCookieChecks(Array.from(byHeader.values()));
 }
 
-function CheckerApp() {
+function CheckerApp({ userRole }) {
   const toast = useToast();
   const [input, setInput] = useState("");
   const [uploadedInputSource, setUploadedInputSource] = useState(null);
@@ -1097,6 +1097,7 @@ function CheckerApp() {
 }
 
 export default App;
+
 
 
 
