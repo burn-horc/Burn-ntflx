@@ -34,7 +34,7 @@ const DIRECT_COOKIE_FIELDS = ['cookie', 'cookieheader', 'cookiestring', 'header'
 const DEFAULT_WORKER_COUNT = 1;
 const MIN_WORKER_COUNT = 1;
 const MAX_WORKER_COUNT = 10;
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 
 function toCookiePair(name, value) {
   const cookieName = String(name ?? '').trim();
@@ -754,8 +754,7 @@ app.post(['/api/check', '/check'], async (req, res) => {
   }
 });
 
-const clientDist = __dirname;
-
+const clientDist = path.join(__dirname, '..', 'client', 'dist');
 if (fs.existsSync(clientDist)) {
   app.use(express.static(clientDist));
 
@@ -769,22 +768,10 @@ if (fs.existsSync(clientDist)) {
   });
 }
 
-    res.sendFile(path.join(clientDist, 'index.html'));
-  });
-}
-
-
-
-app.listen(PORT, "0.0.0.0", () => {
-  console.log("Server running");
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
 
-
-
-
-
-
-
-
+module.exports = app;
 
 
