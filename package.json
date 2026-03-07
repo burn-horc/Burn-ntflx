@@ -1,12 +1,11 @@
 {
-  "name": "react-express-checker",
+  "name": "burn-ntflx",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.43.4",
@@ -29,6 +28,7 @@
     "vite": "^5.4.11"
   }
 }
+
 
 
 
