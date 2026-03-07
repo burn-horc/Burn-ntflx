@@ -34,7 +34,7 @@ const DIRECT_COOKIE_FIELDS = ['cookie', 'cookieheader', 'cookiestring', 'header'
 const DEFAULT_WORKER_COUNT = 1;
 const MIN_WORKER_COUNT = 1;
 const MAX_WORKER_COUNT = 10;
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 function toCookiePair(name, value) {
   const cookieName = String(name ?? '').trim();
@@ -773,11 +773,12 @@ if (fs.existsSync(clientDist)) {
   });
 }
 
-const PORT = process.env.PORT || 8080;
+
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log("Server running");
 });
+
 
 
 
