@@ -1,5 +1,5 @@
 {
-  "name": "react-express-checker",
+  "name": "burn-ntflx",,
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -29,5 +29,6 @@
     "vite": "^5.4.11"
   }
 }
+
 
 
