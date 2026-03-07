@@ -754,7 +754,8 @@ app.post(['/api/check', '/check'], async (req, res) => {
   }
 });
 
-const clientDist = path.join(__dirname, '..', 'client', 'dist');
+const clientDist = path.join(__dirname, 'dist');
+
 if (fs.existsSync(clientDist)) {
   app.use(express.static(clientDist));
 
@@ -768,11 +769,16 @@ if (fs.existsSync(clientDist)) {
   });
 }
 
+    res.sendFile(path.join(clientDist, 'index.html'));
+  });
+}
+
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log("Server running");
 });
+
 
 
 
