@@ -258,6 +258,17 @@ body {
 }
 
 
+@keyframes valid-glow {
+  0% {
+    box-shadow: 0 0 10px rgba(35,215,198,0.2);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(35,215,198,0.55);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(35,215,198,0.2);
+  }
+}
 
 
 
