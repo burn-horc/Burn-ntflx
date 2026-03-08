@@ -28,7 +28,7 @@ export default function AccessPage({ onAccessGranted }) {
         localStorage.setItem("access_code", code);
         onAccessGranted();
       }, 800);
-    } catch (err) {
+    } catch {
       setError(true);
       setTimeout(() => setError(false), 500);
     } finally {
@@ -42,6 +42,9 @@ export default function AccessPage({ onAccessGranted }) {
 
         <div className="particles"></div>
 
+        {/* Animated Logo */}
+        <div className="logo">BURN</div>
+
         <div className={`card ${error ? "shake" : ""} ${fadeOut ? "fade" : ""}`}>
           <h2>Private Access</h2>
           <p className="subtitle">Enter your private invite code</p>
@@ -49,6 +52,7 @@ export default function AccessPage({ onAccessGranted }) {
           <input
             value={code}
             onChange={(e) => setCode(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleUnlock()}
             placeholder="Access Code"
           />
 
@@ -98,6 +102,26 @@ font-family:-apple-system,BlinkMacSystemFont,sans-serif;
 background:#0d0d0d;
 overflow:hidden;
 position:relative;
+}
+
+/* Netflix style logo */
+
+.logo{
+position:absolute;
+top:80px;
+font-size:42px;
+font-weight:800;
+letter-spacing:4px;
+color:white;
+background:linear-gradient(90deg,#ff4d4d,#ff0066,#7c8cff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:logoGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow{
+from{filter:drop-shadow(0 0 5px rgba(255,0,100,.4))}
+to{filter:drop-shadow(0 0 18px rgba(124,140,255,.9))}
 }
 
 .particles{
@@ -228,36 +252,42 @@ gap:22px;
 }
 
 .social{
-width:46px;
-height:46px;
+width:48px;
+height:48px;
 display:flex;
 align-items:center;
 justify-content:center;
 border-radius:50%;
 background:rgba(255,255,255,.05);
 backdrop-filter:blur(10px);
-animation:float 4s ease-in-out infinite;
+animation:float 4s ease-in-out infinite,pulse 3s infinite;
 transition:.3s;
 }
 
 .social img{
-width:24px;
+width:26px;
 }
 
 .fb:hover{
-box-shadow:0 0 15px rgba(24,119,242,.8);
-transform:scale(1.15);
+box-shadow:0 0 18px rgba(24,119,242,.9);
+transform:scale(1.2);
 }
 
 .tg:hover{
-box-shadow:0 0 15px rgba(0,170,255,.8);
-transform:scale(1.15);
+box-shadow:0 0 18px rgba(0,170,255,.9);
+transform:scale(1.2);
 }
 
 @keyframes float{
 0%{transform:translateY(0)}
 50%{transform:translateY(-6px)}
 100%{transform:translateY(0)}
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 0 rgba(255,255,255,0)}
+50%{box-shadow:0 0 15px rgba(124,140,255,.5)}
+100%{box-shadow:0 0 0 rgba(255,255,255,0)}
 }
 
 `}</style>
