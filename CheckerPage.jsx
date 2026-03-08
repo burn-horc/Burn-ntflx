@@ -960,15 +960,31 @@ TV
 
 <Button
   flex={1}
-  bg="#1a1d2e"
+  borderRadius="14px"
+  borderWidth="1px"
+  borderColor="rgba(170,110,255,0.6)"
+  bgGradient="linear(135deg,#9b5cff,#6a35ff)"
   color="white"
-  border="1px solid rgba(255,255,255,0.2)"
-  _hover={{ bg:"#22263a" }}
+  fontWeight="700"
+  letterSpacing="0.08em"
+  textTransform="uppercase"
+  boxShadow="
+    0 4px 14px rgba(155,92,255,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.15)
+  "
+  transition="all 0.2s ease"
+  _hover={{
+    transform: "translateY(-2px)",
+    boxShadow: "0 8px 22px rgba(155,92,255,0.5)"
+  }}
+  _active={{
+    transform: "scale(0.96)"
+  }}
   onClick={()=>{
     navigator.clipboard.writeText(result.originalCookie || "NO COOKIE FOUND");
   }}
 >
-COPY COOKIE
+  COPY COOKIE
 </Button>
 
 </SimpleGrid>
