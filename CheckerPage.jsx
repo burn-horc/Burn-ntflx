@@ -732,13 +732,6 @@ function getPlanIcon(plan) {
     0 0 18px rgba(35,215,198,.45)
   "
 >
-<Text
-  fontSize="sm"
-  fontWeight="800"
-  letterSpacing="0.06em"
-  textTransform="uppercase"
-  color="#041417"
->
 <HStack spacing={2}>
 <Text fontSize="xs" fontWeight="900">
 {getPlanIcon(result.plan)}
@@ -755,7 +748,6 @@ color="#041417"
 </Text>
 </HStack>
 </Box>
-
 <Box
   px={3}
   py={1}
