@@ -236,7 +236,7 @@ const loadSavedCookies = async () => {
 
 const checkPassword = async () => {
 
-  const { data, error } = await supabase
+  const { data, error: supabaseError } = await supabase
     .from("site_password")
     .select("password")
     .single()
