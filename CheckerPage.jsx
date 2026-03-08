@@ -712,7 +712,7 @@ const loadSavedCookies = async () => {
           )}
         </SimpleGrid>
 
-        <HStack mt={4} spacing={3}>
+        <SimpleGrid columns={{ base: 2, sm: 4 }} spacing={3} mt={4}>
   <Button
     flex={1}
     bgGradient="linear(to-r, #ffb347, #ff8a3d)"
@@ -774,7 +774,7 @@ const loadSavedCookies = async () => {
   >
     COPY COOKIE
   </Button>
-</HStack>
+</SimpleGrid>
       </Box>
     );
   })}
