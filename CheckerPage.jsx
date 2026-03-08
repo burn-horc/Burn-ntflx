@@ -110,7 +110,10 @@ export default function CheckerPage(props) {
   const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
 const [cookies, setCookies] = useState([]);
   const [autoStart, setAutoStart] = useState(false);
-
+const [password,setPassword] = useState("")
+const [showPassword,setShowPassword] = useState(false)
+const [error,setError] = useState("")
+  
   useEffect(() => {
   if (autoStart) {
     handleStartChecking(); // your start function
@@ -231,6 +234,28 @@ const loadSavedCookies = async () => {
   }, 100);
 };
 
+const checkPassword = async () => {
+
+  const { data, error } = await supabase
+    .from("site_password")
+    .select("password")
+    .single()
+
+  if(error){
+    console.log(error)
+    return
+  }
+
+  if(password === data.password){
+    setShowPassword(false)
+    loadSavedCookies()
+  }else{
+    setError("Wrong Password")
+  }
+
+}
+
+  
 function getPlanIcon(plan) {
   if (!plan) return "📺";
 
@@ -666,7 +691,11 @@ function getPlanIcon(plan) {
 
                   
        <Button
-  onClick={loadSavedCookies}
+  onClick={() => {
+    setShowPassword(true);
+    setError("");
+    setPassword("");
+  }}
   minH="2.6rem"
   borderRadius="14px"
   borderWidth="1px"
