@@ -33,20 +33,6 @@ export default function AccessGate({ children }) {
       />
 
       <button onClick={handleUnlock}>ILAGAY ANG CODE</button>
-    </div>
-
-    {/* Facebook section OUTSIDE the card */}
-    <div className="fb-community">
-      <p>Join our community</p>
-
-      <a
-        href="https://www.facebook.com/burn024/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Facebook
-      </a>
-    </div>
-
+    
   </div>
 );
