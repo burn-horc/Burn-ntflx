@@ -32,25 +32,24 @@ export default function AccessGate({ children }) {
         />
 
         <button onClick={handleUnlock}>Unlock</button>
-        <div style={{marginTop:"20px", textAlign:"center"}}>
+        
+        <button onClick={handleUnlock}>Unlock</button>
 
-<p style={{color:"#aaa", fontSize:"14px"}}>
-Join our community
-</p>
+<div style={{marginTop:"10px", textAlign:"center"}}>
+  <p style={{color:"#aaa", fontSize:"13px", marginBottom:"6px"}}>
+    Join our community
+  </p>
 
-<a
-  href="https://www.facebook.com/burn024/"
-  target="_blank"
-  style={{display:"inline-block", marginTop:"10px"}}
->
-
-<img
-src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
-width="26"
-/>
-
-</a>
-
+  <a
+    href="https://www.facebook.com/burn024/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+      width="22"
+    />
+  </a>
 </div>
       </div>
     </div>
