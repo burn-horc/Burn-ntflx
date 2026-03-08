@@ -714,6 +714,9 @@ app.use(express.json({ limit: '10mb' }));
 app.get("/", (req, res) => {
   res.send("Burn-ntflx API is running 🚀");
 });
+app.get('/health', (req, res) => {
+  res.status(200).send("OK");
+});
 
 app.post(['/api/check', '/check'], async (req, res) => {
   try {
@@ -773,5 +776,6 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
 
 
