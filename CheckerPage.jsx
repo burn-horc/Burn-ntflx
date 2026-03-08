@@ -164,20 +164,30 @@ const [cookies, setCookies] = useState([]);
 };
 
   const handleTvActivation = async () => {
-  const activationLink = "https://www.netflix.com/tv8";
+  const activationLink = "https://www.netflix.com/tv8"; // still valid in 2026
 
   const copied = await copyTextToClipboard(activationLink);
-  if (!copied) return;
 
-  const toastId = "checker-tv-link-copied";
-  showAppToast(toast, {
-    id: toastId,
-    title: "TV activation link copied",
-    status: "success",
-    duration: 4000,
-  });
+  if (copied) {
+    showAppToast(toast, {
+      id: "checker-tv-link-copied",
+      title: "TV Link Copied & Opened!",
+      description: "Paste/open in browser after importing cookie (PC/Android button). Then enter code from your TV.",
+      status: "success",
+      duration: 6000,
+      isClosable: true,
+    });
 
-  window.open(activationLink, "_blank");
+    // Open in new tab (helps user immediately see the page)
+    window.open(activationLink, "_blank");
+  } else {
+    showAppToast(toast, {
+      title: "Copy failed",
+      description: "Please copy manually: " + activationLink,
+      status: "warning",
+      duration: 8000,
+    });
+  }
 };
 
 const loadSavedCookies = async () => {
@@ -725,7 +735,12 @@ const loadSavedCookies = async () => {
             PC
           </Button>
 
-          <Button onClick={handleTvActivation}>
+          <Button
+  flex={1}
+  bg="#ff8c42"          // same as Android/PC
+  color="white"
+  onClick={handleTvActivation}
+>
   TV
 </Button>
 
