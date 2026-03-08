@@ -1001,7 +1001,26 @@ TV
 </ModalBody>
 </ModalContent>
 </Modal>
+<style>
+{`
+@keyframes shine {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
 
+@keyframes terminal-progress-indeterminate {
+  0% {
+    left: -30%;
+  }
+  50% {
+    left: 40%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+`}
+</style>
 </Box>
 
 );
