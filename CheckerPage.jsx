@@ -631,20 +631,21 @@ function getPlanIcon(plan) {
   minH="2.8rem"
   borderRadius="14px"
   borderWidth="1px"
-  borderColor="rgba(255,255,255,0.1)"
-  bg="rgba(255,255,255,0.03)"
-  backdropFilter="blur(10px)"
+  borderColor="rgba(255,80,80,0.6)"
+  bgGradient="linear(135deg,#ff4b4b,#d81e1e)"
   color="#ffffff"
   fontSize="sm"
   fontWeight="700"
   letterSpacing="0.08em"
   textTransform="uppercase"
-  boxShadow="inset 0 1px 0 rgba(255,255,255,0.05)"
+  boxShadow="
+    0 4px 14px rgba(255,75,75,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.15)
+  "
   transition="all 0.2s ease"
   _hover={{
-    bg: "rgba(255,255,255,0.08)",
-    borderColor: "rgba(255,255,255,0.2)",
-    transform: "translateY(-2px)"
+    transform: "translateY(-2px)",
+    boxShadow: "0 8px 20px rgba(255,75,75,0.5)"
   }}
   _active={{
     transform: "scale(0.96)"
@@ -657,31 +658,33 @@ function getPlanIcon(plan) {
   Upload File
 </Button>
 
-
                   
        <Button
   onClick={loadSavedCookies}
   minH="2.6rem"
   borderRadius="14px"
   borderWidth="1px"
-  borderColor="rgba(255,255,255,0.08)"
-  bg="rgba(255,255,255,0.04)"
-  color="gray.300"
+  borderColor="rgba(80,140,255,0.6)"
+  bgGradient="linear(135deg,#4f8cff,#1f5eff)"
+  color="#ffffff"
   fontSize="sm"
   fontWeight="700"
   letterSpacing="0.08em"
   textTransform="uppercase"
+  boxShadow="
+    0 4px 14px rgba(79,140,255,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.15)
+  "
   transition="all 0.2s ease"
   _hover={{
-    bg: "rgba(255,255,255,0.08)",
-    color: "white",
-    transform: "translateY(-2px)"
+    transform: "translateY(-2px)",
+    boxShadow: "0 8px 20px rgba(79,140,255,0.5)"
   }}
   _active={{
     transform: "scale(0.96)"
   }}
 >
-  FIND COOKIES
+  FIND ACCOUNT
 </Button>
                   
                 </Grid>
