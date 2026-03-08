@@ -73,7 +73,7 @@ export default function AccessPage({ onAccessGranted }) {
             </a>
 
             <a
-              href="https://t.me/"
+              href="https://t.me/BURNx24"
               target="_blank"
               rel="noopener noreferrer"
               className="social tg"
