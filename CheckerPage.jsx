@@ -163,6 +163,23 @@ const [cookies, setCookies] = useState([]);
   });
 };
 
+  const handleTvActivation = async () => {
+  const activationLink = "https://www.netflix.com/tv8";
+
+  const copied = await copyTextToClipboard(activationLink);
+  if (!copied) return;
+
+  const toastId = "checker-tv-link-copied";
+  showAppToast(toast, {
+    id: toastId,
+    title: "TV activation link copied",
+    status: "success",
+    duration: 4000,
+  });
+
+  window.open(activationLink, "_blank");
+};
+
 const loadSavedCookies = async () => {
   const { data, error } = await supabase
     .from("cookies")
