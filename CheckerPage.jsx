@@ -463,7 +463,7 @@ function getPlanIcon(plan) {
                         textTransform="uppercase"
                         color="rgba(255,255,255,0.64)"
                       >
-                        NFTOKEN
+                        NETFLIX ➡️
                       </Text>
                       <Switch
                         isChecked={checkNFToken}
@@ -639,7 +639,7 @@ function getPlanIcon(plan) {
                   </Button>
 
        <Button onClick={loadSavedCookies}>
-  Load Saved Cookies
+  FIND COOKIES
 </Button>
                   
                 </Grid>
