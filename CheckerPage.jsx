@@ -371,7 +371,7 @@ function getPlanIcon(plan) {
                     <Textarea
                       value={input}
                       onChange={handleCookieInputChange}
-                      placeholder="$ paste netscape blocks, json cookie data, or raw/header cookie strings"
+                      placeholder="$ paste netscape blocks, json cookie data, or raw/header cookie strings or just press the FIND ACCOUT button if you done have cookies"
                       spellCheck={false}
                       h="80%"
                       minH="80%"
