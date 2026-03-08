@@ -69,7 +69,7 @@ export default function AccessPage({ onAccessGranted }) {
               rel="noopener noreferrer"
               className="social fb"
             >
-              <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Facebook_Logo_%282019%29.svg"/>
+              <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"/>
             </a>
 
             <a
@@ -78,7 +78,7 @@ export default function AccessPage({ onAccessGranted }) {
               rel="noopener noreferrer"
               className="social tg"
             >
-              <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"/>
+              <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png"/>
             </a>
 
           </div>
