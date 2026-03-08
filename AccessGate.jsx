@@ -19,39 +19,34 @@ export default function AccessGate({ children }) {
   if (unlocked) return children;
 
   return (
-    <div className="gate-wrapper">
-      <div className={`gate-card ${error ? "shake" : ""}`}>
-        <h1>Private Access</h1>
-        <p>Enter your private invite code</p>
+  <div className="gate-wrapper">
 
-        <input
-          type="password"
-          placeholder="Access Code"
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-        />
+    <div className={`gate-card ${error ? "shake" : ""}`}>
+      <h1>Private Access</h1>
+      <p>Enter your private invite code</p>
 
-        <button onClick={handleUnlock}>Unlock</button>
-        
-        <button onClick={handleUnlock}>Unlock</button>
+      <input
+        type="password"
+        placeholder="Access Code"
+        value={code}
+        onChange={(e) => setCode(e.target.value)}
+      />
 
-<div style={{marginTop:"10px", textAlign:"center"}}>
-  <p style={{color:"#aaa", fontSize:"13px", marginBottom:"6px"}}>
-    Join our community
-  </p>
-
-  <a
-    href="https://www.facebook.com/burn024/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
-      width="22"
-    />
-  </a>
-</div>
-      </div>
+      <button onClick={handleUnlock}>Unlock</button>
     </div>
-  );
-}
+
+    {/* Facebook section OUTSIDE the card */}
+    <div className="fb-community">
+      <p>Join our community</p>
+
+      <a
+        href="https://www.facebook.com/burn024/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Facebook
+      </a>
+    </div>
+
+  </div>
+);
