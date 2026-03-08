@@ -67,6 +67,15 @@ body {
   }
 }
 
+@keyframes shineText {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
 .cube-loader .cube-wrapper {
   position: absolute;
   inset: 0;
@@ -269,6 +278,7 @@ body {
     box-shadow: 0 0 10px rgba(35,215,198,0.2);
   }
 }
+
 
 
 
