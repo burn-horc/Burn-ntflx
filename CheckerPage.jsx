@@ -1004,8 +1004,12 @@ TV
 <style>
 {`
 @keyframes shine {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 
 @keyframes terminal-progress-indeterminate {
