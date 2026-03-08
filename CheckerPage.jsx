@@ -731,15 +731,39 @@ const loadSavedCookies = async () => {
   </Text>
 </Flex>
 
-        <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={2} mt={2}>
-          {modalDetailItems.map(([label, value], i) =>
-            value ? (
-              <Text key={i} fontSize="sm">
-                <b>{label}:</b> {displayValue(value)}
-              </Text>
-            ) : null
-          )}
-        </SimpleGrid>
+        <VStack spacing={3} mt={3} align="stretch">
+
+<Box bg="#1b1f33" p={3} borderRadius="10px">
+<Text fontSize="xs" color="gray.400">EMAIL</Text>
+<Text fontWeight="600">{displayValue(result.email)}</Text>
+</Box>
+
+<Box bg="#1b1f33" p={3} borderRadius="10px">
+<Text fontSize="xs" color="gray.400">PLAN</Text>
+<Text fontWeight="600">{displayValue(result.plan)}</Text>
+</Box>
+
+<Box bg="#1b1f33" p={3} borderRadius="10px">
+<Text fontSize="xs" color="gray.400">COUNTRY</Text>
+<Text fontWeight="600">{displayValue(result.countryOfSignup)}</Text>
+</Box>
+
+<Box bg="#1b1f33" p={3} borderRadius="10px">
+<Text fontSize="xs" color="gray.400">NEXT BILLING</Text>
+<Text fontWeight="600">{displayValue(result.nextBilling)}</Text>
+</Box>
+
+<Box bg="#1b1f33" p={3} borderRadius="10px">
+<Text fontSize="xs" color="gray.400">MEMBER SINCE</Text>
+<Text fontWeight="600">{displayValue(result.memberSince)}</Text>
+</Box>
+
+<Box bg="#1b1f33" p={3} borderRadius="10px">
+<Text fontSize="xs" color="gray.400">PHONE</Text>
+<Text fontWeight="600">{displayValue(result.phone)}</Text>
+</Box>
+
+</VStack>
 
         <SimpleGrid columns={{ base: 2, sm: 4 }} spacing={3} mt={4}>
   <Button
