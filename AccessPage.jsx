@@ -59,8 +59,8 @@ export default function AccessPage({ onAccessGranted }) {
         </div>
 
         <div className="fb-community">
-  <p>For Private Code's</p>
-  <p>Message Me On</p>
+  <p>For private code</p>
+  <p>Message me on</p>
 
    <a
       href="https://www.facebook.com/burn024/"
