@@ -590,55 +590,97 @@ function getPlanIcon(plan) {
                   />
 
                   <Button
-                    type="submit"
-                    onClick={(event) => {
-                      if (!isLoading) return;
-                      event.preventDefault();
-                      stopCheck();
-                    }}
-                    minH="2.8rem"
-                    borderRadius="12px"
-                    borderWidth="1px"
-                    borderColor="rgba(255,138,61,0.78)"
-                    bg="#ff8a3d"
-                    color="#ffffff"
-                    fontSize="sm"
-                    fontWeight="700"
-                    letterSpacing="0.07em"
-                    textTransform="uppercase"
-                    transition="transform 0.16s ease, background-color 0.16s ease"
-                    _hover={{ bg: "#e8782d", ...hoverLift }}
-                    _active={{ transform: "translateY(0)" }}
-                  >
-                    {isLoading ? "Stop" : "Start"}
-                  </Button>
-
+  type="submit"
+  onClick={(event) => {
+    if (!isLoading) return;
+    event.preventDefault();
+    stopCheck();
+  }}
+  minH="2.8rem"
+  borderRadius="14px"
+  borderWidth="1px"
+  borderColor="rgba(255,138,61,0.6)"
+  bgGradient="linear(135deg,#ff8a3d,#ff6a00)"
+  color="#ffffff"
+  fontSize="sm"
+  fontWeight="700"
+  letterSpacing="0.08em"
+  textTransform="uppercase"
+  boxShadow="
+    0 4px 14px rgba(255,138,61,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.2)
+  "
+  transition="all 0.2s ease"
+  _hover={{
+    transform: "translateY(-2px)",
+    boxShadow: "0 8px 22px rgba(255,138,61,0.55)"
+  }}
+  _active={{
+    transform: "scale(0.96)"
+  }}
+>
+  {isLoading ? "Stop" : "Start"}
+</Button>
             
  
 
                   <Button
-                    type="button"
-                    onClick={openUploadPicker}
-                    disabled={isLoading}
-                    minH="2.8rem"
-                    borderRadius="12px"
-                    borderWidth="1px"
-                    borderColor="rgba(255,255,255,0.12)"
-                    bg="#101525"
-                    color="#ffffff"
-                    fontSize="sm"
-                    fontWeight="700"
-                    letterSpacing="0.07em"
-                    textTransform="uppercase"
-                    transition="transform 0.16s ease, background-color 0.16s ease"
-                    _hover={{ bg: "rgba(255,255,255,0.08)", ...hoverLift }}
-                    _active={{ transform: "translateY(0)" }}
-                    _disabled={{ opacity: 0.5, cursor: "not-allowed" }}
-                  >
-                    Upload File
-                  </Button>
+  type="button"
+  onClick={openUploadPicker}
+  disabled={isLoading}
+  minH="2.8rem"
+  borderRadius="14px"
+  borderWidth="1px"
+  borderColor="rgba(255,255,255,0.1)"
+  bg="rgba(255,255,255,0.03)"
+  backdropFilter="blur(10px)"
+  color="#ffffff"
+  fontSize="sm"
+  fontWeight="700"
+  letterSpacing="0.08em"
+  textTransform="uppercase"
+  boxShadow="inset 0 1px 0 rgba(255,255,255,0.05)"
+  transition="all 0.2s ease"
+  _hover={{
+    bg: "rgba(255,255,255,0.08)",
+    borderColor: "rgba(255,255,255,0.2)",
+    transform: "translateY(-2px)"
+  }}
+  _active={{
+    transform: "scale(0.96)"
+  }}
+  _disabled={{
+    opacity: 0.4,
+    cursor: "not-allowed"
+  }}
+>
+  Upload File
+</Button>
 
-       <Button onClick={loadSavedCookies}>
+
+                  
+       <Button
+  onClick={loadSavedCookies}
+  minH="2.6rem"
+  borderRadius="14px"
+  borderWidth="1px"
+  borderColor="rgba(255,255,255,0.08)"
+  bg="rgba(255,255,255,0.04)"
+  color="gray.300"
+  fontSize="sm"
+  fontWeight="700"
+  letterSpacing="0.08em"
+  textTransform="uppercase"
+  transition="all 0.2s ease"
+  _hover={{
+    bg: "rgba(255,255,255,0.08)",
+    color: "white",
+    transform: "translateY(-2px)"
+  }}
+  _active={{
+    transform: "scale(0.96)"
+  }}
+>
   FIND COOKIES
 </Button>
                   
