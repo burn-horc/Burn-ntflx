@@ -882,7 +882,14 @@ COPY COOKIE
 </Button>
 
 </SimpleGrid>
+      </Box>
+    );
+  })}
+</ModalBody>
+</ModalContent>
+</Modal>
 
 </Box>
+
 );
 }
