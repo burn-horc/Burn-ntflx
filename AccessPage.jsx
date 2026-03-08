@@ -8,77 +8,74 @@ export default function AccessPage({ onAccessGranted }) {
   const [fadeOut, setFadeOut] = useState(false);
 
   const handleUnlock = async () => {
-  if (!code.trim() || loading) return;
+    if (!code.trim() || loading) return;
 
-  try {
-    setLoading(true);
-    setError(false);
+    try {
+      setLoading(true);
+      setError(false);
 
-    console.log("Supabase URL:", import.meta.env.VITE_SUPABASE_URL);
+      console.log("Supabase URL:", import.meta.env.VITE_SUPABASE_URL);
 
-    const { data, error: rpcError } = await supabase
-      .rpc("use_access_code", { input_code: code });
+      const { data, error: rpcError } = await supabase.rpc("use_access_code", {
+        input_code: code,
+      });
 
-    console.log("RPC result:", data, rpcError);
-    
-    if (rpcError || !data?.success) {
-      throw new Error(data?.error || "Invalid code");
+      console.log("RPC result:", data, rpcError);
+
+      if (rpcError || !data?.success) {
+        throw new Error(data?.error || "Invalid code");
+      }
+
+      setFadeOut(true);
+
+      setTimeout(() => {
+        localStorage.setItem("access_code", code);
+        onAccessGranted();
+      }, 800);
+    } catch (err) {
+      setError(true);
+      setTimeout(() => setError(false), 500);
+    } finally {
+      setLoading(false);
     }
-
-    setFadeOut(true);
-
-    setTimeout(() => {
-      localStorage.setItem("access_code", code);
-      onAccessGranted();
-    }, 800);
-
-  } catch (err) {
-    setError(true);
-    setTimeout(() => setError(false), 500);
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
-  <div className="container">
-    <div className={`card ${error ? "shake" : ""} ${fadeOut ? "fade" : ""}`}>
-      <h2>Private Access</h2>
-      <p className="subtitle">Enter your private invite code</p>
+    <>
+      <div className="container">
+        <div className={`card ${error ? "shake" : ""} ${fadeOut ? "fade" : ""}`}>
+          <h2>Private Access</h2>
+          <p className="subtitle">Enter your private invite code</p>
 
-      <input
-        value={code}
-        onChange={(e) => setCode(e.target.value)}
-        placeholder="Access Code"
-      />
+          <input
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            placeholder="Access Code"
+          />
 
-      <button onClick={handleUnlock} disabled={loading}>
-        {loading ? <span className="spinner"></span> : "Unlock"}
-      </button>
-    </div>
+          <button onClick={handleUnlock} disabled={loading}>
+            {loading ? <span className="spinner"></span> : "Unlock"}
+          </button>
+        </div>
 
-    <div className="fb-community">
-      <p>Join our community</p>
+        <div className="fb-community">
+          <p>Join our community</p>
 
-      <a
-        href="https://www.facebook.com/burn024/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Facebook
-      </a>
-    </div>
+          <a
+            href="https://www.facebook.com/burn024/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Facebook
+          </a>
+        </div>
+      </div>
 
-    <style>{`
-      /* ALL YOUR CSS HERE */
-    `}</style>
-
-  </div>
-);
       <style>{`
         .container {
           height: 100vh;
           display: flex;
+          flex-direction: column;
           justify-content: center;
           align-items: center;
           font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -198,7 +195,23 @@ export default function AccessPage({ onAccessGranted }) {
           opacity: 0;
           transform: scale(0.95);
         }
+
+        .fb-community {
+          margin-top: 20px;
+          color: #aaa;
+          text-align: center;
+        }
+
+        .fb-community a {
+          color: #7c8cff;
+          text-decoration: none;
+          font-weight: 500;
+        }
+
+        .fb-community a:hover {
+          text-decoration: underline;
+        }
       `}</style>
-    </div>
+    </>
   );
 }
