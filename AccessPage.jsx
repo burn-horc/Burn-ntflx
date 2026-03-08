@@ -39,6 +39,9 @@ export default function AccessPage({ onAccessGranted }) {
   return (
     <>
       <div className="container">
+
+        <div className="particles"></div>
+
         <div className={`card ${error ? "shake" : ""} ${fadeOut ? "fade" : ""}`}>
           <h2>Private Access</h2>
           <p className="subtitle">Enter your private invite code</p>
@@ -66,10 +69,7 @@ export default function AccessPage({ onAccessGranted }) {
               rel="noopener noreferrer"
               className="social fb"
             >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/8/89/Facebook_Logo_%282019%29.svg"
-                alt="Facebook"
-              />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Facebook_Logo_%282019%29.svg"/>
             </a>
 
             <a
@@ -78,183 +78,190 @@ export default function AccessPage({ onAccessGranted }) {
               rel="noopener noreferrer"
               className="social tg"
             >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
-                alt="Telegram"
-              />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"/>
             </a>
 
           </div>
         </div>
+
       </div>
 
-      <style>{`
-        .container {
-          height: 100vh;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-          background:
-            radial-gradient(circle at 30% 30%, #1f2a55, transparent 40%),
-            radial-gradient(circle at 70% 70%, #3b1f55, transparent 40%),
-            #0d0d0d;
-        }
+<style>{`
 
-        .card {
-          background: rgba(22, 22, 22, 0.75);
-          backdrop-filter: blur(18px);
-          border: 1px solid rgba(255,255,255,0.05);
-          padding: 45px 35px;
-          border-radius: 22px;
-          width: 330px;
-          text-align: center;
-          box-shadow: 0 25px 60px rgba(0,0,0,0.7);
-          transition: all 0.5s ease;
-        }
+.container{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+background:#0d0d0d;
+overflow:hidden;
+position:relative;
+}
 
-        h2 {
-          margin-bottom: 6px;
-          font-weight: 600;
-          color: white;
-          letter-spacing: 0.5px;
-        }
+.particles{
+position:absolute;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 20% 20%,rgba(124,140,255,.2),transparent 40%),
+radial-gradient(circle at 80% 70%,rgba(180,120,255,.2),transparent 40%);
+animation:moveBg 12s linear infinite alternate;
+}
 
-        .subtitle {
-          color: #888;
-          font-size: 14px;
-          margin-bottom: 28px;
-        }
+@keyframes moveBg{
+0%{transform:scale(1)}
+100%{transform:scale(1.3)}
+}
 
-        input {
-          width: 100%;
-          padding: 14px;
-          border-radius: 12px;
-          border: 1px solid #333;
-          background: #0f0f0f;
-          color: white;
-          outline: none;
-          transition: all 0.3s ease;
-          margin-bottom: 22px;
-          font-size: 15px;
-        }
+.card{
+background:rgba(22,22,22,.75);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.05);
+padding:45px 35px;
+border-radius:22px;
+width:330px;
+text-align:center;
+box-shadow:0 25px 60px rgba(0,0,0,.7);
+animation:enter .8s ease;
+}
 
-        input:focus {
-          border: 1px solid #7c8cff;
-          box-shadow: 0 0 14px rgba(124,140,255,0.7);
-        }
+@keyframes enter{
+from{opacity:0;transform:translateY(40px)}
+to{opacity:1;transform:translateY(0)}
+}
 
-        button {
-          width: 100%;
-          padding: 14px;
-          border-radius: 14px;
-          border: none;
-          font-weight: 600;
-          font-size: 16px;
-          color: white;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          background: linear-gradient(90deg, #5c6cff, #8f5cff, #5c6cff);
-          background-size: 200% 200%;
-          animation: gradientMove 4s ease infinite;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+h2{
+margin-bottom:6px;
+font-weight:600;
+color:white;
+}
 
-        button:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 10px 25px rgba(92,108,255,0.4);
-        }
+.subtitle{
+color:#888;
+font-size:14px;
+margin-bottom:28px;
+}
 
-        button:active {
-          transform: scale(0.97);
-        }
+input{
+width:100%;
+padding:14px;
+border-radius:12px;
+border:1px solid #333;
+background:#0f0f0f;
+color:white;
+outline:none;
+margin-bottom:22px;
+font-size:15px;
+}
 
-        .spinner {
-          width: 18px;
-          height: 18px;
-          border: 2px solid rgba(255,255,255,0.3);
-          border-top: 2px solid white;
-          border-radius: 50%;
-          animation: spin 0.7s linear infinite;
-        }
+input:focus{
+border:1px solid #7c8cff;
+box-shadow:0 0 14px rgba(124,140,255,.7);
+}
 
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
+button{
+width:100%;
+padding:14px;
+border-radius:14px;
+border:none;
+font-weight:600;
+font-size:16px;
+color:white;
+cursor:pointer;
+background:linear-gradient(90deg,#5c6cff,#8f5cff,#5c6cff);
+background-size:200% 200%;
+animation:gradientMove 4s ease infinite;
+}
 
-        @keyframes gradientMove {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
+button:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 25px rgba(92,108,255,.4);
+}
 
-        .shake {
-          animation: shake 0.4s;
-        }
+.spinner{
+width:18px;
+height:18px;
+border:2px solid rgba(255,255,255,.3);
+border-top:2px solid white;
+border-radius:50%;
+animation:spin .7s linear infinite;
+}
 
-        @keyframes shake {
-          0% { transform: translateX(0); }
-          25% { transform: translateX(-6px); }
-          50% { transform: translateX(6px); }
-          75% { transform: translateX(-6px); }
-          100% { transform: translateX(0); }
-        }
+@keyframes spin{
+to{transform:rotate(360deg)}
+}
 
-        .fade {
-          opacity: 0;
-          transform: scale(0.95);
-        }
+@keyframes gradientMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
 
-        .community {
-          margin-top: 25px;
-          text-align: center;
-          color: #aaa;
-        }
+.shake{animation:shake .4s}
 
-        .social-icons {
-          margin-top: 12px;
-          display: flex;
-          justify-content: center;
-          gap: 22px;
-        }
+@keyframes shake{
+0%{transform:translateX(0)}
+25%{transform:translateX(-6px)}
+50%{transform:translateX(6px)}
+75%{transform:translateX(-6px)}
+100%{transform:translateX(0)}
+}
 
-        .social {
-          width: 44px;
-          height: 44px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 50%;
-          background: rgba(255,255,255,0.05);
-          backdrop-filter: blur(10px);
-          transition: all .3s ease;
-          animation: float 4s ease-in-out infinite;
-        }
+.fade{
+opacity:0;
+transform:scale(.95);
+}
 
-        .social img {
-          width: 24px;
-          height: 24px;
-        }
+.community{
+margin-top:25px;
+text-align:center;
+color:#aaa;
+}
 
-        .fb:hover {
-          box-shadow: 0 0 15px rgba(24,119,242,0.8);
-          transform: scale(1.15);
-        }
+.social-icons{
+margin-top:12px;
+display:flex;
+justify-content:center;
+gap:22px;
+}
 
-        .tg:hover {
-          box-shadow: 0 0 15px rgba(0,170,255,0.8);
-          transform: scale(1.15);
-        }
+.social{
+width:46px;
+height:46px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(10px);
+animation:float 4s ease-in-out infinite;
+transition:.3s;
+}
 
-        @keyframes float {
-          0% { transform: translateY(0); }
-          50% { transform: translateY(-6px); }
-          100% { transform: translateY(0); }
-        }
-      `}</style>
+.social img{
+width:24px;
+}
+
+.fb:hover{
+box-shadow:0 0 15px rgba(24,119,242,.8);
+transform:scale(1.15);
+}
+
+.tg:hover{
+box-shadow:0 0 15px rgba(0,170,255,.8);
+transform:scale(1.15);
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-6px)}
+100%{transform:translateY(0)}
+}
+
+`}</style>
+
     </>
   );
 }
