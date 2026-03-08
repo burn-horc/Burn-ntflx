@@ -698,9 +698,33 @@ const loadSavedCookies = async () => {
         bg="#101525"
         p={3}
       >
-        <Text fontWeight="600" color="#23d7c6">
-          {displayValue(result.plan)}
-        </Text>
+       <HStack justify="space-between" align="center">
+  <Box
+    px={3}
+    py={1}
+    borderRadius="8px"
+    bgGradient="linear(to-r, #23d7c6, #0fb9a8)"
+    boxShadow="0 0 8px rgba(35,215,198,0.6)"
+  >
+    <Text
+      fontSize="sm"
+      fontWeight="700"
+      letterSpacing="0.06em"
+      textTransform="uppercase"
+      color="#041417"
+    >
+      {displayValue(result.plan)}
+    </Text>
+  </Box>
+
+  <Text
+    fontSize="xs"
+    color="rgba(255,255,255,0.6)"
+    fontWeight="600"
+  >
+    {displayValue(result.countryOfSignup)}
+  </Text>
+</HStack>
 
         <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={2} mt={2}>
           {modalDetailItems.map(([label, value], i) =>
