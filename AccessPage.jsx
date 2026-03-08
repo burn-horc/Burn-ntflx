@@ -66,8 +66,17 @@ export default function AccessPage({ onAccessGranted }) {
     href="https://www.facebook.com/burn024/"
     target="_blank"
     rel="noopener noreferrer"
+    className="fb-icon"
   >
-    Facebook
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="#1877F2"
+    >
+      <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9v-2.9h2.5V9.7c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.7-1.6 1.5v1.8h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/>
+    </svg>
   </a>
 </div>
       </div>
