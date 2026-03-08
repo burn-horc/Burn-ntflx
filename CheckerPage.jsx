@@ -230,7 +230,19 @@ const loadSavedCookies = async () => {
     handleStartChecking(); // <-- replace with your actual START function name
   }, 100);
 };
- 
+
+function getPlanIcon(plan) {
+  if (!plan) return "📺";
+
+  const p = plan.toLowerCase();
+
+  if (p.includes("premium")) return "4K";
+  if (p.includes("standard")) return "HD";
+  if (p.includes("basic")) return "SD";
+
+  return "📺";
+}
+  
   return (
     <Box
       as="main"
@@ -727,8 +739,21 @@ const loadSavedCookies = async () => {
   textTransform="uppercase"
   color="#041417"
 >
+<HStack spacing={2}>
+<Text fontSize="xs" fontWeight="900">
+{getPlanIcon(result.plan)}
+</Text>
+
+<Text
+fontSize="sm"
+fontWeight="800"
+letterSpacing="0.06em"
+textTransform="uppercase"
+color="#041417"
+>
 {displayValue(result.plan)}
 </Text>
+</HStack>
 </Box>
 
 <Box
@@ -748,7 +773,26 @@ const loadSavedCookies = async () => {
 </Box>
 
 </Flex>
+
 <VStack spacing={3} mt={4} align="stretch">
+
+<Flex justify="center" mt={2} mb={2}>
+<Box
+w="54px"
+h="54px"
+borderRadius="full"
+bg="linear-gradient(145deg,#ffb347,#ff8a3d)"
+display="flex"
+alignItems="center"
+justifyContent="center"
+fontWeight="900"
+fontSize="lg"
+color="#1a1208"
+boxShadow="0 0 12px rgba(255,179,71,0.6)"
+>
+{displayValue(result.email).charAt(0).toUpperCase()}
+</Box>
+</Flex>
 
 <Box
   bg="rgba(255,255,255,0.03)"
@@ -891,9 +935,10 @@ COPY COOKIE
 </Button>
 
 </SimpleGrid>
-      </Box>
-    );
-  })}
+
+</Box>
+);
+})}
 </ModalBody>
 </ModalContent>
 </Modal>
