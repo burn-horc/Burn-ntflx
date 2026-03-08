@@ -28,6 +28,7 @@ export default function AccessPage({ onAccessGranted }) {
         localStorage.setItem("access_code", code);
         onAccessGranted();
       }, 800);
+
     } catch {
       setError(true);
       setTimeout(() => setError(false), 500);
@@ -42,24 +43,32 @@ export default function AccessPage({ onAccessGranted }) {
 
         <div className="particles"></div>
 
-        {/* Animated Logo */}
         <div className="logo">N E T F L I X</div>
 
         <div className={`card ${error ? "shake" : ""} ${fadeOut ? "fade" : ""}`}>
+
           <h2>Private Access</h2>
           <p className="subtitle">Enter your private invite code</p>
 
           <input
             value={code}
+            disabled={loading}
             onChange={(e) => setCode(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleUnlock()}
             placeholder="Access Code"
           />
 
-         <button onClick={handleUnlock} disabled={loading} className="unlock-btn">
-  {loading ? <span className="spinner"></span> : "Unlock"}
-</button>
-          
+          <button onClick={handleUnlock} disabled={loading} className="unlock-btn">
+            {loading ? (
+              <>
+                <span className="spinner"></span>
+                Unlocking...
+              </>
+            ) : (
+              "Unlock"
+            )}
+          </button>
+
         </div>
 
         <div className="community">
@@ -104,8 +113,6 @@ background:#0d0d0d;
 overflow:hidden;
 position:relative;
 }
-
-/* Netflix style logo */
 
 .logo{
 position:absolute;
@@ -186,7 +193,7 @@ border:1px solid #7c8cff;
 box-shadow:0 0 14px rgba(124,140,255,.7);
 }
 
-button{
+.unlock-btn{
 width:100%;
 padding:14px;
 border-radius:14px;
@@ -195,21 +202,25 @@ font-weight:600;
 font-size:16px;
 color:white;
 cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
 background:linear-gradient(90deg,#5c6cff,#8f5cff,#5c6cff);
 background-size:200% 200%;
 animation:gradientMove 4s ease infinite;
 }
 
-button:hover{
+.unlock-btn:hover{
 transform:translateY(-2px);
 box-shadow:0 10px 25px rgba(92,108,255,.4);
 }
 
 .spinner{
-width:18px;
-height:18px;
-border:2px solid rgba(255,255,255,.3);
-border-top:2px solid white;
+width:20px;
+height:20px;
+border:3px solid rgba(255,255,255,.3);
+border-top:3px solid white;
 border-radius:50%;
 animation:spin .7s linear infinite;
 }
