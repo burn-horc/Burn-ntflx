@@ -725,6 +725,9 @@ const loadSavedCookies = async () => {
             PC
           </Button>
 
+          <Button onClick={handleTvActivation}>
+  TV
+</Button>
 
           <Button
   onClick={() => {
