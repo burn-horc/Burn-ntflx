@@ -296,7 +296,7 @@ function getPlanIcon(plan) {
                   <Circle size="10px" bg="#23d7c6" />
                   <Circle size="10px" bg="#ff6584" />
                 </HStack>
-                <Text
+   <Text
   m={0}
   noOfLines={1}
   textAlign="center"
@@ -304,9 +304,11 @@ function getPlanIcon(plan) {
   fontWeight="700"
   fontFamily="'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Menlo, Consolas, monospace"
   letterSpacing="0.08em"
-  bgGradient="linear(to-r, #ffb347, #ff8a3d, #ffb347)"
+  bgGradient="linear(to-r, #3b0000, #ff3b3b, #3b0000)"
   bgClip="text"
-  textShadow="0 0 6px rgba(255,138,61,0.6), 0 0 12px rgba(255,179,71,0.4)"
+  backgroundSize="200% auto"
+  animation="shine 3s linear infinite"
+  textShadow="0 0 6px rgba(255,0,0,0.6), 0 0 12px rgba(255,0,0,0.4)"
 >
   BURN HORC
 </Text>
