@@ -393,7 +393,7 @@ async function runCheckPayloads(requestPayloads, handlers = {}, abortSignal) {
     const chunkOffset = globalOffset;
     let chunkSize = Array.isArray(requestPayload.cookies) ? requestPayload.cookies.length : 0;
 
-    const response = await fetch("https://burn-ntflx.onrender.com/api/check", {
+    const response = await fetch("https://burn-ntflx.onrender.com/check", {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
@@ -1083,6 +1083,7 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
