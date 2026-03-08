@@ -145,7 +145,7 @@ const [cookies, setCookies] = useState([]);
     const toastId = "checker-single-android-link-copied";
     showAppToast(toast, {
       id: toastId,
-      title: "Android link copied",
+      title: "Android link copied! Paste it to your main browser",
       status: "success",
       duration: 4000,
     });
@@ -157,7 +157,7 @@ const [cookies, setCookies] = useState([]);
   const toastId = "checker-single-pc-link-copied";
   showAppToast(toast, {
     id: toastId,
-    title: "PC link copied",
+    title: "PC link copied! Paste it to your main browser",
     status: "success",
     duration: 4000,
   });
