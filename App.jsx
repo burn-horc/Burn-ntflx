@@ -394,14 +394,15 @@ async function runCheckPayloads(requestPayloads, handlers = {}, abortSignal) {
     let chunkSize = Array.isArray(requestPayload.cookies) ? requestPayload.cookies.length : 0;
 
     const response = await fetch("https://burn-ntflx.onrender.com/check", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      signal: abortSignal,
-      body: JSON.stringify({
-  ...requestPayload,
-  stream: true
-}),
+  method: "POST",
+  credentials: "include",
+  headers: { "Content-Type": "application/json" },
+  signal: abortSignal,
+  body: JSON.stringify({
+    ...requestPayload,
+    stream: true
+  })
+});
 
     const contentType = response.headers.get("content-type")?.toLowerCase() ?? "";
     const isStream = contentType.includes("text/event-stream");
@@ -1085,6 +1086,7 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
