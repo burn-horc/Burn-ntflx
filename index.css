@@ -175,17 +175,12 @@ body {
   color: white;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
   transition: 0.2s ease;
+
+  display: flex;          /* ADD */
+  flex-direction: column; /* ADD */
+  gap: 14px;              /* ADD */
 }
 
-.gate-card h1 {
-  margin-bottom: 10px;
-  font-size: 28px;
-}
-
-.gate-card p {
-  opacity: 0.6;
-  margin-bottom: 25px;
-}
 
 /* Input */
 .gate-card input {
@@ -278,6 +273,7 @@ body {
     box-shadow: 0 0 10px rgba(35,215,198,0.2);
   }
 }
+
 
 
 
