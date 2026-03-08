@@ -241,20 +241,19 @@ const checkPassword = async () => {
     .select("password")
     .single()
 
-  if(error){
-    console.log(error)
+  if (supabaseError) {
+    console.log(supabaseError)
     return
   }
 
-  if(password === data.password){
+  if (password === data.password) {
     setShowPassword(false)
     loadSavedCookies()
-  }else{
+  } else {
     setError("Wrong Password")
   }
 
 }
-
   
 function getPlanIcon(plan) {
   if (!plan) return "📺";
@@ -726,7 +725,57 @@ function getPlanIcon(plan) {
               </Box>
             </Flex>
           </Box>
+{showPassword && (
+  <Box
+    position="fixed"
+    top="0"
+    left="0"
+    w="100%"
+    h="100%"
+    bg="rgba(0,0,0,0.7)"
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+    zIndex="9999"
+  >
+    <Box
+      bg="#141726"
+      p={6}
+      borderRadius="16px"
+      w="300px"
+      border="1px solid rgba(255,255,255,0.08)"
+    >
 
+      <Text mb={3} fontWeight="700">
+        Enter Password
+      </Text>
+
+      <Input
+        type="password"
+        value={password}
+        onChange={(e)=>setPassword(e.target.value)}
+        placeholder="Password"
+        mb={3}
+      />
+
+      <Button
+        w="100%"
+        onClick={checkPassword}
+        bg="#4f8cff"
+        color="white"
+      >
+        Unlock
+      </Button>
+
+      {error && (
+        <Text color="red.400" mt={2}>
+          {error}
+        </Text>
+      )}
+
+    </Box>
+  </Box>
+)}
           <AppCredits />
         </Grid>
       </Box>
@@ -737,7 +786,7 @@ function getPlanIcon(plan) {
       
 
       <Modal
-  isOpen={isBulkModalOpen}
+  isOpen={isBulkModalOpent}
   onClose={() => setIsBulkModalOpen(false)}
   isCentered
   size={{ base: "full", md: "3xl" }}
