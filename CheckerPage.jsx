@@ -708,37 +708,46 @@ const loadSavedCookies = async () => {
   }}
 >
 
-<Flex justify="space-between" align="center" wrap="wrap" gap={2}>
-  <Box
-    px={4}
-    py={1}
-    borderRadius="999px"
-    bgGradient="linear(to-r,#23d7c6,#0fb9a8)"
-    boxShadow="
-      0 0 6px rgba(35,215,198,.7),
-      0 0 16px rgba(35,215,198,.4)
-    "
-  >
-    <Text
-      fontSize="sm"
-      fontWeight="800"
-      letterSpacing="0.06em"
-      textTransform="uppercase"
-      color="#041417"
-    >
-      {displayValue(result.plan)}
-    </Text>
-  </Box>
+<Flex justify="space-between" align="center" mb={3}>
 
-  <Text
-    fontSize="xs"
-    color="rgba(255,255,255,0.6)"
-    fontWeight="600"
-  >
-    {displayValue(result.countryOfSignup)}
-  </Text>
+<Box
+  px={4}
+  py={1}
+  borderRadius="999px"
+  bgGradient="linear(to-r,#23d7c6,#0fb9a8)"
+  boxShadow="
+    0 0 6px rgba(35,215,198,.7),
+    0 0 18px rgba(35,215,198,.45)
+  "
+>
+<Text
+  fontSize="sm"
+  fontWeight="800"
+  letterSpacing="0.06em"
+  textTransform="uppercase"
+  color="#041417"
+>
+{displayValue(result.plan)}
+</Text>
+</Box>
+
+<Box
+  px={3}
+  py={1}
+  borderRadius="8px"
+  bg="rgba(255,255,255,0.05)"
+  border="1px solid rgba(255,255,255,0.08)"
+>
+<Text
+  fontSize="xs"
+  color="rgba(255,255,255,0.75)"
+  fontWeight="600"
+>
+🌍 {displayValue(result.countryOfSignup)}
+</Text>
+</Box>
+
 </Flex>
-
 <VStack spacing={3} mt={4} align="stretch">
 
 <Box
