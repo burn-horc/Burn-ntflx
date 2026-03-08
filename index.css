@@ -157,8 +157,8 @@ body {
 
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 20px;
+ align-items: flex-start;
+padding-top: 120px;
 }
 /* Card */
   .gate-card {
@@ -273,6 +273,7 @@ body {
     box-shadow: 0 0 10px rgba(35,215,198,0.2);
   }
 }
+
 
 
 
