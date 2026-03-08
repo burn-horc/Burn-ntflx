@@ -373,8 +373,8 @@ function getPlanIcon(plan) {
                       onChange={handleCookieInputChange}
                       placeholder="$ paste netscape blocks, json cookie data, or raw/header cookie strings"
                       spellCheck={false}
-                      h="100%"
-                      minH="100%"
+                      h="80%"
+                      minH="80%"
                       w="100%"
                       resize="none"
                       borderRadius="16px"
