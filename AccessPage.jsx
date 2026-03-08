@@ -43,7 +43,7 @@ export default function AccessPage({ onAccessGranted }) {
         <div className="particles"></div>
 
         {/* Animated Logo */}
-        <div className="logo">BURN</div>
+        <div className="logo">N E T F L I X</div>
 
         <div className={`card ${error ? "shake" : ""} ${fadeOut ? "fade" : ""}`}>
           <h2>Private Access</h2>
@@ -56,9 +56,10 @@ export default function AccessPage({ onAccessGranted }) {
             placeholder="Access Code"
           />
 
-          <button onClick={handleUnlock} disabled={loading}>
-            {loading ? <span className="spinner"></span> : "Unlock"}
-          </button>
+         <button onClick={handleUnlock} disabled={loading} className="unlock-btn">
+  {loading ? <span className="spinner"></span> : "Unlock"}
+</button>
+          
         </div>
 
         <div className="community">
