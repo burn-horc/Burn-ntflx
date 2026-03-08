@@ -59,16 +59,17 @@ export default function AccessPage({ onAccessGranted }) {
         </div>
 
         <div className="fb-community">
-          <p>Join our community</p>
+  <p>For Private Code's</p>
+  <p>Message Me On</p>
 
-          <a
-            href="https://www.facebook.com/burn024/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Facebook
-          </a>
-        </div>
+  <a
+    href="https://www.facebook.com/burn024/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Facebook
+  </a>
+</div>
       </div>
 
       <style>{`
