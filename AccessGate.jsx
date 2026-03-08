@@ -32,7 +32,7 @@ export default function AccessGate({ children }) {
         onChange={(e) => setCode(e.target.value)}
       />
 
-      <button onClick={handleUnlock}>Unlock</button>
+      <button onClick={handleUnlock}>ILAGAY ANG CODE</button>
     </div>
 
     {/* Facebook section OUTSIDE the card */}
