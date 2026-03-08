@@ -55,6 +55,21 @@ export default function AccessPage({ onAccessGranted }) {
         <button onClick={handleUnlock} disabled={loading}>
           {loading ? <span className="spinner"></span> : "Unlock"}
         </button>
+        </div>
+
+    {/* Facebook section OUTSIDE the card */}
+    <div className="fb-community">
+      <p>Join our community</p>
+
+      <a
+        href="https://www.facebook.com/burn024/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Facebook
+      </a>
+    </div>
+
       </div>
 
       <style>{`
