@@ -5,7 +5,7 @@ export default function AccessGate({ children }) {
   const [code, setCode] = useState("");
   const [error, setError] = useState(false);
 
-  const correctCode = "x-murex"; // change this
+  const correctCode = "test123";
 
   const handleUnlock = () => {
     if (code === correctCode) {
