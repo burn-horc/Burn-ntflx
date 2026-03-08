@@ -23,7 +23,7 @@ export default function AccessGate({ children }) {
 
     <div className={`gate-card ${error ? "shake" : ""}`}>
       <h1>Private Access</h1>
-      <p>Message me on facebook for Access Code</p>
+      <p>Enter your private invite code</p>
 
       <input
         type="password"
