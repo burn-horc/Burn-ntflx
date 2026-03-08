@@ -41,23 +41,22 @@ export default function AccessPage({ onAccessGranted }) {
 };
 
   return (
-    <div className="container">
-      <div className={`card ${error ? "shake" : ""} ${fadeOut ? "fade" : ""}`}>
-        <h2>Private Access</h2>
-        <p className="subtitle">Enter your private invite code</p>
+  <div className="container">
+    <div className={`card ${error ? "shake" : ""} ${fadeOut ? "fade" : ""}`}>
+      <h2>Private Access</h2>
+      <p className="subtitle">Enter your private invite code</p>
 
-        <input
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-          placeholder="Access Code"
-        />
+      <input
+        value={code}
+        onChange={(e) => setCode(e.target.value)}
+        placeholder="Access Code"
+      />
 
-        <button onClick={handleUnlock} disabled={loading}>
-          {loading ? <span className="spinner"></span> : "Unlock"}
-        </button>
-        </div>
+      <button onClick={handleUnlock} disabled={loading}>
+        {loading ? <span className="spinner"></span> : "Unlock"}
+      </button>
+    </div>
 
-    {/* Facebook section OUTSIDE the card */}
     <div className="fb-community">
       <p>Join our community</p>
 
@@ -70,8 +69,12 @@ export default function AccessPage({ onAccessGranted }) {
       </a>
     </div>
 
-      </div>
+    <style>{`
+      /* ALL YOUR CSS HERE */
+    `}</style>
 
+  </div>
+);
       <style>{`
         .container {
           height: 100vh;
