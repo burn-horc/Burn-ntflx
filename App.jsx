@@ -398,8 +398,10 @@ async function runCheckPayloads(requestPayloads, handlers = {}, abortSignal) {
       credentials: "include",
       headers: { "Content-Type": "application/json" },
       signal: abortSignal,
-      body: JSON.stringify(requestPayload),
-    });
+      body: JSON.stringify({
+  ...requestPayload,
+  stream: true
+}),
 
     const contentType = response.headers.get("content-type")?.toLowerCase() ?? "";
     const isStream = contentType.includes("text/event-stream");
@@ -1083,6 +1085,7 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
