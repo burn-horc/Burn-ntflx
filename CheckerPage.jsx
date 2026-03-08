@@ -690,30 +690,38 @@ const loadSavedCookies = async () => {
 
     return (
       <Box
-        key={index}
-        mb={4}
-        borderRadius="12px"
-        borderWidth="1px"
-        borderColor="rgba(35,215,198,0.4)"
-        bg="#101525"
-        p={3}
-      >
-       <Flex
-  justify="space-between"
-  align="center"
-  wrap="wrap"
-  gap={2}
+  key={index}
+  mb={5}
+  borderRadius="16px"
+  border="1px solid rgba(255,255,255,0.08)"
+  bg="linear-gradient(145deg,#121528,#0d0f1c)"
+  p={4}
+  boxShadow="
+    0 0 0 1px rgba(255,255,255,0.02),
+    0 8px 24px rgba(0,0,0,0.6),
+    inset 0 0 30px rgba(255,255,255,0.02)
+  "
+  transition="all .25s ease"
+  _hover={{
+    transform: "translateY(-3px)",
+    boxShadow: "0 12px 32px rgba(0,0,0,0.8)"
+  }}
 >
+
+<Flex justify="space-between" align="center" wrap="wrap" gap={2}>
   <Box
-    px={3}
+    px={4}
     py={1}
-    borderRadius="8px"
-    bgGradient="linear(to-r, #23d7c6, #0fb9a8)"
-    boxShadow="0 0 8px rgba(35,215,198,0.6)"
+    borderRadius="999px"
+    bgGradient="linear(to-r,#23d7c6,#0fb9a8)"
+    boxShadow="
+      0 0 6px rgba(35,215,198,.7),
+      0 0 16px rgba(35,215,198,.4)
+    "
   >
     <Text
       fontSize="sm"
-      fontWeight="700"
+      fontWeight="800"
       letterSpacing="0.06em"
       textTransform="uppercase"
       color="#041417"
@@ -731,111 +739,150 @@ const loadSavedCookies = async () => {
   </Text>
 </Flex>
 
-        <VStack spacing={3} mt={3} align="stretch">
+<VStack spacing={3} mt={4} align="stretch">
 
-<Box bg="#1b1f33" p={3} borderRadius="10px">
+<Box
+  bg="rgba(255,255,255,0.03)"
+  p={3}
+  borderRadius="12px"
+  border="1px solid rgba(255,255,255,0.05)"
+  backdropFilter="blur(4px)"
+  _hover={{
+    bg:"rgba(255,255,255,0.05)",
+    borderColor:"rgba(255,138,61,0.35)"
+  }}
+>
 <Text fontSize="xs" color="gray.400">EMAIL</Text>
 <Text fontWeight="600">{displayValue(result.email)}</Text>
 </Box>
 
-<Box bg="#1b1f33" p={3} borderRadius="10px">
+<Box
+  bg="rgba(255,255,255,0.03)"
+  p={3}
+  borderRadius="12px"
+  border="1px solid rgba(255,255,255,0.05)"
+>
 <Text fontSize="xs" color="gray.400">PLAN</Text>
 <Text fontWeight="600">{displayValue(result.plan)}</Text>
 </Box>
 
-<Box bg="#1b1f33" p={3} borderRadius="10px">
+<Box
+  bg="rgba(255,255,255,0.03)"
+  p={3}
+  borderRadius="12px"
+  border="1px solid rgba(255,255,255,0.05)"
+>
 <Text fontSize="xs" color="gray.400">COUNTRY</Text>
 <Text fontWeight="600">{displayValue(result.countryOfSignup)}</Text>
 </Box>
 
-<Box bg="#1b1f33" p={3} borderRadius="10px">
+<Box
+  bg="rgba(255,255,255,0.03)"
+  p={3}
+  borderRadius="12px"
+  border="1px solid rgba(255,255,255,0.05)"
+>
 <Text fontSize="xs" color="gray.400">NEXT BILLING</Text>
 <Text fontWeight="600">{displayValue(result.nextBilling)}</Text>
 </Box>
 
-<Box bg="#1b1f33" p={3} borderRadius="10px">
+<Box
+  bg="rgba(255,255,255,0.03)"
+  p={3}
+  borderRadius="12px"
+  border="1px solid rgba(255,255,255,0.05)"
+>
 <Text fontSize="xs" color="gray.400">MEMBER SINCE</Text>
 <Text fontWeight="600">{displayValue(result.memberSince)}</Text>
 </Box>
 
-<Box bg="#1b1f33" p={3} borderRadius="10px">
+<Box
+  bg="rgba(255,255,255,0.03)"
+  p={3}
+  borderRadius="12px"
+  border="1px solid rgba(255,255,255,0.05)"
+>
 <Text fontSize="xs" color="gray.400">PHONE</Text>
 <Text fontWeight="600">{displayValue(result.phone)}</Text>
 </Box>
 
 </VStack>
 
-        <SimpleGrid columns={{ base: 2, sm: 4 }} spacing={3} mt={4}>
-  <Button
-    flex={1}
-    bgGradient="linear(to-r, #ffb347, #ff8a3d)"
-    color="black"
-    fontWeight="bold"
-    boxShadow="0 0 10px rgba(255,179,71,0.6)"
-    _hover={{
-      transform: "translateY(-2px)",
-      boxShadow: "0 0 16px rgba(255,179,71,0.9)"
-    }}
-    onClick={() =>
-      handleAndroidCopy(readResultTokenLink(result))
-    }
-  >
-    Android
-  </Button>
+<SimpleGrid columns={{ base: 2, sm: 4 }} spacing={3} mt={5}>
 
-  <Button
-    flex={1}
-    bgGradient="linear(to-r, #ffb347, #ff8a3d)"
-    color="black"
-    fontWeight="bold"
-    boxShadow="0 0 10px rgba(255,179,71,0.6)"
-    _hover={{
-      transform: "translateY(-2px)",
-      boxShadow: "0 0 16px rgba(255,179,71,0.9)"
-    }}
-    onClick={() =>
-      handlePcCopy(readResultTokenLink(result))
-    }
-  >
-    PC
-  </Button>
+<Button
+  flex={1}
+  bgGradient="linear(to-r,#ffb347,#ff8a3d)"
+  color="#1a1208"
+  fontWeight="800"
+  boxShadow="
+    0 0 8px rgba(255,179,71,.7),
+    0 0 18px rgba(255,138,61,.5)
+  "
+  _hover={{
+    transform:"translateY(-2px)",
+    boxShadow:"0 0 20px rgba(255,179,71,1)"
+  }}
+  onClick={() =>
+    handleAndroidCopy(readResultTokenLink(result))
+  }
+>
+Android
+</Button>
 
-  <Button
-    flex={1}
-    bgGradient="linear(to-r, #ffb347, #ff8a3d)"
-    color="black"
-    fontWeight="bold"
-    boxShadow="0 0 10px rgba(255,179,71,0.6)"
-    _hover={{
-      transform: "translateY(-2px)",
-      boxShadow: "0 0 16px rgba(255,179,71,0.9)"
-    }}
-    onClick={handleTvActivation}
-  >
-    TV
-  </Button>
+<Button
+  flex={1}
+  bgGradient="linear(to-r,#ffb347,#ff8a3d)"
+  color="#1a1208"
+  fontWeight="800"
+  boxShadow="
+    0 0 8px rgba(255,179,71,.7),
+    0 0 18px rgba(255,138,61,.5)
+  "
+  _hover={{
+    transform:"translateY(-2px)",
+    boxShadow:"0 0 20px rgba(255,179,71,1)"
+  }}
+  onClick={() =>
+    handlePcCopy(readResultTokenLink(result))
+  }
+>
+PC
+</Button>
 
-  <Button
-    flex={1}
-    bg="#1a1d2e"
-    color="white"
-    border="1px solid rgba(255,255,255,0.2)"
-    _hover={{ bg: "#22263a" }}
-    onClick={() => {
-      navigator.clipboard.writeText(result.originalCookie || "NO COOKIE FOUND");
-    }}
-  >
-    COPY COOKIE
-  </Button>
+<Button
+  flex={1}
+  bgGradient="linear(to-r,#ffb347,#ff8a3d)"
+  color="#1a1208"
+  fontWeight="800"
+  boxShadow="
+    0 0 8px rgba(255,179,71,.7),
+    0 0 18px rgba(255,138,61,.5)
+  "
+  _hover={{
+    transform:"translateY(-2px)",
+    boxShadow:"0 0 20px rgba(255,179,71,1)"
+  }}
+  onClick={handleTvActivation}
+>
+TV
+</Button>
+
+<Button
+  flex={1}
+  bg="#1a1d2e"
+  color="white"
+  border="1px solid rgba(255,255,255,0.2)"
+  _hover={{ bg:"#22263a" }}
+  onClick={()=>{
+    navigator.clipboard.writeText(result.originalCookie || "NO COOKIE FOUND");
+  }}
+>
+COPY COOKIE
+</Button>
+
 </SimpleGrid>
-      </Box>
-    );
-  })}
-</ModalBody>
-</ModalContent>
-</Modal>
 
 </Box>
-
 );
 }
