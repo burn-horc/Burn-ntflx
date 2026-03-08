@@ -373,7 +373,7 @@ function getPlanIcon(plan) {
                       onChange={handleCookieInputChange}
                       placeholder="$ paste netscape blocks, json cookie data, or raw/header cookie strings 
                       
-                      or 
+                      ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
                       
                       just press the FIND ACCOUNT button if you dont have cookies"
                       spellCheck={false}
