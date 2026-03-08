@@ -14,13 +14,9 @@ export default function AccessPage({ onAccessGranted }) {
       setLoading(true);
       setError(false);
 
-      console.log("Supabase URL:", import.meta.env.VITE_SUPABASE_URL);
-
       const { data, error: rpcError } = await supabase.rpc("use_access_code", {
         input_code: code,
       });
-
-      console.log("RPC result:", data, rpcError);
 
       if (rpcError || !data?.success) {
         throw new Error(data?.error || "Invalid code");
@@ -58,35 +54,38 @@ export default function AccessPage({ onAccessGranted }) {
           </button>
         </div>
 
-        <div className="fb-community">
-  <p>For private code</p>
-  <p>Message me on</p>
+        <div className="community">
+          <p>For private code</p>
+          <p>Message me on</p>
 
-   <a
-      href="https://www.facebook.com/burn024/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="social fb"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/8/89/Facebook_Logo_%282019%29.svg"
-        alt="Facebook"
-      />
-    </a>
+          <div className="social-icons">
 
-    <a
-      href="https://t.me/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="social tg"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
-        alt="Telegram"
-      />
-    </a>
+            <a
+              href="https://www.facebook.com/burn024/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social fb"
+            >
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/8/89/Facebook_Logo_%282019%29.svg"
+                alt="Facebook"
+              />
+            </a>
 
-  </div>
+            <a
+              href="https://t.me/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social tg"
+            >
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+                alt="Telegram"
+              />
+            </a>
+
+          </div>
+        </div>
       </div>
 
       <style>{`
@@ -164,11 +163,6 @@ export default function AccessPage({ onAccessGranted }) {
           align-items: center;
         }
 
-        button:disabled {
-          opacity: 0.7;
-          cursor: not-allowed;
-        }
-
         button:hover {
           transform: translateY(-2px);
           box-shadow: 0 10px 25px rgba(92,108,255,0.4);
@@ -214,20 +208,51 @@ export default function AccessPage({ onAccessGranted }) {
           transform: scale(0.95);
         }
 
-        .fb-community {
-          margin-top: 20px;
-          color: #aaa;
+        .community {
+          margin-top: 25px;
           text-align: center;
+          color: #aaa;
         }
 
-        .fb-community a {
-          color: #7c8cff;
-          text-decoration: none;
-          font-weight: 500;
+        .social-icons {
+          margin-top: 12px;
+          display: flex;
+          justify-content: center;
+          gap: 22px;
         }
 
-        .fb-community a:hover {
-          text-decoration: underline;
+        .social {
+          width: 44px;
+          height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background: rgba(255,255,255,0.05);
+          backdrop-filter: blur(10px);
+          transition: all .3s ease;
+          animation: float 4s ease-in-out infinite;
+        }
+
+        .social img {
+          width: 24px;
+          height: 24px;
+        }
+
+        .fb:hover {
+          box-shadow: 0 0 15px rgba(24,119,242,0.8);
+          transform: scale(1.15);
+        }
+
+        .tg:hover {
+          box-shadow: 0 0 15px rgba(0,170,255,0.8);
+          transform: scale(1.15);
+        }
+
+        @keyframes float {
+          0% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
+          100% { transform: translateY(0); }
         }
       `}</style>
     </>
