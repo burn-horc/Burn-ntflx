@@ -698,7 +698,12 @@ const loadSavedCookies = async () => {
         bg="#101525"
         p={3}
       >
-       <HStack justify="space-between" align="center">
+       <Flex
+  justify="space-between"
+  align="center"
+  wrap="wrap"
+  gap={2}
+>
   <Box
     px={3}
     py={1}
@@ -724,7 +729,7 @@ const loadSavedCookies = async () => {
   >
     {displayValue(result.countryOfSignup)}
   </Text>
-</HStack>
+</Flex>
 
         <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={2} mt={2}>
           {modalDetailItems.map(([label, value], i) =>
