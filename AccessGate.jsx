@@ -5,7 +5,7 @@ export default function AccessGate({ children }) {
   const [code, setCode] = useState("");
   const [error, setError] = useState(false);
 
-  const correctCode = "test123";
+  
 
   const handleUnlock = () => {
     if (code === correctCode) {
@@ -23,7 +23,7 @@ export default function AccessGate({ children }) {
 
     <div className={`gate-card ${error ? "shake" : ""}`}>
       <h1>Private Access</h1>
-      <p>Enter your private invite code</p>
+      <p>Message me on facebook for Access Code</p>
 
       <input
         type="password"
