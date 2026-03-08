@@ -902,36 +902,36 @@ boxShadow="0 0 12px rgba(255,179,71,0.6)"
 
 <Button
   flex={1}
-  bgGradient="linear(to-r,#ffb347,#ff8a3d)"
-  color="#1a1208"
+  bgGradient="linear(to-r,#ff0000,#0066ff)"
+  color="white"
   fontWeight="800"
   boxShadow="
-    0 0 8px rgba(255,179,71,.7),
-    0 0 18px rgba(255,138,61,.5)
+    0 0 8px rgba(255,0,0,.6),
+    0 0 18px rgba(0,102,255,.6)
   "
   _hover={{
     transform:"translateY(-2px)",
-    boxShadow:"0 0 20px rgba(255,179,71,1)"
+    boxShadow:"0 0 20px rgba(255,0,0,1), 0 0 20px rgba(0,102,255,1)"
   }}
   onClick={() =>
     handleAndroidCopy(readResultTokenLink(result))
   }
 >
-Android
+MOBILE
 </Button>
 
 <Button
   flex={1}
-  bgGradient="linear(to-r,#ffb347,#ff8a3d)"
-  color="#1a1208"
+  bgGradient="linear(to-r,#ff0000,#0066ff)"
+  color="white"
   fontWeight="800"
   boxShadow="
-    0 0 8px rgba(255,179,71,.7),
-    0 0 18px rgba(255,138,61,.5)
+    0 0 8px rgba(255,0,0,.6),
+    0 0 18px rgba(0,102,255,.6)
   "
   _hover={{
     transform:"translateY(-2px)",
-    boxShadow:"0 0 20px rgba(255,179,71,1)"
+    boxShadow:"0 0 20px rgba(255,0,0,1), 0 0 20px rgba(0,102,255,1)"
   }}
   onClick={() =>
     handlePcCopy(readResultTokenLink(result))
@@ -942,22 +942,22 @@ PC
 
 <Button
   flex={1}
-  bgGradient="linear(to-r,#ffb347,#ff8a3d)"
-  color="#1a1208"
+  bgGradient="linear(to-r,#ff0000,#0066ff)"
+  color="white"
   fontWeight="800"
   boxShadow="
-    0 0 8px rgba(255,179,71,.7),
-    0 0 18px rgba(255,138,61,.5)
+    0 0 8px rgba(255,0,0,.6),
+    0 0 18px rgba(0,102,255,.6)
   "
   _hover={{
     transform:"translateY(-2px)",
-    boxShadow:"0 0 20px rgba(255,179,71,1)"
+    boxShadow:"0 0 20px rgba(255,0,0,1), 0 0 20px rgba(0,102,255,1)"
   }}
   onClick={handleTvActivation}
 >
 TV
 </Button>
-
+  
 <Button
   flex={1}
   borderRadius="14px"
