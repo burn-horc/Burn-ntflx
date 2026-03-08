@@ -713,47 +713,68 @@ const loadSavedCookies = async () => {
         </SimpleGrid>
 
         <HStack mt={4} spacing={3}>
-          <Button
-            flex={1}
-            bg="#ff8c42"
-            color="white"
-            onClick={() =>
-              handleAndroidCopy(readResultTokenLink(result))
-            }
-          >
-            Android
-          </Button>
+  <Button
+    flex={1}
+    bgGradient="linear(to-r, #ffb347, #ff8a3d)"
+    color="black"
+    fontWeight="bold"
+    boxShadow="0 0 10px rgba(255,179,71,0.6)"
+    _hover={{
+      transform: "translateY(-2px)",
+      boxShadow: "0 0 16px rgba(255,179,71,0.9)"
+    }}
+    onClick={() =>
+      handleAndroidCopy(readResultTokenLink(result))
+    }
+  >
+    Android
+  </Button>
 
-          <Button
-            flex={1}
-            bg="#ff8c42"
-            color="white"
-            onClick={() =>
-              handlePcCopy(readResultTokenLink(result))
-            }
-          >
-            PC
-          </Button>
+  <Button
+    flex={1}
+    bgGradient="linear(to-r, #ffb347, #ff8a3d)"
+    color="black"
+    fontWeight="bold"
+    boxShadow="0 0 10px rgba(255,179,71,0.6)"
+    _hover={{
+      transform: "translateY(-2px)",
+      boxShadow: "0 0 16px rgba(255,179,71,0.9)"
+    }}
+    onClick={() =>
+      handlePcCopy(readResultTokenLink(result))
+    }
+  >
+    PC
+  </Button>
 
-          <Button
-  flex={1}
-  bg="#ff8c42"          // same as Android/PC
-  color="white"
-  onClick={handleTvActivation}
->
-  TV
-</Button>
+  <Button
+    flex={1}
+    bgGradient="linear(to-r, #ffb347, #ff8a3d)"
+    color="black"
+    fontWeight="bold"
+    boxShadow="0 0 10px rgba(255,179,71,0.6)"
+    _hover={{
+      transform: "translateY(-2px)",
+      boxShadow: "0 0 16px rgba(255,179,71,0.9)"
+    }}
+    onClick={handleTvActivation}
+  >
+    TV
+  </Button>
 
-          <Button
-  onClick={() => {
-    console.log(result);
-    navigator.clipboard.writeText(result.originalCookie || "NO COOKIE FOUND");
-  }}
->
-  COPY COOKIE
-</Button>
-        
-        </HStack>
+  <Button
+    flex={1}
+    bg="#1a1d2e"
+    color="white"
+    border="1px solid rgba(255,255,255,0.2)"
+    _hover={{ bg: "#22263a" }}
+    onClick={() => {
+      navigator.clipboard.writeText(result.originalCookie || "NO COOKIE FOUND");
+    }}
+  >
+    COPY COOKIE
+  </Button>
+</HStack>
       </Box>
     );
   })}
