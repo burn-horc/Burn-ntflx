@@ -310,7 +310,7 @@ function getPlanIcon(plan) {
   animation="shine 3s linear infinite"
   textShadow="0 0 6px rgba(255,0,0,0.6), 0 0 12px rgba(255,0,0,0.4)"
 >
-  BURN HORC
+  PREMIUM
 </Text>
                 <Box aria-hidden="true" />
               </Grid>
