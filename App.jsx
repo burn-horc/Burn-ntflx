@@ -10,8 +10,8 @@ const ESTIMATED_DIRECT_TIMEOUT_MS = 12_000;
 const ESTIMATED_PER_CHECK_OVERHEAD_MS = 500;
 const DEFAULT_WORKER_COUNT = 1;
 const MIN_WORKER_COUNT = 1;
-const MAX_WORKER_COUNT = 10;
-const MAX_CHECK_LOG_LINES = 1000;
+const MAX_WORKER_COUNT = 5;
+const MAX_CHECK_LOG_LINES = 3000;
 const FILE_PICKER_ACCEPT = ".json,.txt,.csv";
 const STORAGE_KEY = "netflix-checker:checked-cookies:v1";
 
@@ -1086,6 +1086,7 @@ export default function App() {
     <AccessPage onAccessGranted={() => setHasAccess(true)} />
   );
 }
+
 
 
 
